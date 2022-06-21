@@ -133,7 +133,7 @@ function View({
 
         <section className="footer">
           <section className="section-buttons flex">
-            <div className="button" onClick={() => redirectTo("/brands")}>
+            <div className="button" onClick={() => redirectTo(-1)}>
               Atrás
             </div>
             <input className="button" type="submit" value={"Guardar Cambios"} />
