@@ -693,7 +693,7 @@ export const FORM_INPUTS_PROFILE = [
     className: "input-txt",
   },
   {
-    id: "id",
+    id: "cedula",
     type: "text",
     label: "Cédula",
     placeholder: "",

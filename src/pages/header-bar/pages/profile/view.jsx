@@ -11,7 +11,6 @@ function View({ userData }) {
       <PageTitle page={"profile-page"} user={true} title="Mi perfil" />
 
       <div className="description">Datos personales</div>
-
       <section className="content">
         {FORM_INPUTS_PROFILE.map((input, index) => (
           <div key={index} className="item-input flex">
@@ -20,13 +19,7 @@ function View({ userData }) {
               <input
                 {...input}
                 id={input.id}
-                defaultValue={
-                  !input.id.includes("password")
-                    ? userData[input.id]
-                      ? userData[input.id]
-                      : ""
-                    : ""
-                }
+                defaultValue={userData[input.id]}
               />
               {Icons("edit")}
             </div>
