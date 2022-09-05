@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PageTitle from "../../../../page-title";
 import { FORM_INPUTS_BRANDS, FROM_BRAND_TABLES } from "../../../../constats";
 import "./styles.scss";

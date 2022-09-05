@@ -12,8 +12,6 @@ import View from "./view";
 function Index() {
   const { brands, setBrands, userData } = useContext(DataContext);
 
-  console.log(userData);
-
   const { id } = useParams();
   const navigate = useNavigate();
 

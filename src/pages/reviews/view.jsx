@@ -41,7 +41,6 @@ function View({
   modalMessageFinish3,
   setModalMessageFinish3,
 }) {
-  console.log("reviews", reviews);
   return (
     <div className="page reviews">
       <div>

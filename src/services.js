@@ -125,3 +125,6 @@ export const getAnnotationsImage = async (image_id) =>
   axios.get(
     `https://api.ticvzla.xyz/public/api/get_annotations_by_image_id/${image_id}`
   );
+
+export const updateProfileData = async (body) =>
+  axios.put(`https://api.ticvzla.xyz/public/api/users/${body.user_id}`, body);

@@ -5,33 +5,55 @@ import { Icons } from "../../../icons";
 
 import "./styles.scss";
 
-function View({ userData }) {
+function View({
+  userData,
+  onSubmit,
+  handleSubmit,
+  register,
+  validatePassword,
+}) {
   return (
     <div className="profile-page page">
-      <PageTitle page={"profile-page"} user={true} title="Mi perfil" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <PageTitle page={"profile-page"} user={true} title="Mi perfil" />
 
-      <div className="description">Datos personales</div>
-      <section className="content">
-        {FORM_INPUTS_PROFILE.map((input, index) => (
-          <div key={index} className="item-input flex">
-            <label htmlFor={input.id}>{input.label} </label>
-            <div className="flex">
-              <input
-                {...input}
-                id={input.id}
-                defaultValue={userData[input.id]}
-              />
-              {Icons("edit")}
+        <div className="description">Datos personales</div>
+
+        <section className="content">
+          {FORM_INPUTS_PROFILE.map((input, index) => (
+            <div key={index} className="item-input flex">
+              <label htmlFor={input.id}>{input.label} </label>
+              <div className="flex">
+                <input
+                  {...input}
+                  id={input.id}
+                  defaultValue={userData[input.id]}
+                  {...register(input.id)}
+                  className={
+                    input.id === "passwordNew_confirm"
+                      ? validatePassword()
+                        ? "input-txt"
+                        : "input-txt-error"
+                      : input.className
+                  }
+                />
+                {Icons("edit")}
+              </div>
             </div>
-          </div>
-        ))}
-      </section>
-
-      <section className="footer">
-        <section className="section-buttons flex">
-          <div className="button">Guardar cambios</div>
+          ))}
         </section>
-      </section>
+
+        <section className="footer">
+          <section className="section-buttons flex">
+            <input
+              className="button"
+              type="submit"
+              value={"Guardar Cambios"}
+              disabled={!validatePassword()}
+            />
+          </section>
+        </section>
+      </form>
     </div>
   );
 }

@@ -41,7 +41,6 @@ export const MAIN_SUBMENU = (
   setModalHelp,
   modalHelp
 ) => {
-  console.log(rol);
   const listContent = [
     {
       view: true,
@@ -701,20 +700,22 @@ export const FORM_INPUTS_PROFILE = [
     className: "input-txt",
   },
   {
-    id: "password",
+    id: "passwordNew",
     type: "password",
     label: "Nueva contraseña",
-    placeholder: "",
+    placeholder: "Ingrese nueva contraseña",
     required: false,
     className: "input-txt",
+    autocomplete: "new-password",
   },
   {
-    id: "password_confirm",
+    id: "passwordNew_confirm",
     type: "password",
     label: "Confirmar contraseña",
-    placeholder: "",
+    placeholder: "Ingrese nueva contraseña",
     required: false,
     className: "input-txt",
+    autocomplete: "new-password",
   },
 ];
 

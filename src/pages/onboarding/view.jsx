@@ -75,7 +75,7 @@ function View({
             {step === 1 && (
               <>
                 <h2>
-                  1. ¿Cuál es el nombre comercial de tu compañía/organización?
+                  1. ¿Cuál es el nombre comercial de tu empresa u organización?
                 </h2>
                 <input
                   type="text"
@@ -98,9 +98,7 @@ function View({
             )}
             {step === 2 && (
               <>
-                <h2>
-                  2. ¿Cuál es la página web (URL) de tu compañía/ organización?
-                </h2>
+                <h2>2. ¿Cuál es la página web de tu empresa u organización?</h2>
                 <p className="text-desc">
                   En caso de no tener deja el espacio en blanco y continúa.
                 </p>
@@ -112,14 +110,9 @@ function View({
                   className="input-txt-onboarding"
                   onChange={(e) => setUrlOrganization(e.target.value)}
                 />
-                {urlOrganization && (
-                  <div
-                    className="button-blue"
-                    onClick={() => setStep(step + 1)}
-                  >
-                    Continuar
-                  </div>
-                )}
+                <div className="button-blue" onClick={() => setStep(step + 1)}>
+                  Continuar
+                </div>
               </>
             )}
             {step === 3 && (
