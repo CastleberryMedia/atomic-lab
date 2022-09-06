@@ -88,8 +88,15 @@ export const getBrands = async (user_id) =>
   );
 export const postCreateBrand = async (data) =>
   axios.post(`https://api.ticvzla.xyz/public/api/brands`, data);
+
 export const putUpdateBrand = async ({ data, brand_id }) =>
   axios.put(`https://api.ticvzla.xyz/public/api/brands/${brand_id}`, data);
+
+export const putPredeterminateBrand = async ({ user_id, brand_id }) =>
+  axios.put(
+    `https://api.ticvzla.xyz/public/api/update_predeterminate/${brand_id}`,
+    { user_id: user_id }
+  );
 
 //team
 export const getTeam = async (user_id) =>

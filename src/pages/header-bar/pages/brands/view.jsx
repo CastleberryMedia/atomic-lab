@@ -2,8 +2,15 @@ import React from "react";
 import PageTitle from "../../../page-title";
 import "./styles.scss";
 import { Icons } from "../../../icons";
+import ModalMessage from "../../../modals/message";
 
-function View({ redirectToBrandForm, brands }) {
+function View({
+  redirectToBrandForm,
+  brands,
+  predeterminateBrand,
+  modalMessage,
+  setModalMessage,
+}) {
   return (
     <div className="brands-page page">
       <PageTitle page={"brands-page"} user={true} title="Mis marcas" />
@@ -14,12 +21,11 @@ function View({ redirectToBrandForm, brands }) {
 
       <section className="content flex">
         {brands?.map((brand, index) => (
-          <div
-            key={index}
-            className="brand-card"
-            onClick={() => redirectToBrandForm(brand.id)}
-          >
-            <div className="card-content">
+          <div key={index} className="brand-card">
+            <div
+              className="card-content"
+              onClick={() => redirectToBrandForm(brand.id)}
+            >
               <p>Perfil de la marca</p>
 
               <p>
@@ -32,7 +38,20 @@ function View({ redirectToBrandForm, brands }) {
               <p>{brand.name}</p>
             </div>
             <div className="footer">
-              {brand.predeterminate === 1 && <p>Predeterminada</p>}
+              {brand.predeterminate === 1 ? (
+                <div className="predt">
+                  <div className="start-pred">☆</div>
+                  <div>Predeterminar</div>
+                </div>
+              ) : (
+                <div
+                  className="predt"
+                  onClick={() => predeterminateBrand(brand.id)}
+                >
+                  <div className="start">☆</div>
+                  <div>Predeterminar</div>
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -47,6 +66,14 @@ function View({ redirectToBrandForm, brands }) {
           <div className="footer"></div>
         </div>
       </section>
+
+      {modalMessage && (
+        <ModalMessage
+          next={() => setModalMessage(false)}
+          cancelVisible={false}
+          message={"Se predetermino la marca"}
+        />
+      )}
     </div>
   );
 }

@@ -16,6 +16,7 @@ function Index({ setIsAuthenticated }) {
     notifications,
     setNotifications,
     userData,
+    brands,
     setBrands,
     setTeam,
     setAttached,
@@ -88,6 +89,7 @@ function Index({ setIsAuthenticated }) {
     notifications,
     notificationsView,
     setNotificationsView,
+    brands,
   };
 
   return <View {...properties} />;

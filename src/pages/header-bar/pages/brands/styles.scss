@@ -9,11 +9,11 @@
     height: 283px;
     border-radius: 13px;
     background-color: #ffffff;
-    cursor: pointer;
     text-align: center;
     position: relative;
 
     .card-content {
+      cursor: pointer;
       padding: 20px;
       box-sizing: border-box;
       height: 15em;
@@ -41,8 +41,26 @@
       border-bottom-left-radius: 13px;
       border-bottom-right-radius: 13px;
 
-      p {
+      div {
         color: #ffffff;
+      }
+
+      .predt {
+        display: flex;
+        gap: 10px;
+        cursor: pointer;
+
+        .start-pred:before {
+          content: "\2605";
+          position: absolute;
+        }
+
+        &:hover {
+          .start:before {
+            content: "\2605";
+            position: absolute;
+          }
+        }
       }
     }
   }

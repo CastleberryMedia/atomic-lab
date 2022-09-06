@@ -29,6 +29,7 @@ function View({
   notifications,
   notificationsView,
   setNotificationsView,
+  brands,
 }) {
   const path = location.pathname.replaceAll(
     "/",
@@ -143,22 +144,22 @@ function View({
         </div>
 
         <div className="icon-account">
-          <img
-            src={
-              USER_DATA.brands.filter(
-                (brand) => brand.predeterminate === true
-              )[0].logo
-            }
-            alt="logo_predeterminate"
-          />
+          {brands?.filter((brand) => brand.predeterminate === 1)[0]
+            .url_image ? (
+            <img
+              src={
+                brands?.filter((brand) => brand.predeterminate === 1)[0]
+                  .url_image || Icons("icon_img_post")
+              }
+              alt="logo_predeterminate"
+            />
+          ) : (
+            Icons("icon_img_post")
+          )}
         </div>
         <div className="account-value">
           <div>
-            {
-              USER_DATA.brands.filter(
-                (brand) => brand.predeterminate === true
-              )[0].name
-            }
+            {brands?.filter((brand) => brand.predeterminate === 1)[0].name}
           </div>
           <div>
             {userData?.name && userData?.last_name
