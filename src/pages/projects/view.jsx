@@ -78,7 +78,8 @@ function View({
                   page === "home" ? idx < 5 : idx < 1000
                 )
                 .map((project, index) => {
-                  const projectValues = project?.values[0] || [];
+                  const projectValues =
+                    project?.values !== null ? project?.values[0] : [];
 
                   const flows = project.flow && JSON.parse(project?.flow);
                   const flow_active =
