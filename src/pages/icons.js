@@ -159,7 +159,7 @@ export const Icons = (icon) => {
     comments_blue: comments_blue,
     hidde_eye: hidde_eye,
     eye: eye,
-    check_circle: check_circle
+    check_circle: check_circle,
   };
 
   return <img src={listIcons[icon]} alt={icon} />;

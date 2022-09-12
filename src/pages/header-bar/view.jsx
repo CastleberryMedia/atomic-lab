@@ -110,14 +110,41 @@ function View({
           Notificaciones
         </div>
 
+        {console.log(notificationsView)}
+
         {notificationsView && (
           <div className="float-notifications">
-            Notificaciones
-            <ul>
-              {notifications?.map((noti) => (
-                <li>{noti.value}</li>
-              ))}
-            </ul>
+            {notifications.length ? (
+              <div className="float-notifications-list">
+                {notifications
+                  ?.slice(0)
+                  .reverse()
+                  .map((noti, index) => (
+                    <div className="float-notifications-list-item">
+                      <div className="float-notifications-list-item-text">
+                        {noti.value.split("-")[0]}
+                      </div>
+                      <div className="float-notifications-list-item-date">
+                        {noti.updated_at}
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              <div className="float-notifications-cero">
+                <div className="float-notifications-cero-icon">
+                  {Icons("notification_circle")}
+                </div>
+                <div className="float-notifications-cero-title">
+                  Tus notificaciones se mostrarán aquí
+                </div>
+                <div className="float-notifications-cero-subtitle">
+                  Recibe información importante sobre nuestros productos y
+                  servicios, tu colaboración con otros usuarios y otras
+                  actualizaciones relevantes para ti
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
