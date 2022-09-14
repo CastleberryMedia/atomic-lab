@@ -156,16 +156,9 @@ function View({
         </div>
       )} */}
       <div className="account flex admin-cuenta option">
-        {/* <div className={`tooltip tooltip-admin-cuenta`}>
-          <div className="corner"></div>
-          Administración de la cuenta
-        </div>
-
-        <div data-tip="Notificaciones">Administración de la cuenta</div> */}
-
-        <div className="icon-account" data-tip="Administración de la cuenta">
-          {brands?.filter((brand) => brand.predeterminate === 1)[0]
-            .url_image ? (
+        {brands?.filter((brand) => brand.predeterminate === 1)[0]
+          ?.url_image && (
+          <div className="icon-account">
             <img
               src={
                 brands?.filter((brand) => brand.predeterminate === 1)[0]
@@ -173,13 +166,12 @@ function View({
               }
               alt="logo_predeterminate"
             />
-          ) : (
-            Icons("icon_img_post")
-          )}
-        </div>
-        <div className="account-value">
+          </div>
+        )}
+
+        <div className="account-value" data-tip="Administración de la cuenta">
           <div>
-            {brands?.filter((brand) => brand.predeterminate === 1)[0].name}
+            {brands?.filter((brand) => brand.predeterminate === 1)[0]?.name}
           </div>
           <div>
             {userData?.name && userData?.last_name
