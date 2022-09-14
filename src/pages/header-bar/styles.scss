@@ -194,7 +194,7 @@
     }
   }
 
-  .inicio:hover {
+  /*   .inicio:hover {
     .tooltip-inicio {
       display: block;
     }
@@ -223,9 +223,9 @@
     .tooltip-admin-cuenta {
       display: block;
     }
-  }
+  } */
 
-  .tooltip {
+  /* .tooltip {
     display: none;
     background-color: #dddddd;
     padding: 5px 10px;
@@ -245,7 +245,7 @@
       position: absolute;
       top: -0.5em;
     }
-  }
+  } */
 
   .menu-account {
     position: absolute;
@@ -361,6 +361,7 @@
     &-cero {
       width: 15em;
       text-align: center;
+      padding: 20px;
       &-title {
         margin-bottom: 10px;
       }

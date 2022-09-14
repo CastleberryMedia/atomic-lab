@@ -5,6 +5,7 @@ import Tour from "./pages/tour";
 import ModalBuyCredits from "../modals/buy-credits";
 import ModalHelp from "../modals/help";
 import { MAIN_MENU, MAIN_SUBMENU } from "../constats";
+import ReactTooltip from "react-tooltip";
 import "./styles.scss";
 
 function View({
@@ -55,38 +56,34 @@ function View({
       <div className="icon-logo">{Icons("logo")}</div>
 
       {MAIN_MENU(userData?.rol_id).map((item, index) => (
-        <div
-          key={index}
-          className={`home option ${
-            item.active?.some((el) => path.includes(el)) && "active"
-          } ${item.tour_title.replaceAll(" ", "-").toLowerCase()}`}
-          onClick={() => redirectTo(item.redirect)}
-        >
-          {tourActive && tourStep === item.id && (
-            <Tour
-              setTourActive={setTourActive}
-              tourStep={tourStep}
-              setTourStep={setTourStep}
-              title={item.tour_title}
-              text={item.tour_text}
-              updateTour={updateTour}
-            />
-          )}
-          {Icons(
-            item.active?.some((el) => path.includes(el))
-              ? `${item.id_text}_purple`
-              : item.id_text
-          )}
-
+        <>
           <div
-            className={`tooltip tooltip-${item.tour_title
-              .replaceAll(" ", "-")
-              .toLowerCase()}`}
+            key={index}
+            className={`home option ${
+              item.active?.some((el) => path.includes(el)) && "active"
+            } ${item.tour_title.replaceAll(" ", "-").toLowerCase()}`}
+            onClick={() => redirectTo(item.redirect)}
+            data-tip={item.tour_title}
           >
-            <div className="corner"></div>
-            {item.tour_title}
+            {tourActive && tourStep === item.id && (
+              <Tour
+                setTourActive={setTourActive}
+                tourStep={tourStep}
+                setTourStep={setTourStep}
+                title={item.tour_title}
+                text={item.tour_text}
+                updateTour={updateTour}
+              />
+            )}
+
+            {Icons(
+              item.active?.some((el) => path.includes(el))
+                ? `${item.id_text}_purple`
+                : item.id_text
+            )}
           </div>
-        </div>
+          <ReactTooltip type={"light"} place={"bottom"} data-for={1} />
+        </>
       ))}
 
       <div className="search flex">
@@ -95,22 +92,16 @@ function View({
       </div>
       {notificationsView}
       <div className="icon-notifications option notificaciones">
-        <div className="image">
-          <div onClick={() => setNotificationsView(!notificationsView)}>
-            {Icons("notifications")}
-          </div>
-
+        <div
+          className="image"
+          onClick={() => setNotificationsView(!notificationsView)}
+        >
+          <div data-tip="Notificaciones">{Icons("notifications")}</div>
           {notifications?.length >= 1 && (
             <div className="count">{notifications?.length}</div>
           )}
         </div>
-
-        <div className={`tooltip tooltip-notificaciones`}>
-          <div className="corner"></div>
-          Notificaciones
-        </div>
-
-        {console.log(notificationsView)}
+        <ReactTooltip type={"light"} place={"bottom"} data-for={2} />
 
         {notificationsView && (
           <div className="float-notifications">
@@ -165,18 +156,20 @@ function View({
         </div>
       )} */}
       <div className="account flex admin-cuenta option">
-        <div className={`tooltip tooltip-admin-cuenta`}>
+        {/* <div className={`tooltip tooltip-admin-cuenta`}>
           <div className="corner"></div>
           Administración de la cuenta
         </div>
 
-        <div className="icon-account">
+        <div data-tip="Notificaciones">Administración de la cuenta</div> */}
+
+        <div className="icon-account" data-tip="Administración de la cuenta">
           {brands?.filter((brand) => brand.predeterminate === 1)[0]
             .url_image ? (
             <img
               src={
                 brands?.filter((brand) => brand.predeterminate === 1)[0]
-                  .url_image || Icons("icon_img_post")
+                  ?.url_image || Icons("icon_img_post")
               }
               alt="logo_predeterminate"
             />
@@ -225,6 +218,7 @@ function View({
             </div>
           )}
         </div>
+        <ReactTooltip type={"light"} place={"bottom"} data-for={3} />
       </div>
       {modalBuyCredits && (
         <ModalBuyCredits close={setModalBuyCredit} data={dataModals} />
