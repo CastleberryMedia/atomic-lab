@@ -623,7 +623,99 @@ export const FORM_INPUTS_BRANDS = [
   },
 ];
 
+export const DETAIL_PROJECT_DATA_2 = (
+  projectValues,
+  designers,
+  Icons,
+  filterProject
+) => {
+  return [
+    { id: 1, label: "Dueño del proyecto", content: "" },
+    {
+      id: 2,
+      label: "Diseñador",
+      content: designers.length
+        ? designers.map((member) => <div>{member.name}</div>)
+        : "No asignado",
+    },
+    { id: 3, label: "Fecha de inicio", content: filterProject?.updated_at },
+    { id: 4, label: "Marca", content: projectValues?.brand_select },
+    { id: 5, label: "Tipo de Proyecto", content: projectValues?.type_post },
+    { id: 6, label: "Red social", content: projectValues?.social_network },
+    {
+      id: 7,
+      label: "Tipo de publicación",
+      content: projectValues.type_publication,
+    },
+    {
+      id: 8,
+      label: "Paleta de colores",
+      content: projectValues?.palete_colors,
+    },
+    { id: 9, label: "Publico objetivo", content: projectValues?.public_goal },
+    { id: 10, label: "Idea a desarollar", content: projectValues?.idea_post },
+    {
+      id: 11,
+      label: "Referencias",
+      content: projectValues?.references.length
+        ? projectValues?.references.map((arr) => (
+            <div className="with-icons">
+              <a href={arr.name_file}>{Icons("download")}</a>
+              {arr.text}
+            </div>
+          ))
+        : "Sin referencias",
+    },
+    { id: 12, label: "Texto a incluir", content: "" },
+    { id: 13, label: "Imagen a incluir", content: "" },
+    {
+      id: 14,
+      label: "Formato de entrega",
+      content: projectValues?.formato_entrega,
+    },
+    {
+      id: 15,
+      label: "Libertad del diseñador",
+      content: projectValues?.designer_freedom,
+    },
+    {
+      id: 16,
+      label: "Tamaño",
+      content: (
+        <div>
+          <p>{projectValues?.tamaño || "-"}</p>
+          <p>{projectValues?.t_custom && " - " + projectValues?.t_custom}</p>
+        </div>
+      ),
+    },
+
+    {
+      id: 17,
+      label: "Tiempo de entrega",
+      content: projectValues?.tiempo_entrega,
+    },
+    {
+      id: 18,
+      label: "Archivos editables",
+      content: projectValues?.archivos_editables,
+    },
+    { id: 19, label: "Revisiones", content: "" },
+    {
+      id: 20,
+      label: "Fecha próx. revisión",
+      content: filterProject?.review_date || "No programada",
+    },
+    {
+      id: 21,
+      label: "Costo base del proyecto",
+      content: projectValues?.costo_base,
+    },
+    { id: 22, label: "Costo total", content: projectValues?.costo_base },
+  ];
+};
+
 export const DETAIL_PROJECT_DATA = {
+  created_by: "Dueño del proyecto",
   brand_select: "marca",
   type_publication: "Tipo de publicación",
   type_post: "Tipo de post",
@@ -639,7 +731,6 @@ export const DETAIL_PROJECT_DATA = {
   formato_entrega: "Formato de entrega",
   revisiones: "Revisiones",
   archivos_editables: "Archivos editables",
-  /*   post: "Post", */
 };
 
 export const FORM_INPUTS_PROFILE = [

@@ -18,6 +18,8 @@ function Index() {
   const projectValues = filterProject?.values[0];
   const projectExtraData = JSON.parse(filterProject?.extra_data);
 
+  console.log(filterProject);
+
   const redirectTo = (route) => navigate(route);
 
   useEffect(() => {

@@ -14,7 +14,7 @@ function View({
 }) {
   return (
     <div className="page project-detail">
-      <PageTitle user={true} title={projectValues[0]?.name_project} />
+      <PageTitle user={true} title={projectValues?.name_project} />
       <p>
         A continuación te presentamos la información que nos suministraste sobre
         el proyecto.
