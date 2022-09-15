@@ -2,6 +2,8 @@
   &-content {
     margin-top: 30px;
     flex-wrap: wrap;
+    display: flex;
+    column-gap: 20px;
 
     .value {
       flex: 1 0 48%;
@@ -20,20 +22,42 @@
 
     .post-dat-all {
       border: none;
+      gap: 50px;
 
       .post-container {
         display: flex;
         gap: 20px;
+        flex-direction: column;
       }
       .post-data {
-        flex: 2;
+        border: 1px solid #6b72fd;
+        padding: 10px;
+        border-radius: 15px;
+        display: flex;
+
+        .post-id {
+          color: #6b72fd;
+        }
 
         p {
           margin: 10px 0;
+          font-size: 14px;
+          span {
+            font-weight: bold;
+          }
+        }
+        .data-text {
+          overflow: scroll;
+          height: 150px;
+          overflow: auto;
         }
         .img-container {
-          width: 400px;
-          height: 200px;
+          min-width: 100px;
+          max-width: 100px;
+          height: 150px;
+          margin-right: 20px;
+          margin-left: 20px;
+
           img {
             width: 100%;
             height: 100%;
@@ -56,5 +80,21 @@
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+
+  .designers-list {
+    display: flex;
+    gap: 2px;
+
+    div {
+      border: 1px solid #6b72fd;
+      padding: 4px;
+      border-radius: 9px;
+      clear: both;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 13px;
+    }
   }
 }

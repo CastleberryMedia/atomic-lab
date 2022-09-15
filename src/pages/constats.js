@@ -630,13 +630,19 @@ export const DETAIL_PROJECT_DATA_2 = (
   filterProject
 ) => {
   return [
-    { id: 1, label: "Dueño del proyecto", content: "" },
+    { id: 1, label: "Dueño del proyecto", content: filterProject?.name_user },
     {
       id: 2,
       label: "Diseñador",
-      content: designers.length
-        ? designers.map((member) => <div>{member.name}</div>)
-        : "No asignado",
+      content: designers.length ? (
+        <div className="designers-list">
+          {designers.map((member) => (
+            <div>{member.name}</div>
+          ))}
+        </div>
+      ) : (
+        "No asignado"
+      ),
     },
     { id: 3, label: "Fecha de inicio", content: filterProject?.updated_at },
     { id: 4, label: "Marca", content: projectValues?.brand_select },
@@ -660,26 +666,27 @@ export const DETAIL_PROJECT_DATA_2 = (
       content: projectValues?.references.length
         ? projectValues?.references.map((arr) => (
             <div className="with-icons">
-              <a href={arr.name_file}>{Icons("download")}</a>
+              <a href={arr.name_file} target={"_blank"} rel="noreferrer">
+                {Icons("download")}
+              </a>
               {arr.text}
             </div>
           ))
         : "Sin referencias",
     },
-    { id: 12, label: "Texto a incluir", content: "" },
-    { id: 13, label: "Imagen a incluir", content: "" },
+
     {
-      id: 14,
+      id: 12,
       label: "Formato de entrega",
       content: projectValues?.formato_entrega,
     },
     {
-      id: 15,
+      id: 13,
       label: "Libertad del diseñador",
       content: projectValues?.designer_freedom,
     },
     {
-      id: 16,
+      id: 14,
       label: "Tamaño",
       content: (
         <div>
@@ -690,47 +697,37 @@ export const DETAIL_PROJECT_DATA_2 = (
     },
 
     {
-      id: 17,
+      id: 15,
       label: "Tiempo de entrega",
       content: projectValues?.tiempo_entrega,
     },
     {
-      id: 18,
+      id: 16,
       label: "Archivos editables",
       content: projectValues?.archivos_editables,
     },
-    { id: 19, label: "Revisiones", content: "" },
     {
-      id: 20,
+      id: 17,
+      label: "Revisiones",
+      content: (
+        <div>
+          {filterProject?.review} de{" "}
+          {projectValues?.revisiones?.replace("Hasta ", "")}
+        </div>
+      ),
+    },
+    {
+      id: 18,
       label: "Fecha próx. revisión",
       content: filterProject?.review_date || "No programada",
     },
     {
-      id: 21,
+      id: 19,
       label: "Costo base del proyecto",
       content: projectValues?.costo_base,
     },
-    { id: 22, label: "Costo total", content: projectValues?.costo_base },
+    { id: 20, label: "Costo total", content: projectValues?.costo_base },
   ];
-};
-
-export const DETAIL_PROJECT_DATA = {
-  created_by: "Dueño del proyecto",
-  brand_select: "marca",
-  type_publication: "Tipo de publicación",
-  type_post: "Tipo de post",
-  social_network: "Red social",
-  name_project: "Nombre del proyeto",
-  public_goal: "Publico objetivo",
-  palete_colors: "Paleta de colores",
-  references: "Referencias",
-  idea_post: "Idea a desarollar",
-  designer_freedom: "Libertad diseñador",
-  costo_base: "Costo base",
-  tiempo_entrega: "Tiempo de entrega",
-  formato_entrega: "Formato de entrega",
-  revisiones: "Revisiones",
-  archivos_editables: "Archivos editables",
 };
 
 export const FORM_INPUTS_PROFILE = [
@@ -996,9 +993,6 @@ export const PROJECTS = (
       isActive: true,
       field: "name_project",
       icon: null,
-      onClick() {
-        navigate(`/project-detail/${project?.id}`);
-      },
     },
 
     {
@@ -1093,7 +1087,7 @@ export const PROJECTS = (
       isActive: page === "home" && typeFin === "active" ? true : false,
       icon: "add_plus",
       onClick() {
-        navigate(`/more-info/${project.id}`);
+        navigate(`/project-detail/${project?.id}`);
       },
     },
     {
