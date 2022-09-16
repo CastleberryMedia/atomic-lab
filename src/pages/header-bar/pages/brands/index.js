@@ -16,8 +16,6 @@ function Index() {
   const redirectTo = (route) => navigate(route);
 
   const predeterminateBrand = (id) => {
-    console.log("aqui");
-
     putPredeterminateBrand({
       brand_id: id,
       user_id: userData.id,

@@ -1,3 +1,7 @@
+import moment from "moment";
+import { Icons } from "./icons";
+import ReactTooltip from "react-tooltip";
+
 export const URL_IMG = "https://api.ticvzla.xyz/public/images/";
 
 export const TEAM_ROL = [
@@ -187,268 +191,6 @@ export const MENU_ACTIVE = {
     "project-detail",
   ],
   add: ["new-project", "service"],
-};
-
-export const USER_DATA = {
-  user: {
-    nickname: "JArgoty",
-    name: "Jhonatan",
-    last_name: "Argoty",
-    email: "jhonatanargoty@gmail.com",
-    email_corporate: "jhonatanargoty@castleberry.com.co",
-    cell_phone: "+573128755944",
-    cell_phone_corporate: "+575555555",
-    id: "10305554444",
-  },
-  credits: 1000,
-  onboarding: false, //false - NO Mostrar onboarding
-  tour: false, //false - NO Mostrar Tour
-  brands: [
-    {
-      id: "1",
-      name: "Pepsi",
-      value: "pepsi",
-      predeterminate: true,
-      logo: "https://i.postimg.cc/5yr0XCdG/pepsi.png",
-      name_comercial: "Pepsi",
-      brand: "Pepsi brand",
-      nit: "12345554-0",
-      type: "Gaseosas",
-      industry: "Alimentos",
-      web_page: "https://pepsi.com",
-      employees: 1000,
-      product_services: "Alimentos, bebidas...",
-      clients: "Carulla, Carrefour, Metro...",
-      keywords_brands: "Gaseosas, Cocacola, refrescos, cine",
-      mission: "Misión de Pepsi",
-      view: "Visión de Pepsi",
-      values: "Valores de Pepsi",
-      competitors: "Cocacola, Bigcola, Bavaria",
-      linkedin: "https://linkedin.com/pepsi",
-      youtube: "https://youtube.com/pepsi",
-      twitter: "https://twitter.com/pepsi",
-      instagram: "https://instagram.com/pepsi",
-      facebook: "https://facebook.com/pepsi",
-      otros: "https://x.com/pepsi",
-      offers: "products", //services - products - two
-    },
-    {
-      id: "2",
-      name: "Coca Cola",
-      value: "cocacola",
-      predeterminate: false,
-      logo: "https://i.postimg.cc/cH85qq1n/cocacola.png",
-      name_comercial: "Coca Cola",
-      brand: "Coca Cola co brand",
-      nit: "12345554-0",
-      type: "Gaseosas",
-      industry: "Alimentos",
-      web_page: "https://cocacola.com",
-      employees: 1000,
-      product_services: "Alimentos, bebidas...",
-      clients: "Carulla, Carrefour, Metro...",
-      keywords_brands: "Gaseosas, Cocacola, refrescos, cine",
-      mission: "Misión de cocacola",
-      view: "Visión de cocacola",
-      values: "Valores de cocacola",
-      competitors: "Cocacola, Bigcola, Bavaria",
-      linkedin: "https://linkedin.com/cocacola",
-      youtube: "https://youtube.com/cocacola",
-      twitter: "https://twitter.com/cocacola",
-      instagram: "https://instagram.com/cocacola",
-      facebook: "https://facebook.com/cocacola",
-      otros: "https://x.com/cocacola",
-      offers: "two", //services - products - two
-    },
-  ],
-  team: [
-    {
-      id: 1,
-      name: "Daniel",
-      email: "d@gmail.com",
-      rol: "dueño",
-      projects: "Todos",
-    },
-    {
-      id: 2,
-      name: "Daniel1",
-      email: "d1@gmail.com",
-      rol: "dueño",
-      projects: "Todos",
-    },
-    {
-      id: 3,
-      name: "Daniel2",
-      email: "d2@gmail.com",
-      rol: "dueño",
-      projects: "Todos",
-    },
-  ],
-  attached: [
-    {
-      id: 1,
-      name: "logo.jpg",
-      type: "jpg",
-      size: "100mb",
-    },
-    {
-      id: 2,
-      name: "logo2.jpg",
-      type: "jpg",
-      size: "200mb",
-    },
-    {
-      id: 3,
-      name: "logo3.jpg",
-      type: "jpg",
-      size: "300mb",
-    },
-  ],
-  active_projects: [
-    {
-      id: 123,
-      name: "Manual de marca #1",
-      status: 1,
-      date_next_review: "2021-01-30",
-      private_notes: ["nota1", "nota2", "nota3"],
-      view_last_review: "https://i.postimg.cc/g2GCWRdY/1A.png",
-      delivery_time: "2022-04-05",
-      delivery_format: "PDF + PNG",
-      size: "1GB",
-      editable_files: true,
-      print: false,
-      review: 2,
-      status_test: [
-        {
-          title: "Tu proyecto ha sido confirmado e iniciado",
-          date: "2022-01-18:10:18",
-        },
-        {
-          title: "Tu proyecto ha sido asignado a un gerente de cuentas",
-          date: "2022-01-18:10:18",
-        },
-        {
-          title:
-            "Tu proyecto ha sido asignado a un diseñador y está en proceso de diseño",
-          date: "2022-01-18:10:18",
-        },
-        {
-          title: "La versión 1 de tu proyecto está lista",
-          date: "2022-01-18:10:18",
-        },
-        { title: "Tu proyecto fue finalizado", date: "2022-01-18:10:18" },
-        {
-          title: "Tu proyecto está listo para ser descargado",
-          date: "2022-01-18:10:18",
-        },
-      ],
-      review_data: [
-        {
-          version: 1,
-          version_data: [
-            { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
-          ],
-        },
-        {
-          version: 2,
-          version_data: [
-            { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
-            { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
-          ],
-        },
-        {
-          version: 3,
-          version_data: [
-            { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
-            { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
-            { id: "1C", content: "https://i.postimg.cc/bYbWSLwy/1C.png" },
-          ],
-        },
-        {
-          version: 4,
-          version_data: [
-            { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
-            { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
-            { id: "1C", content: "https://i.postimg.cc/bYbWSLwy/1C.png" },
-            { id: "1D", content: "https://i.postimg.cc/bYbWSLwy/1C.png" },
-          ],
-        },
-      ],
-      /* review_data: {
-        version: 1,
-        versions: [
-          { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
-          { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
-          { id: "1C", content: "https://i.postimg.cc/bYbWSLwy/1C.png" },
-        ],
-      }, */
-    },
-
-    {
-      id: 321,
-      name: "Manual de marca #2",
-      status: 2,
-      date_next_review: "2021-01-30",
-      private_notes: ["nota1", "nota2", "nota3"],
-      view_last_review: "https://i.postimg.cc/nr8Ww90f/1B.png",
-      delivery_time: "2022-04-05",
-      delivery_format: "PDF + PNG",
-      size: "1GB",
-      editable_files: true,
-      print: false,
-      review: 2,
-      status_test: [
-        {
-          title: "Tu proyecto ha sido confirmado e iniciado",
-          date: "2022-01-18:10:18",
-        },
-        {
-          title: "Tu proyecto ha sido asignado a un gerente de cuentas",
-          date: "2022-01-18:10:18",
-        },
-        {
-          title:
-            "Tu proyecto ha sido asignado a un diseñador y está en proceso de diseño",
-          date: "2022-01-18:10:18",
-        },
-        {
-          title: "La versión 1 de tu proyecto está lista",
-          date: "2022-01-18:10:18",
-        },
-        { title: "Tu proyecto fue finalizado", date: "2022-01-18:10:18" },
-        {
-          title: "Tu proyecto está listo para ser descargado",
-          date: "2022-01-18:10:18",
-        },
-      ],
-      review_data: {
-        version: 1,
-        versions: [
-          { id: "1A", content: "https://i.postimg.cc/g2GCWRdY/1A.png" },
-          /*    { id: "1B", content: "https://i.postimg.cc/nr8Ww90f/1B.png" },
-          { id: "1C", content: "https://i.postimg.cc/bYbWSLwy/1C.png" }, */
-        ],
-      },
-    },
-  ],
-  finish_projects: [
-    {
-      id: 123,
-      name: "Manual de marca #1",
-      status: 3,
-      date_finish: "2021-10-10",
-      private_notes: ["nota1", "nota2", "nota3"],
-      view_last_review: "https://i.postimg.cc/nr8Ww90f/1B.png",
-    },
-    {
-      id: 321,
-      name: "Manual de marca #2",
-      status: 3,
-      date_finish: "2021-10-10",
-      private_notes: ["nota1", "nota2", "nota3"],
-      view_last_review: "https://i.postimg.cc/nr8Ww90f/1B.png",
-    },
-  ],
 };
 
 export const FORM_INPUTS_BRANDS = [
@@ -951,41 +693,7 @@ export const SUMMARY_OPTIONS = {
   },
 };
 
-export const FINISH_TABLES = (page) => {
-  const listContent = [
-    { title: "Nombre del proyecto", isActive: true },
-    { title: "Estado", isActive: true },
-    { title: "Fecha finalización", isActive: true },
-    { title: "Mis notas privadas", isActive: page === "home" ? false : true },
-    { title: "Visualizar diseño final", isActive: true },
-    { title: "Comentarios finales", isActive: page === "home" ? false : true },
-    { title: "Descargar", isActive: true },
-    { title: "", isActive: true },
-  ];
-  return listContent.filter((item) => item.isActive === true);
-};
-
-export const ACTIVE_TABLES = (page) => {
-  const listContent = [
-    { title: "Nombre del proyecto", isActive: true },
-    { title: "Estado", isActive: true },
-
-    { title: "Fecha estimada próx. revisión", isActive: true },
-    { title: "Mis notas privadas", isActive: page === "home" ? false : true },
-    { title: "Más Información", isActive: page === "home" ? true : false },
-    {
-      title: "Visualizar última versión",
-      isActive: page === "home" ? false : true,
-    },
-    { title: "Revisión", isActive: page === "home" ? false : true },
-    { title: "Retroalimentación revisiones", isActive: true },
-    { title: "Diseñador", isActive: page === "home" ? false : true },
-    { title: "", isActive: true },
-  ];
-  return listContent.filter((item) => item.isActive === true);
-};
-
-export const PROJECTS = (
+export const PROJECTS_2 = (
   page,
   typeFin,
   navigate,
@@ -1000,186 +708,306 @@ export const PROJECTS = (
   modalPrivateNotes,
   setMenuFloat,
   menuFloat,
-  flow_active,
   rol_id,
-  setModalReviews
+  setModalReviews,
+  projectValues,
+  flows,
+  updateDateNextReview
 ) => {
   const listContent = [
     {
       title: "Nombre del proyecto",
       isActive: true,
-      field: "name_project",
-      icon: null,
+      render: projectValues?.name_project,
     },
 
     {
       title: "Fecha Inicio",
       isActive: page === "home" && typeFin === "inactive" ? true : false,
-      field: "created_at",
-      icon: null,
+      render: projectValues?.created_at,
     },
 
     {
       title: "Estado",
       isActive: page === "home" ? (typeFin === "active" ? true : false) : true,
-      field: "status",
-      icon: flow_active,
-      subtitle: {
-        text: "Ver más...",
-        onClick() {
-          navigate(`/status-project/${project?.id}`, {
-            state: { project_id: project?.id },
-          });
-        },
-      },
+      subtitle: (
+        <div
+          className={"view-more pointer"}
+          onClick={() =>
+            navigate(`/status-project/${project?.id}`, {
+              state: { project_id: project?.id },
+            })
+          }
+        >
+          Ver más...
+        </div>
+      ),
+      render: (
+        <div
+          data-tip={
+            STATUS_TABLES_FLOW.filter(
+              (flow) =>
+                flow.id ===
+                parseInt(
+                  Array.isArray(flows) &&
+                    flows.filter((flow) => flow.status === "active")[0].id
+                )
+            )[0]?.text
+          }
+        >
+          {Icons(
+            "status_check_" +
+              parseInt(
+                Array.isArray(flows) &&
+                  flows.filter((flow) => flow.status === "active")[0].id
+              )
+          )}
+          <ReactTooltip
+            type={"light"}
+            place={"bottom"}
+            data-for={"status-check"}
+          />
+        </div>
+      ),
     },
-
     {
       title: "Fecha Finalización",
       isActive: typeFin === "inactive" ? true : false,
-      field: "finish_at",
-      icon: null,
+      render: projectValues?.finish_at,
     },
-
     {
       title: "Fecha estimada próx. revisión",
       isActive: typeFin === "active" ? true : false,
       field: "review_date",
       icon: null,
       type: rol_id === 3 || rol_id === 8 ? "date" : null,
+      render:
+        rol_id === 3 || rol_id === 8 ? (
+          <input
+            className="select-date"
+            type="date"
+            name=""
+            id=""
+            value={project?.review_date}
+            onChange={(e) =>
+              updateDateNextReview(
+                project?.id,
+                moment(e.target.value).format("YYYY-MM-DD")
+              )
+            }
+          />
+        ) : (
+          project?.review_date
+        ),
     },
     {
       title: "Retroalimentación revisiones",
       isActive: typeFin === "active" ? true : false,
-      field: "review_date",
-      icon: "review",
-      onClick() {
-        navigate(`/reviews/${project?.id}`);
-      },
+      render: (
+        <div
+          className="pointer"
+          onClick={() => navigate(`/reviews/${project?.id}`)}
+        >
+          {Icons("review")}
+        </div>
+      ),
     },
     {
       title: "Mis notas privadas",
       isActive: page === "home" ? false : true,
-      field: "review_date",
-      icon: "private_notes",
-      onClick() {
-        setModalPrivateNotes(!modalPrivateNotes);
-        setDataModals({
-          project_id: project.id,
-          notes: project?.notes,
-        });
-      },
+      render: (
+        <div
+          className="pointer"
+          onClick={() => {
+            setModalPrivateNotes(!modalPrivateNotes);
+            setDataModals({
+              project_id: project?.id,
+              notes: project?.notes,
+            });
+          }}
+        >
+          {Icons("private_notes")}
+        </div>
+      ),
     },
 
     {
       title: "Visualizar diseño final",
       isActive: typeFin === "inactive" ? true : false,
-      field: "review_date",
-      icon: "last_version",
-      onClick() {
-        setModalZoomImg(!modalZoomImg);
-        setDataModals({
-          type: "normal",
-          img: getLastVersion(project),
-        });
-      },
+      render: (
+        <div
+          className="pointer"
+          onClick={() => {
+            setModalZoomImg(!modalZoomImg);
+            setDataModals({
+              type: "normal",
+              img: getLastVersion && getLastVersion(project),
+            });
+          }}
+        >
+          {Icons("last_version")}
+        </div>
+      ),
     },
 
     {
       title: "Comentarios finales",
       isActive: page !== "home" && typeFin === "inactive" ? true : false,
-      field: "review_date",
-      icon: "comments_blue",
+      render: <div className="pointer">{Icons("comments_blue")}</div>,
     },
 
     {
       title: "Descargar",
       isActive: typeFin === "inactive" ? true : false,
-      field: "review_date",
-      icon: "download",
-      type: "download",
+      render: (
+        <div
+          className="pointer"
+          onClick={() => {
+            setModalZoomImg(!modalZoomImg);
+            setDataModals({
+              type: "normal",
+              img: getLastVersion && getLastVersion(project),
+            });
+          }}
+        >
+          <a
+            rel="noreferrer"
+            download="custom-filename.jpg"
+            target="_blank"
+            href={
+              "http://api.ticvzla.xyz/public/versions-images/8/8869911647031424.jpeg"
+            }
+            title="ImageName"
+          >
+            {Icons("download")}
+          </a>
+        </div>
+      ),
     },
     {
       title: "Más Información",
       isActive: page === "home" && typeFin === "active" ? true : false,
-      icon: "add_plus",
-      onClick() {
-        navigate(`/project-detail/${project?.id}`);
-      },
+      render: (
+        <div
+          className="pointer"
+          onClick={() => {
+            navigate(`/project-detail/${project?.id}`);
+          }}
+        >
+          {Icons("add_plus")}
+        </div>
+      ),
     },
     {
       title: "Visualizar última versión",
       isActive: page !== "home" && typeFin === "active" ? true : false,
-      field: "review_date",
-      icon: "last_version",
-      onClick() {
-        setModalZoomImg(!modalZoomImg);
-        setDataModals({
-          type: "normal",
-          img: getLastVersion(project),
-        });
-      },
+      render: getLastVersion && getLastVersion(project) && (
+        <div
+          className="pointer"
+          onClick={() => {
+            setModalZoomImg(!modalZoomImg);
+            setDataModals({
+              type: "normal",
+              img: getLastVersion(project),
+            });
+          }}
+        >
+          {Icons("last_version")}
+        </div>
+      ),
     },
     {
       title: "Revisión",
       isActive: page !== "home" && typeFin === "active" ? true : false,
-      field: "review",
-      icon: "add_plus",
-      type: "review",
-      onClick() {
-        setModalReviews(!modalDesignerProject);
-        setDataModals(project?.review);
-      },
+      render: (
+        <div className="flex review">
+          <p>
+            {project?.review} de{" "}
+            {projectValues?.revisiones?.includes("Hasta")
+              ? projectValues?.revisiones?.replace("Hasta ", "")
+              : "∞"}
+          </p>
+          <div
+            className="pointer"
+            onClick={() => {
+              setModalReviews(!modalDesignerProject);
+              setDataModals(project?.review);
+            }}
+          >
+            {projectValues?.revisiones?.includes("Hasta") && Icons("add_plus")}
+          </div>
+        </div>
+      ),
     },
 
     {
       title: "Diseñador",
       isActive: page !== "home" && typeFin === "active" ? true : false,
-      field: "review_date",
-      icon: "review",
-      onClick() {
-        setModalDesignerProject(!modalDesignerProject);
-        setDataModals({ project_id: project?.id });
-      },
+      render: (
+        <div
+          className="pointer"
+          onClick={() => {
+            setModalDesignerProject(!modalDesignerProject);
+            setDataModals({ project_id: project?.id });
+          }}
+        >
+          {Icons("review")}
+        </div>
+      ),
     },
     {
       title: "",
       isActive: page === "home" ? false : true,
-      isMenu: [
-        {
-          title: "Más información",
-          onClick() {
-            navigate(`/project-detail/${project?.id}`);
-          },
-        },
-        {
-          title: "Compartir",
-        },
-        {
-          title: "Invitar personas",
-        },
-        {
-          title: "Eliminar",
-        },
-      ],
-
-      field: "points-menu",
-      onClick() {
-        setMenuFloat(menuFloat === project?.id ? "" : project?.id);
-      },
+      render: (
+        <div className="points-menu pointer">
+          <div
+            onClick={() =>
+              setMenuFloat(menuFloat === project?.id ? "" : project?.id)
+            }
+          >
+            {Icons("menu_points")}
+          </div>
+          {menuFloat === project?.id && (
+            <div className={`menu-float ${project?.id} `}>
+              <div
+                className="menu-float-item flex"
+                onClick={() => navigate(`/project-detail/${project?.id}`)}
+              >
+                <p>Más información</p>
+                {Icons("help_circle")}
+              </div>
+              <div className="menu-float-item flex">
+                <p>Compartir</p>
+                {Icons("help_circle")}
+              </div>
+              <div className="menu-float-item flex">
+                <p>Invitar personas</p>
+                {Icons("help_circle")}
+              </div>
+              <div className="menu-float-item flex">
+                <p>Eliminar</p>
+                {Icons("help_circle")}
+              </div>
+            </div>
+          )}
+        </div>
+      ),
     },
     {
       title: "",
       isActive: page === "home" ? true : false,
-      field: "points-menu",
-      subtitle: {
-        text: "Ver más...",
-        onClick() {
-          navigate(`/projects-${typeFin}`);
-        },
-      },
+      render: <div></div>,
+      subtitle: (
+        <div
+          className={"view-more pointer"}
+          onClick={() => navigate(`/projects-${typeFin}`)}
+        >
+          Ver más...
+        </div>
+      ),
     },
   ];
+
   return listContent.filter((item) => item.isActive === true);
 };
 

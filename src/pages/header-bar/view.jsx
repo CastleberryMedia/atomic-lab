@@ -103,8 +103,6 @@ function View({
         </div>
         <ReactTooltip type={"light"} place={"bottom"} data-for={2} />
 
-        {console.log(notifications)}
-
         {notificationsView && (
           <div className="float-notifications">
             {notifications.length ? (
@@ -116,8 +114,6 @@ function View({
                     <div className="float-notifications-list-item" key={index}>
                       <div className="float-notifications-list-item-text">
                         {parse(NOTIFICATION_TEXT(noti))}
-                        {/* Se ha <span>{NOTIFICATION_TEXT(noti.type)} </span> a
-                        proyecto <span>{noti.name_project} </span> */}
                       </div>
                       <div className="float-notifications-list-item-date">
                         {noti.updated_at}

@@ -70,8 +70,6 @@ function Index({ type_home, page }) {
     );
   }, [typeFin, allProjects]);
 
-  console.log("projectsFilter", projectsFilter);
-
   const properties = {
     page,
     setModalPrivateNotes,

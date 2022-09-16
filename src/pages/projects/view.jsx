@@ -1,13 +1,13 @@
 import React from "react";
 import { Icons } from "../icons";
-import { PROJECTS } from "../constats";
+import { PROJECTS_2 } from "../constats";
 import ModalPrivateNotes from "../modals/private-notes";
 import ModalZoomImg from "../modals/zoom-img";
 import ModalReviews from "../modals/reviews";
 import DesignerProject from "../modals/designers-project";
 import ModalMessage from "../modals/message";
 import PageTitle from "../page-title";
-import moment from "moment";
+
 import "./styles.scss";
 
 function View({
@@ -59,7 +59,7 @@ function View({
           <table>
             <thead>
               <tr>
-                {PROJECTS(page, typeFin).map((item, index) => (
+                {PROJECTS_2(page, typeFin).map((item, index) => (
                   <th key={index}>
                     <div className="th-flex flex">
                       <p>{item.title}</p>
@@ -82,16 +82,10 @@ function View({
                     project?.values !== null ? project?.values[0] : [];
 
                   const flows = project.flow && JSON.parse(project?.flow);
-                  const flow_active =
-                    "status_check_" +
-                    parseInt(
-                      Array.isArray(flows) &&
-                        flows.filter((flow) => flow.status === "active")[0].id
-                    );
 
                   return (
                     <tr key={index}>
-                      {PROJECTS(
+                      {PROJECTS_2(
                         page,
                         typeFin,
                         navigate,
@@ -106,96 +100,15 @@ function View({
                         modalPrivateNotes,
                         setMenuFloat,
                         menuFloat,
-                        flow_active,
                         userData?.rol_id,
-                        setModalReviews
+                        setModalReviews,
+                        projectValues,
+                        flows,
+                        updateDateNextReview
                       ).map((project_field) => (
                         <td>
-                          <div
-                            onClick={project_field?.onClick}
-                            className={
-                              project_field?.onClick
-                                ? project_field.field + " pointer"
-                                : project_field.field
-                            }
-                          >
-                            {project_field?.type === "date" ? (
-                              <input
-                                className="select-date"
-                                type="date"
-                                name=""
-                                id=""
-                                value={project.review_date}
-                                onChange={(e) =>
-                                  updateDateNextReview(
-                                    project.id,
-                                    moment(e.target.value).format("YYYY-MM-DD")
-                                  )
-                                }
-                              />
-                            ) : project_field?.type === "download" ? (
-                              <a
-                                rel="noreferrer"
-                                download="custom-filename.jpg"
-                                target="_blank"
-                                href={
-                                  "http://api.ticvzla.xyz/public/versions-images/8/8869911647031424.jpeg"
-                                }
-                                title="ImageName"
-                              >
-                                {Icons(project_field?.icon)}
-                              </a>
-                            ) : project_field?.type === "review" ? (
-                              <div className="flex review">
-                                <p>
-                                  {project[project_field?.field]} de{" "}
-                                  {projectValues?.revisiones?.includes("Hasta")
-                                    ? projectValues?.revisiones?.replace(
-                                        "Hasta ",
-                                        ""
-                                      )
-                                    : "∞"}
-                                </p>
-                                {projectValues?.revisiones?.includes("Hasta") &&
-                                  Icons(project_field?.icon)}
-                              </div>
-                            ) : project_field?.icon ? (
-                              Icons(project_field?.icon)
-                            ) : (
-                              projectValues[project_field?.field] ||
-                              project[project_field?.field]
-                            )}
-
-                            {project_field?.subtitle && (
-                              <p
-                                className={`view-more ${
-                                  project_field?.subtitle?.onClick && "pointer"
-                                }`}
-                                onClick={project_field?.subtitle?.onClick}
-                              >
-                                {project_field?.subtitle.text}
-                              </p>
-                            )}
-
-                            {project_field.isMenu && (
-                              <>
-                                {Icons("menu_points")}
-                                {menuFloat === project?.id && (
-                                  <div className={`menu-float ${project?.id} `}>
-                                    {project_field.isMenu.map((item_menu) => (
-                                      <div
-                                        className="menu-float-item flex"
-                                        onClick={item_menu?.onClick}
-                                      >
-                                        <p>{item_menu.title}</p>
-                                        {Icons("help_circle")}
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                              </>
-                            )}
-                          </div>
+                          <div>{project_field.render || "-"}</div>
+                          <div>{project_field?.subtitle}</div>
                         </td>
                       ))}
                     </tr>

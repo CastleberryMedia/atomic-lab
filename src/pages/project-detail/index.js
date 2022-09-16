@@ -24,8 +24,6 @@ function Index() {
   let options = [];
   let options_post = [];
 
-  console.log(projectValues);
-
   const [designers, setDesigners] = useState([]);
 
   useEffect(() => {
