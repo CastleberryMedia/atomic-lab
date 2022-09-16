@@ -27,6 +27,10 @@ export const TEAM_ROL = [
   },
 ];
 
+export const NOTIFICATION_TEXT = {
+  creation: "creado",
+};
+
 export const METHOD_SELECT = [
   "Tarjeta de crédito/débito",
   "PSE",
@@ -1132,7 +1136,7 @@ export const PROJECTS = (
         {
           title: "Más información",
           onClick() {
-            navigate(`/more-info/${project?.id}`);
+            navigate(`/project-detail/${project?.id}`);
           },
         },
         {

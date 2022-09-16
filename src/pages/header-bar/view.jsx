@@ -4,7 +4,7 @@ import { Icons } from "../icons";
 import Tour from "./pages/tour";
 import ModalBuyCredits from "../modals/buy-credits";
 import ModalHelp from "../modals/help";
-import { MAIN_MENU, MAIN_SUBMENU } from "../constats";
+import { MAIN_MENU, MAIN_SUBMENU, NOTIFICATION_TEXT } from "../constats";
 import ReactTooltip from "react-tooltip";
 import "./styles.scss";
 
@@ -103,6 +103,8 @@ function View({
         </div>
         <ReactTooltip type={"light"} place={"bottom"} data-for={2} />
 
+        {console.log(notifications)}
+
         {notificationsView && (
           <div className="float-notifications">
             {notifications.length ? (
@@ -111,9 +113,11 @@ function View({
                   ?.slice(0)
                   .reverse()
                   .map((noti, index) => (
-                    <div className="float-notifications-list-item">
+                    <div className="float-notifications-list-item" key={index}>
                       <div className="float-notifications-list-item-text">
-                        {noti.value.split("-")[0]}
+                        <span>{noti.name_user} </span> a{" "}
+                        <span>{NOTIFICATION_TEXT[noti.type]} </span> el proyecto{" "}
+                        <span>{noti.name_project} </span>
                       </div>
                       <div className="float-notifications-list-item-date">
                         {noti.updated_at}

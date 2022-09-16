@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { getDataUser } from "./services";
 
 import AuthContext from "./auth-context";

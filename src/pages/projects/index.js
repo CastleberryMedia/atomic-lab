@@ -64,9 +64,13 @@ function Index({ type_home, page }) {
 
   useEffect(() => {
     setProjectsFilter(
-      allProjects?.filter((p) => JSON.parse(p?.flow)[3].status !== typeFin)
+      allProjects
+        ?.filter((p) => JSON.parse(p?.flow)[3].status !== typeFin)
+        .sort((a, b) => b.id - a.id)
     );
   }, [typeFin, allProjects]);
+
+  console.log("projectsFilter", projectsFilter);
 
   const properties = {
     page,

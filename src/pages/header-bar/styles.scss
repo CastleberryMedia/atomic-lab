@@ -262,8 +262,8 @@
 
     &-list {
       width: 15em;
-      height: 20em;
-      overflow: scroll;
+      max-height: 20em;
+      overflow: auto;
       overflow-x: hidden;
 
       &-item {
@@ -285,6 +285,9 @@
 
         &-text {
           font-size: 14px;
+          span {
+            font-weight: bold;
+          }
         }
         &-date {
           font-size: 10px;
