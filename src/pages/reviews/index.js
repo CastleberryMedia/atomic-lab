@@ -175,7 +175,7 @@ function Index() {
 
   const [modalMessageFinish1, setModalMessageFinish1] = useState(false);
   const [modalMessageFinish2, setModalMessageFinish2] = useState(false);
-  const [modalMessageFinish3, setModalMessageFinish3] = useState(true);
+  const [modalMessageFinish3, setModalMessageFinish3] = useState(false);
 
   const finishProject = () => {
     updateFlow({ project_id: id, id_flow: 4 }).then((res) => {
