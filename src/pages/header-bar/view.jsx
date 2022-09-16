@@ -1,11 +1,11 @@
 import React from "react";
-import { USER_DATA } from "../constats";
 import { Icons } from "../icons";
 import Tour from "./pages/tour";
 import ModalBuyCredits from "../modals/buy-credits";
 import ModalHelp from "../modals/help";
 import { MAIN_MENU, MAIN_SUBMENU, NOTIFICATION_TEXT } from "../constats";
 import ReactTooltip from "react-tooltip";
+import parse from "html-react-parser";
 import "./styles.scss";
 
 function View({
@@ -115,9 +115,9 @@ function View({
                   .map((noti, index) => (
                     <div className="float-notifications-list-item" key={index}>
                       <div className="float-notifications-list-item-text">
-                        <span>{noti.name_user} </span> a{" "}
-                        <span>{NOTIFICATION_TEXT[noti.type]} </span> el proyecto{" "}
-                        <span>{noti.name_project} </span>
+                        {parse(NOTIFICATION_TEXT(noti))}
+                        {/* Se ha <span>{NOTIFICATION_TEXT(noti.type)} </span> a
+                        proyecto <span>{noti.name_project} </span> */}
                       </div>
                       <div className="float-notifications-list-item-date">
                         {noti.updated_at}

@@ -27,8 +27,21 @@ export const TEAM_ROL = [
   },
 ];
 
-export const NOTIFICATION_TEXT = {
-  creation: "creado",
+export const NOTIFICATION_TEXT = (notification) => {
+  let noti = "";
+  switch (notification.type) {
+    case "creation":
+      noti = `Se ha <span> creado </span> el proyecto <span> ${notification.name_project} </span>`;
+      break;
+    case "assign_designer":
+      noti = `Se ha <span> asignado </span> un diseñador al proyecto <span> ${notification.name_project} </span>`;
+      break;
+
+    default:
+      break;
+  }
+
+  return noti;
 };
 
 export const METHOD_SELECT = [
