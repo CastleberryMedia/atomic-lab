@@ -47,7 +47,7 @@ function View({
         <PageTitle
           page={"reviews"}
           user={true}
-          title={projectData?.values.name_project}
+          title={projectData?.values?.name_project}
         />
 
         <div className="info-drop flex">
@@ -129,8 +129,6 @@ function View({
                 <p className="text-purple">
                   {projectData.values.archivos_editables}
                 </p>
-                <p className="title">Impresión</p>
-                <p className="text-purple">????</p>
               </div>
             )}
           </div>
@@ -143,6 +141,7 @@ function View({
             >
               {Icons(menuTopView === "review" ? "arrow_up" : "arrow_down")}
             </div>
+            {console.log("projectData", projectData)}
             {menuTopView === "review" && (
               <div className="menu-float">
                 <div className="reviews-count">
@@ -150,9 +149,9 @@ function View({
                   <span className="text-purple">
                     {" "}
                     {projectData.review} de{" "}
-                    {projectData.values.revisiones === "Ilimitado"
+                    {projectData.values[0].revisiones === "Ilimitado"
                       ? "∞"
-                      : projectData.values.revisiones}{" "}
+                      : projectData.values[0].revisiones.match(/(\d+)/g)}{" "}
                   </span>
                   revisiones
                 </div>

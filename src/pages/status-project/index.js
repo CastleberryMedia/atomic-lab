@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import DataContext from "../../data-context";
 import { useParams, useNavigate } from "react-router-dom";
+import { getAssignDesignerProject } from "../../services";
 import View from "./view";
 
 function Index() {
@@ -9,6 +10,7 @@ function Index() {
 
   const { allProjects } = useContext(DataContext);
   const [projectData, setProjectData] = useState([]);
+  const [designers, setDesigners] = useState([]);
 
   const filterProject = allProjects?.filter(
     (project) => project.id === parseInt(id)
@@ -40,7 +42,17 @@ function Index() {
     rating = {};
   }
 
-  const properties = { projectData, rate, redirectTo };
+  useEffect(() => {
+    getAssignDesignerProject(id)
+      .then((res) => {
+        res.data.data.length && setDesigners(res.data.data);
+      })
+      .catch((error) => {});
+  }, [id]);
+
+  console.log("designers", designers);
+
+  const properties = { projectData, rate, redirectTo, designers };
 
   return <View {...properties} />;
 }

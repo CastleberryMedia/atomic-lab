@@ -40,6 +40,9 @@ export const NOTIFICATION_TEXT = (notification) => {
     case "assign_designer":
       noti = `Se ha <span> asignado </span> un diseñador al proyecto <span> ${notification.name_project} </span>`;
       break;
+    case "finish-revision":
+      noti = `Se ha <span> realizado una revisión </span> al proyecto <span> ${notification.name_project} </span>`;
+      break;
 
     default:
       break;
@@ -648,6 +651,7 @@ export const STATUS_TABLES = (page) => {
   const listContent = [
     { title: "Estado", isActive: true },
     { title: "Fecha y Hora", isActive: true },
+    { title: "", isActive: true },
     { title: "Ver proyecto", isActive: true },
   ];
   return listContent.filter((item) => item.isActive === true);

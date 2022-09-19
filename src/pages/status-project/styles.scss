@@ -103,4 +103,20 @@
     bottom: 33px;
     right: 123px;
   }
+
+  .designers {
+    display: flex;
+    gap: 2px;
+
+    div {
+      border: 1px solid #6b72fd;
+      padding: 4px;
+      border-radius: 9px;
+      clear: both;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 13px;
+    }
+  }
 }

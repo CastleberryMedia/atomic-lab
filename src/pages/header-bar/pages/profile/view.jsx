@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PageTitle from "../../../page-title";
 import { FORM_INPUTS_PROFILE } from "../../../constats";
 import { Icons } from "../../../icons";
@@ -12,6 +12,10 @@ function View({
   register,
   validatePassword,
 }) {
+  const [editFields, setEditFields] = useState([]);
+
+  console.log(editFields);
+
   return (
     <div className="profile-page page">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -36,8 +40,22 @@ function View({
                         : "input-txt-error"
                       : input.className
                   }
+                  disabled={!editFields.includes(input.id)}
                 />
-                {Icons("edit")}
+                <div
+                  onClick={() =>
+                    editFields.includes(input.id)
+                      ? setEditFields(
+                          editFields.filter((edit) => edit !== input.id)
+                        )
+                      : setEditFields((editFields) => [...editFields, input.id])
+                  }
+                  className={!editFields.includes(input.id) ? "edit" : "add"}
+                >
+                  {!editFields.includes(input.id)
+                    ? Icons("edit")
+                    : Icons("add")}
+                </div>
               </div>
             </div>
           ))}

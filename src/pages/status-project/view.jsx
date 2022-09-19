@@ -6,7 +6,7 @@ import moment from "moment";
 
 import "./styles.scss";
 
-function View({ projectData, rate, redirectTo }) {
+function View({ projectData, rate, redirectTo, designers }) {
   const flowActive =
     projectData?.flow?.filter((item) => item.status === "active")[0]?.id - 1;
 
@@ -24,8 +24,10 @@ function View({ projectData, rate, redirectTo }) {
                 <th key={index}>
                   {item.isActive && (
                     <div className="th-flex flex">
-                      <p>{item.title}</p>
-                      <p className="flex">{Icons("help_circle")}</p>
+                      <div>{item.title}</div>
+                      <div className="flex">
+                        {item.title && Icons("help_circle")}
+                      </div>
                     </div>
                   )}
                 </th>
@@ -48,10 +50,23 @@ function View({ projectData, rate, redirectTo }) {
                     )[0].text
                   }
                 </td>
+
                 <td>
                   {status.date
                     ? moment(status.date).format("YY-MM-DD, h:mm:ss a")
                     : "-"}
+                </td>
+                <td>
+                  {status.id === 2 && (
+                    <div>
+                      <p>Diseñador asignado: </p>
+                      <div className="designers">
+                        {designers.map((des) => (
+                          <div>{des.name}</div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </td>
                 <td></td>
               </tr>

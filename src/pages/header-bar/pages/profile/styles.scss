@@ -47,4 +47,12 @@
     background-color: #c9c9c942;
     color: #70707042;
   }
+
+  .add {
+    transform: rotate(45deg);
+    img {
+      width: 15px;
+      height: 15px;
+    }
+  }
 }

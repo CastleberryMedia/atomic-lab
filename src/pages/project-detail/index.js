@@ -11,15 +11,13 @@ function Index() {
 
   const { id } = useParams();
 
-  const { userData, allProjects } = useContext(DataContext);
+  const { allProjects } = useContext(DataContext);
 
   const filterProject = allProjects?.filter(
     (project) => project.id === parseInt(id)
   )[0];
 
   const projectValues = filterProject?.values[0];
-
-  const redirectTo = (route) => navigate(route);
 
   let options = [];
   let options_post = [];
