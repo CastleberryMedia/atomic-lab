@@ -864,23 +864,12 @@ export const PROJECTS_2 = (
       title: "Descargar",
       isActive: typeFin === "inactive" ? true : false,
       render: (
-        <div
-          className="pointer"
-          onClick={() => {
-            setModalZoomImg(!modalZoomImg);
-            setDataModals({
-              type: "normal",
-              img: getLastVersion && getLastVersion(project),
-            });
-          }}
-        >
+        <div className="pointer">
           <a
             rel="noreferrer"
             download="custom-filename.jpg"
             target="_blank"
-            href={
-              "http://api.ticvzla.xyz/public/versions-images/8/8869911647031424.jpeg"
-            }
+            href={getLastVersion && getLastVersion(project)}
             title="ImageName"
           >
             {Icons("download")}
