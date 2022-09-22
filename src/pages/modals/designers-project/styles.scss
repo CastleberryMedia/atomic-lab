@@ -4,27 +4,45 @@
     flex-direction: column;
     justify-content: space-between;
 
-    .tags {
-      gap: 10px;
-      flex-wrap: wrap;
+    .list-designer {
+      min-height: 220px;
+      overflow: auto;
+      .designer {
+        border: 1px solid rgba(111, 59, 255, 0.3);
+        border-radius: 10px;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2px;
+        margin-right: 5px;
+        font-size: 14px;
 
-      .tag {
-        gap: 7px;
-        border: 1px solid #70707042;
-        border-radius: 30px;
-        padding: 5px 15px 5px 8px;
-        cursor: default;
-
-        .delete {
-          color: #00000047;
+        .button {
+          font-size: 12px;
+          padding: 5px 10px;
         }
       }
-      .tag:hover {
+      .asigner {
         background-color: rgba(111, 59, 255, 0.3);
+        .button {
+          background-color: #ffffff;
+        }
+        .button:hover {
+          background-color: #6b72fd;
+          color: #ffffff;
+        }
       }
-      .delete {
-        cursor: pointer;
-      }
+    }
+    .list-designer::-webkit-scrollbar {
+      width: 5px;
+    }
+    .list-designer::-webkit-scrollbar-track {
+      background: #ffffff;
+    }
+    .list-designer::-webkit-scrollbar-thumb {
+      background-color: #6b72fd63;
+      border-radius: 20px;
     }
   }
 
@@ -35,22 +53,12 @@
   }
 
   .footer {
-    margin-top: 3em;
+    margin-top: 15px;
     width: 95%;
     left: 12px;
     height: 40px;
     display: flex;
     justify-content: center;
-
-    .button-reactive {
-      .reactive-btn .progress {
-        box-shadow: none;
-      }
-
-      .reactive-btn.button.primary {
-        box-shadow: none;
-      }
-    }
 
     .section-buttons {
       justify-content: space-between;

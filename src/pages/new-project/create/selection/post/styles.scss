@@ -13,6 +13,16 @@
 
   .title-include {
     font-weight: 500;
-    gap: 5px;
+    justify-content: space-between;
+    .title {
+      gap: 5px;
+    }
+    .delete {
+      width: 30px;
+      cursor: pointer;
+      img {
+        width: 100%;
+      }
+    }
   }
 }

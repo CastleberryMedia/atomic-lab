@@ -1,5 +1,5 @@
 import React from "react";
-import ReactiveButton from "reactive-button";
+import FadeLoader from "react-spinners/FadeLoader";
 import "../../modals/styles.scss";
 import "./styles.scss";
 
@@ -10,83 +10,68 @@ function View({
   teamFilter,
   deleteDesigner,
   userData,
+  loading,
 }) {
   return (
     <div id="myModal" className="modal designer-assign">
       <div className="modal-content">
         <h3>Diseñadores asignados</h3>
 
-        {userData.rol_id === 8 && (
-          <select
-            className="select"
-            name="level"
-            id="level"
-            onChange={(e) => assignDesigner(e.target.value)}
-          >
-            <option disabled selected>
-              Asigna un diseñador
-            </option>
-
-            {teamFilter
-              .filter(
-                (user) =>
-                  !listDesigner?.some((user_list) => user_list.id === user.id)
-              )
-              .map((user_data, index) => (
-                <option key={index} value={user_data.id}>
+        {loading ? (
+          <div className="loading">
+            <FadeLoader color="#6b72fd" />
+          </div>
+        ) : (
+          <div className="list-designer">
+            {listDesigner?.map((user_data, index) => (
+              <div key={index} className="designer asigner">
+                <p>
                   {user_data?.last_name !== null
                     ? user_data?.name + " " + user_data?.last_name
                     : user_data?.name}
-                </option>
-              ))}
-          </select>
-        )}
+                </p>
+                {userData.rol_id === 8 && (
+                  <div
+                    className="button"
+                    onClick={() =>
+                      deleteDesigner(user_data.id, user_data.union_id)
+                    }
+                  >
+                    Eliminar
+                  </div>
+                )}
+              </div>
+            ))}
+            {userData.rol_id === 8 &&
+              teamFilter
+                .filter(
+                  (user) =>
+                    !listDesigner?.some((user_list) => user_list.id === user.id)
+                )
+                .map((user_data, index) => (
+                  <div key={index} className="designer">
+                    <div>
+                      {user_data?.last_name !== null
+                        ? user_data?.name + " " + user_data?.last_name
+                        : user_data?.name}
+                    </div>
 
-        <div className="tags flex">
-          {listDesigner?.map((user_data, index) => (
-            <div key={index} className="tag flex">
-              {userData.rol_id !== 3 && (
-                <div
-                  className="delete"
-                  onClick={() =>
-                    deleteDesigner(user_data.id, user_data.union_id)
-                  }
-                >
-                  x
-                </div>
-              )}
-              <p>
-                {user_data?.last_name !== null
-                  ? user_data?.name + " " + user_data?.last_name
-                  : user_data?.name}
-              </p>
-            </div>
-          ))}
-        </div>
+                    <div
+                      className="button"
+                      onClick={() => assignDesigner(user_data.id)}
+                    >
+                      Asignar
+                    </div>
+                  </div>
+                ))}
+          </div>
+        )}
 
         <section className="footer">
           <section className="section-buttons flex">
             <div className="button" onClick={() => close(false)}>
               Cerrar
             </div>
-
-            {/*  {!name || !email || !rol ? (
-              <div className="button-gray">Invitar</div>
-            ) : (
-              <div className="button-reactive">
-                <ReactiveButton
-                  className="button"
-                  buttonState={state}
-                  onClick={() => onClickHandler()}
-                  shadow={false}
-                  loadingText={"Invitando..."}
-                  outline={false}
-                  rounded={false}
-                  block={false}
-                  idleText={"Invitar"}
-                />
-              </div>
-            )} */}
           </section>
         </section>
       </div>

@@ -4,26 +4,25 @@ import {
   postAssignDesignerProject,
   getAssignDesignerProject,
   deleteAssignDesignerProject,
-  updateFlow
+  updateFlow,
 } from "../../../services";
 import View from "./view";
 
 function Index({ close, data }) {
-
-
-
   const { userData, team } = useContext(DataContext);
 
   const [listDesigner, setListDesigner] = useState([]);
   const [teamFilter, setTeamFilter] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     getAssignDesignerProject(data.project_id)
       .then((res) => {
         res.data.data.length && setListDesigner(res.data.data);
       })
-      .catch((error) => { });
-
+      .catch((error) => {});
+    setLoading(false);
     setTeamFilter(team?.filter((user) => user.rol_id === 3));
   }, [data]);
 
@@ -31,16 +30,9 @@ function Index({ close, data }) {
     setListDesigner(
       listDesigner.filter((user) => user.id !== parseInt(designer_id))
     );
-
-
-
     deleteAssignDesignerProject(union_id)
-      .then((res) => {
-
-      })
-      .catch((error) => {
-
-      });
+      .then((res) => {})
+      .catch((error) => {});
   };
 
   const assignDesigner = (designer_id) => {
@@ -55,24 +47,8 @@ function Index({ close, data }) {
     };
 
     postAssignDesignerProject(dataBody).then((res) => {
-
-
-      updateFlow({ project_id: data.project_id, id_flow: 2 })
-
-    })
-
-
-
-
-  };
-
-  const [state, setState] = useState("idle");
-
-  const onClickHandler = () => {
-    setState("loading");
-    setTimeout(() => {
-      /*   onSubmit(); */
-    }, 2000);
+      updateFlow({ project_id: data.project_id, id_flow: 2 });
+    });
   };
 
   const properties = {
@@ -82,7 +58,8 @@ function Index({ close, data }) {
     listDesigner,
     teamFilter,
     deleteDesigner,
-    userData
+    userData,
+    loading,
   };
   return <View {...properties} />;
 }

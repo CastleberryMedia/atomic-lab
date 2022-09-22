@@ -23,6 +23,7 @@ function Index({ setIsAuthenticated }) {
     setAllProjects,
     tourActive,
     setTourActive,
+    setLoadingAllProjects,
   } = useContext(DataContext);
 
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ function Index({ setIsAuthenticated }) {
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
   useEffect(() => {
+    setLoadingAllProjects(true);
     getNotifications(user_id).then(({ data }) => {
       setNotifications(data.response);
     });
@@ -60,6 +62,7 @@ function Index({ setIsAuthenticated }) {
     });
     getAllProjects(user_id).then(({ data }) => {
       setAllProjects(data.response);
+      setLoadingAllProjects(false);
     });
   }, []);
 

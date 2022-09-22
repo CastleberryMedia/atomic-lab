@@ -117,7 +117,7 @@ export const getAttached = async (user_id) =>
 //reviews
 export const getReviewsProject = async (project_id) =>
   axios.get(
-    `https://api.ticvzla.xyz/public/api/update_review_data/${project_id}`
+    `https://api.ticvzla.xyz/public/api/get_last_versions_data/${project_id}`
   );
 export const putFinishReview = async ({ project_id, img_id }) =>
   axios.put(

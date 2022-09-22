@@ -14,7 +14,7 @@ function Index({ type_home, page }) {
     ? location.pathname.split("-")[1]
     : type_home && type_home;
 
-  const { userData, team, allProjects, setAllProjects } =
+  const { userData, team, allProjects, setAllProjects, loadingAllProjects } =
     useContext(DataContext);
 
   const [modalMessage, setModalMessage] = useState(newProject);
@@ -101,6 +101,7 @@ function Index({ type_home, page }) {
     setModalMessage,
     modalMessageFinish,
     setModalMessageFinish,
+    loadingAllProjects,
   };
 
   return <View {...properties} />;

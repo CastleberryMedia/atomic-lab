@@ -47,6 +47,7 @@ function App() {
   const [team, setTeam] = useState(null);
   const [attached, setAttached] = useState(null);
   const [allProjects, setAllProjects] = useState(null);
+  const [loadingAllProjects, setLoadingAllProjects] = useState(false);
   const [onboarding, setOnboarding] = useState(undefined);
   const [tourActive, setTourActive] = useState(false);
 
@@ -85,6 +86,8 @@ function App() {
           setOnboarding,
           tourActive,
           setTourActive,
+          loadingAllProjects,
+          setLoadingAllProjects,
         }}
       >
         <HashRouter>

@@ -141,7 +141,6 @@ function View({
             >
               {Icons(menuTopView === "review" ? "arrow_up" : "arrow_down")}
             </div>
-            {console.log("projectData", projectData)}
             {menuTopView === "review" && (
               <div className="menu-float">
                 <div className="reviews-count">
@@ -182,6 +181,7 @@ function View({
                 .versions?.map((version, index) => (
                   <div key={index} className="version">
                     <div className="version-id">Opción {version.id}</div>
+
                     <div
                       className={`version-img ${
                         reviews?.review_data?.filter(
@@ -190,7 +190,9 @@ function View({
                           ? "img-2"
                           : "img-1"
                       } ${
-                        reviews.last_selection_id === version.id
+                        reviews.lasts_versions.filter(
+                          (last) => last.version === versionSelect
+                        )[0]?.last_selection_imageid === version.id
                           ? "img-select"
                           : "img-no-select"
                       }`}
@@ -212,7 +214,11 @@ function View({
                     </div>
                   </div>
                 ))}
-            {userData?.rol_id !== 3 &&
+
+            {!reviews.lasts_versions.filter(
+              (last) => last.version === versionSelect
+            )[0] &&
+              userData?.rol_id !== 3 &&
               reviews?.review_data?.filter(
                 (filter) => filter.version === versionSelect
               )[0].versions?.length >= 2 && (

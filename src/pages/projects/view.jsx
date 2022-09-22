@@ -1,4 +1,5 @@
 import React from "react";
+import FadeLoader from "react-spinners/FadeLoader";
 import { Icons } from "../icons";
 import { PROJECTS_2 } from "../constats";
 import ModalPrivateNotes from "../modals/private-notes";
@@ -34,6 +35,7 @@ function View({
   setModalMessage,
   modalMessageFinish,
   setModalMessageFinish,
+  loadingAllProjects,
 }) {
   return (
     <div className="page active-projects">
@@ -42,8 +44,11 @@ function View({
         user={true}
         title={`Proyectos ${typeFin === "active" ? "activos" : "terminados"}`}
       />
-
-      {projectsFilter && projectsFilter.length <= 0 ? (
+      {loadingAllProjects ? (
+        <div className="loading">
+          <FadeLoader color="#6b72fd" />
+        </div>
+      ) : projectsFilter && projectsFilter.length <= 0 ? (
         <div className="message">
           <h3 className="text-purple">{`No tienes proyectos ${
             typeFin === "active" ? "activos" : "terminados"

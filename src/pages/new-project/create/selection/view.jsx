@@ -66,6 +66,8 @@ function View({ selectedImg, onSelectFile, setStep, step, onSelectText }) {
                   selectedImg={selectedImg}
                   onSelectFile={onSelectFile}
                   onSelectText={onSelectText}
+                  setPostCount={setPostCount}
+                  postCount={postCount}
                 />
               )
           )}

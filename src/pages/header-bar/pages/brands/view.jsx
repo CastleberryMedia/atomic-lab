@@ -3,6 +3,7 @@ import PageTitle from "../../../page-title";
 import "./styles.scss";
 import { Icons } from "../../../icons";
 import ModalMessage from "../../../modals/message";
+import ReactTooltip from "react-tooltip";
 
 function View({
   redirectToBrandForm,
@@ -10,6 +11,7 @@ function View({
   predeterminateBrand,
   modalMessage,
   setModalMessage,
+  delete_brand,
 }) {
   return (
     <div className="brands-page page">
@@ -22,6 +24,13 @@ function View({
       <section className="content flex">
         {brands?.map((brand, index) => (
           <div key={index} className="brand-card">
+            <div
+              className="delete-icon"
+              data-tip={"Borrar marca"}
+              onClick={() => delete_brand(brand.id)}
+            >
+              {Icons("delete_circle")}
+            </div>
             <div
               className="card-content"
               onClick={() => redirectToBrandForm(brand.id)}
@@ -65,13 +74,15 @@ function View({
           </div>
           <div className="footer"></div>
         </div>
+
+        <ReactTooltip place={"bottom"} data-for={2} />
       </section>
 
-      {modalMessage && (
+      {modalMessage.visible && (
         <ModalMessage
           next={() => setModalMessage(false)}
           cancelVisible={false}
-          message={"Se predetermino la marca"}
+          message={modalMessage.message}
         />
       )}
     </div>

@@ -5,7 +5,7 @@ import "./styles.scss";
 
 function View({ close, data }) {
   return (
-    <div id="myModal" className="modal help" onClick={() => close()}>
+    <div id="myModal" className="modal help">
       <div className="modal-content">
         <h3>Ayuda</h3>
 
@@ -22,7 +22,7 @@ function View({ close, data }) {
                   <div className="flex">
                     <div className="icon">{Icons("tel")}</div>
                     <p className="text-blue">Teléfono</p>
-                    <p>301 652 14 88</p>
+                    <p>+1 519 778 1224</p>
                   </div>
                 </td>
                 <td>
@@ -38,7 +38,13 @@ function View({ close, data }) {
                   <div className="flex">
                     <div className="icon">{Icons("whatsapp")} </div>
                     <p className="text-blue">WhatsApp</p>
-                    <p>301 654 17 90</p>
+                    <a
+                      href="https://api.whatsapp.com/send?phone=15197781224"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      +1 519 778 1224
+                    </a>
                   </div>
                 </td>
                 <td>
@@ -50,16 +56,28 @@ function View({ close, data }) {
               </tr>
               <tr>
                 <td>
-                  <div className="flex">
-                    <div className="icon">{Icons("idea")} </div>
-                    <p className="button-blue">FAQ - Preguntas Frecuentes</p>
-                  </div>
+                  <a
+                    href="https://www.atomiclabco.com/#FAQ"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="flex">
+                      <div className="icon">{Icons("idea")} </div>
+                      <p className="button-blue">FAQ - Preguntas Frecuentes</p>
+                    </div>
+                  </a>
                 </td>
                 <td>
-                  <div className="flex">
-                    <div className="icon">{Icons("blog")} </div>
-                    <p className="button-gray">Blog</p>
-                  </div>
+                  <a
+                    href="https://www.atomiclabco.com/blog"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="flex">
+                      <div className="icon">{Icons("blog")} </div>
+                      <p className="button-gray">Blog</p>
+                    </div>
+                  </a>
                 </td>
               </tr>
               <tr>
@@ -96,10 +114,16 @@ function View({ close, data }) {
         <section className="footer-modal">
           <section className="section-buttons flex">
             <div className="icons">
-              {Icons("linkedin_black")}
+              <a
+                href="https://www.linkedin.com/company/atomiclab"
+                target={"_blank"}
+                rel="noreferrer"
+              >
+                {Icons("linkedin_black")}
+              </a>
+
               {Icons("twitter_black")}
               {Icons("facebook_black")}
-              {Icons("twitter_black")}
               {Icons("instagram_black")}
             </div>
 

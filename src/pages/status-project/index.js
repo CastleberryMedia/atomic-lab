@@ -50,8 +50,6 @@ function Index() {
       .catch((error) => {});
   }, [id]);
 
-  console.log("designers", designers);
-
   const properties = { projectData, rate, redirectTo, designers };
 
   return <View {...properties} />;

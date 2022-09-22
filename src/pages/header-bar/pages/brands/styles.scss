@@ -26,6 +26,18 @@
         margin: auto;
       }
     }
+    .delete-icon {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      width: 30px;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
 
     .footer {
       position: absolute;

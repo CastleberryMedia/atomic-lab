@@ -14,8 +14,6 @@ function View({
 }) {
   const [editFields, setEditFields] = useState([]);
 
-  console.log(editFields);
-
   return (
     <div className="profile-page page">
       <form onSubmit={handleSubmit(onSubmit)}>

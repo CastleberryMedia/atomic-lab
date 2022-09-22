@@ -1,7 +1,16 @@
 import React from "react";
 import View from "./view";
 
-function Index({ id, post, setPost, selectedImg, onSelectFile, onSelectText }) {
+function Index({
+  id,
+  post,
+  setPost,
+  selectedImg,
+  onSelectFile,
+  onSelectText,
+  setPostCount,
+  postCount,
+}) {
   const properties = {
     id,
     post,
@@ -9,6 +18,8 @@ function Index({ id, post, setPost, selectedImg, onSelectFile, onSelectText }) {
     selectedImg,
     onSelectFile,
     onSelectText,
+    setPostCount,
+    postCount,
   };
 
   return <View {...properties} />;

@@ -2,9 +2,19 @@ import React, { useState, useContext } from "react";
 import { Icons } from "../../../../icons";
 import { FORM_INPUTS } from "../../../../constats";
 import CreateFormContext from "../../../../../create-form-context";
+import ReactTooltip from "react-tooltip";
 import "./styles.scss";
 
-function View({ id, post, setPost, selectedImg, onSelectFile, onSelectText }) {
+function View({
+  id,
+  post,
+  setPost,
+  selectedImg,
+  onSelectFile,
+  onSelectText,
+  setPostCount,
+  postCount,
+}) {
   const data = useContext(CreateFormContext)[0];
 
   const [objetive, setObjetive] = useState(
@@ -52,8 +62,24 @@ function View({ id, post, setPost, selectedImg, onSelectFile, onSelectText }) {
       <div className="column">
         <div>
           <label htmlFor="text_include" className="title-include flex">
-            {FORM_INPUTS.image_include.label}
-            {Icons("help_circle")}
+            <div className="title flex">
+              {FORM_INPUTS.image_include.label}
+              {Icons("help_circle")}
+            </div>
+
+            {postCount >= 2 && (
+              <div
+                className="delete"
+                data-tip={"Borrar publicación"}
+                onClick={() => {
+                  setPost(post.filter((p) => p.id !== id));
+                  setPostCount(postCount - 1);
+                }}
+              >
+                {Icons("delete_circle")}
+              </div>
+            )}
+            <ReactTooltip place={"bottom"} data-for={id} />
           </label>
           <label htmlFor={`reference-${id}`} className="button-blue flex">
             {Icons("clip_white")}
@@ -109,8 +135,10 @@ function View({ id, post, setPost, selectedImg, onSelectFile, onSelectText }) {
         </div>
         <div>
           <label htmlFor="text_include" className="title-include flex">
-            {FORM_INPUTS.text_include.label}
-            {Icons("help_circle")}
+            <div className="title flex">
+              {FORM_INPUTS.text_include.label}
+              {Icons("help_circle")}
+            </div>
           </label>
           <section className="section-buttons flex">
             <label

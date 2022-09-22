@@ -39,7 +39,8 @@ function Index() {
     });
   };
 
-  const projectExtraData = JSON.parse(filterProject?.extra_data);
+  const projectExtraData =
+    filterProject?.extra_data && JSON.parse(filterProject?.extra_data);
 
   useEffect(() => {
     getAllReviews();
