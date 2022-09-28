@@ -43,6 +43,9 @@
         p {
           margin: 10px 0;
           font-size: 14px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
           span {
             font-weight: bold;
           }
@@ -83,6 +86,19 @@
     gap: 10px;
   }
 
+  .with-icons-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    a {
+      width: 25px;
+      height: 22px;
+    }
+    img {
+      width: 100%;
+    }
+  }
+
   .designers-list {
     display: flex;
     gap: 2px;
@@ -97,5 +113,10 @@
       white-space: nowrap;
       font-size: 13px;
     }
+  }
+
+  .brand-pointer {
+    cursor: pointer;
+    /*  color: #6b72fd; */
   }
 }

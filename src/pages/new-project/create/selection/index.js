@@ -6,6 +6,8 @@ function Index({ setStep, step }) {
   const data = useContext(CreateFormContext)[0];
   const [formData, setFormData] = useContext(CreateFormContext);
 
+  console.log("formData", formData);
+
   const [selectedImg, setSelectedImg] = useState();
   const [selectedImgArray, setSelectedImgArray] = useState(
     data.img_array ? data.img_array : []
@@ -33,6 +35,8 @@ function Index({ setStep, step }) {
       },
     ]);
   }, [selectedImg, idSelect]);
+
+  console.log("selectedImgArray", selectedImgArray);
 
   useEffect(() => {
     selectedImgArray.length >= 1 &&
@@ -85,6 +89,8 @@ function Index({ setStep, step }) {
       setSelectedText(undefined);
       return;
     }
+
+    console.log("aqio");
 
     setIdSelect(id);
     setSelectedText(e.target.files[0]);

@@ -11,13 +11,15 @@ function Index() {
 
   const { id } = useParams();
 
-  const { allProjects } = useContext(DataContext);
+  const { brands, allProjects } = useContext(DataContext);
 
   const filterProject = allProjects?.filter(
     (project) => project.id === parseInt(id)
   )[0];
 
-  const projectValues = filterProject?.values[0];
+  const projectValues = filterProject?.values && filterProject?.values[0];
+
+  console.log("filterProject", filterProject);
 
   let options = [];
   let options_post = [];
@@ -32,16 +34,28 @@ function Index() {
       .catch((error) => {});
   }, [id]);
 
-  DETAIL_PROJECT_DATA_2(projectValues, designers, Icons, filterProject).forEach(
-    (data) => {
-      options.push(
-        <div className="value flex">
-          <p className="title">{data.label}</p>
-          <p>{data?.content}</p>
-        </div>
-      );
-    }
-  );
+  const redirectToBrandForm = (name) => {
+    navigate(
+      `/brands/brands-form/${
+        brands.filter((brand) => brand.name === name)[0].id
+      }`
+    );
+  };
+
+  DETAIL_PROJECT_DATA_2(
+    projectValues,
+    designers,
+    Icons,
+    filterProject,
+    redirectToBrandForm
+  ).forEach((data) => {
+    options.push(
+      <div className="value flex">
+        <p className="title">{data.label}</p>
+        <p>{data?.content}</p>
+      </div>
+    );
+  });
 
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [dataModals, setDataModals] = useState(false);
@@ -69,11 +83,24 @@ function Index() {
               </div>
               <div className="data-text">
                 <p>
-                  <span>Objetivo:</span> {item.objetive}
+                  <span>Comentario de la imagen:</span> {item.objetive}
                 </p>
                 <p>
-                  <span>Texto:</span> {item.text}
-                  {item.text}
+                  <span>Texto a incluir:</span>
+                  <div className="with-icons-text">
+                    <a
+                      href={
+                        projectValues?.text_array.filter(
+                          (text, indexx) => indexx === index
+                        )[0]?.name
+                      }
+                      target={"_blank"}
+                      rel="noreferrer"
+                    >
+                      {Icons("download")}
+                    </a>
+                    {item.text}
+                  </div>
                 </p>
               </div>
             </div>

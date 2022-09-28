@@ -385,11 +385,23 @@ export const FORM_INPUTS_BRANDS = [
   },
 ];
 
+export const DESIGNER_LEVEL = {
+  none: "Ninguna",
+  medium: "Media",
+  high: "Mucha",
+};
+
+export const DELIVERY_TIME = {
+  Express: "Express (1-2 días hábiles)",
+  Estandar: "Estándar (2-4 días hábiles)",
+};
+
 export const DETAIL_PROJECT_DATA_2 = (
   projectValues,
   designers,
   Icons,
-  filterProject
+  filterProject,
+  redirectToBrandForm
 ) => {
   return [
     { id: 1, label: "Dueño del proyecto", content: filterProject?.name_user },
@@ -406,14 +418,36 @@ export const DETAIL_PROJECT_DATA_2 = (
         "No asignado"
       ),
     },
-    { id: 3, label: "Fecha de inicio", content: filterProject?.updated_at },
-    { id: 4, label: "Marca", content: projectValues?.brand_select },
+    {
+      id: 3,
+      label: "Fecha de inicio",
+      content: (
+        <div>
+          {moment
+            .utc(filterProject?.updated_at)
+            .local()
+            .format("YYYY-MM-DD HH:mm:ss")}
+        </div>
+      ),
+    },
+    {
+      id: 4,
+      label: "Marca",
+      content: (
+        <div
+          className="brand-pointer text-purple"
+          onClick={() => redirectToBrandForm(projectValues?.brand_select)}
+        >
+          {projectValues?.brand_select}
+        </div>
+      ),
+    },
     { id: 5, label: "Tipo de Proyecto", content: projectValues?.type_post },
     { id: 6, label: "Red social", content: projectValues?.social_network },
     {
       id: 7,
       label: "Tipo de publicación",
-      content: projectValues.type_publication,
+      content: projectValues?.type_publication,
     },
     {
       id: 8,
@@ -440,12 +474,19 @@ export const DETAIL_PROJECT_DATA_2 = (
     {
       id: 12,
       label: "Formato de entrega",
-      content: projectValues?.formato_entrega,
+      content: (
+        <div>
+          <p>{projectValues?.formato_entrega}</p>
+          <p>{projectValues?.f_custom}</p>
+        </div>
+      ),
     },
     {
       id: 13,
       label: "Libertad del diseñador",
-      content: projectValues?.designer_freedom,
+      content: DESIGNER_LEVEL[projectValues?.designer_freedom]
+        ? DESIGNER_LEVEL[projectValues?.designer_freedom]
+        : projectValues?.designer_freedom,
     },
     {
       id: 14,
@@ -453,7 +494,7 @@ export const DETAIL_PROJECT_DATA_2 = (
       content: (
         <div>
           <p>{projectValues?.tamaño || "-"}</p>
-          <p>{projectValues?.t_custom && " - " + projectValues?.t_custom}</p>
+          <p>{projectValues?.t_custom}</p>
         </div>
       ),
     },
@@ -461,7 +502,7 @@ export const DETAIL_PROJECT_DATA_2 = (
     {
       id: 15,
       label: "Tiempo de entrega",
-      content: projectValues?.tiempo_entrega,
+      content: DELIVERY_TIME[projectValues?.tiempo_entrega],
     },
     {
       id: 16,

@@ -102,7 +102,7 @@ function View({
                   }`}
                   onClick={() => {
                     setLibertyLevel("none");
-                    setFormData({ ...formData, designer_freedom: "none" });
+                    setFormData({ ...formData, designer_freedom: "ninguna" });
                   }}
                 ></div>
                 <p>Ninguna</p>
@@ -112,7 +112,7 @@ function View({
                   className={`circle ${libertyLevel === "medium" && "active"}`}
                   onClick={() => {
                     setLibertyLevel("medium");
-                    setFormData({ ...formData, designer_freedom: "medium" });
+                    setFormData({ ...formData, designer_freedom: "media" });
                   }}
                 ></div>
                 <p>Media</p>
@@ -122,7 +122,7 @@ function View({
                   className={`circle ${libertyLevel === "high" && "active"}`}
                   onClick={() => {
                     setLibertyLevel("high");
-                    setFormData({ ...formData, designer_freedom: "high" });
+                    setFormData({ ...formData, designer_freedom: "mucha" });
                   }}
                 ></div>
                 <p>Mucha</p>
