@@ -3,6 +3,7 @@ import FadeLoader from "react-spinners/FadeLoader";
 import { Icons } from "../icons";
 import { PROJECTS_2 } from "../constats";
 import ModalPrivateNotes from "../modals/private-notes";
+import ModalFinalDesigns from "../modals/final-designs";
 import ModalZoomImg from "../modals/zoom-img";
 import ModalReviews from "../modals/reviews";
 import DesignerProject from "../modals/designers-project";
@@ -36,6 +37,8 @@ function View({
   modalMessageFinish,
   setModalMessageFinish,
   loadingAllProjects,
+  setModalFinalDesigns,
+  modalFinalDesigns,
 }) {
   return (
     <div className="page active-projects">
@@ -64,16 +67,18 @@ function View({
           <table>
             <thead>
               <tr>
-                {PROJECTS_2(page, typeFin).map((item, index) => (
-                  <th key={index}>
-                    <div className="th-flex flex">
-                      <p>{item.title}</p>
-                      {item.title !== "" && (
-                        <p className="flex">{Icons("help_circle")}</p>
-                      )}
-                    </div>
-                  </th>
-                ))}
+                {PROJECTS_2(userData?.rol_id, page, typeFin).map(
+                  (item, index) => (
+                    <th key={index}>
+                      <div className="th-flex flex">
+                        <p>{item.title}</p>
+                        {item.title !== "" && (
+                          <p className="flex">{Icons("help_circle")}</p>
+                        )}
+                      </div>
+                    </th>
+                  )
+                )}
               </tr>
             </thead>
 
@@ -91,6 +96,7 @@ function View({
                   return (
                     <tr key={index}>
                       {PROJECTS_2(
+                        userData?.rol_id,
                         page,
                         typeFin,
                         navigate,
@@ -105,11 +111,12 @@ function View({
                         modalPrivateNotes,
                         setMenuFloat,
                         menuFloat,
-                        userData?.rol_id,
                         setModalReviews,
                         projectValues,
                         flows,
-                        updateDateNextReview
+                        updateDateNextReview,
+                        setModalFinalDesigns,
+                        modalFinalDesigns
                       ).map((project_field) => (
                         <td>
                           <div>{project_field.render || "-"}</div>
@@ -123,6 +130,9 @@ function View({
           </table>
           {modalPrivateNotes && (
             <ModalPrivateNotes close={setModalPrivateNotes} data={dataModals} />
+          )}
+          {modalFinalDesigns && (
+            <ModalFinalDesigns close={setModalFinalDesigns} data={dataModals} />
           )}
           {modalZoomImg && (
             <ModalZoomImg close={setModalZoomImg} data={dataModals} />

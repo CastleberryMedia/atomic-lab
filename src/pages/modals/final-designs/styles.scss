@@ -1,0 +1,58 @@
+.private-notes {
+  .modal-content {
+    position: relative;
+    height: 20em;
+
+    .input-area {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      width: 50%;
+      margin: 3em auto;
+
+      input[type="file"] {
+        display: none;
+      }
+      .custom-file-upload {
+        border: 1px solid #6b72fd;
+        border-radius: 5px;
+        display: flex;
+        padding: 6px 12px;
+        cursor: pointer;
+        justify-content: center;
+        &:hover {
+          background-color: #dadcff80;
+        }
+      }
+    }
+
+    .input-area-download {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 53%;
+      a {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        color: #6b72fd;
+      }
+    }
+
+    .section-buttons {
+      position: absolute;
+      bottom: 20px;
+      justify-content: space-between;
+      width: 90%;
+    }
+    .button-reactive {
+      .reactive-btn .progress {
+        box-shadow: none;
+      }
+
+      .reactive-btn.button.primary {
+        box-shadow: none;
+      }
+    }
+  }
+}

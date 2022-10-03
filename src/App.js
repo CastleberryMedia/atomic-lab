@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import { getDataUser } from "./services";
 
+import { ToastContainer } from "react-toast";
+
 import AuthContext from "./auth-context";
 import CreateFormContext from "./create-form-context";
 import DataContext from "./data-context";
@@ -165,6 +167,7 @@ function App() {
           </Routes>
         </HashRouter>
       </DataContext.Provider>
+      <ToastContainer delay={5000} position={"top-right"} />
     </div>
   );
 }

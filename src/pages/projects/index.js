@@ -20,6 +20,7 @@ function Index({ type_home, page }) {
   const [modalMessage, setModalMessage] = useState(newProject);
   const [modalMessageFinish, setModalMessageFinish] = useState(finishProject);
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
+  const [modalFinalDesigns, setModalFinalDesigns] = useState(false);
   const [modalZoomImg, setModalZoomImg] = useState(false);
   const [modalDesignerProject, setModalDesignerProject] = useState(false);
   const [modalReviews, setModalReviews] = useState(false);
@@ -102,6 +103,8 @@ function Index({ type_home, page }) {
     modalMessageFinish,
     setModalMessageFinish,
     loadingAllProjects,
+    setModalFinalDesigns,
+    modalFinalDesigns,
   };
 
   return <View {...properties} />;

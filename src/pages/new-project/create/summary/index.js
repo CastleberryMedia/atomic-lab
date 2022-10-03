@@ -97,8 +97,6 @@ function Index({ setStep, step }) {
       data.references.map((reference) =>
         formData.append(reference.name_file, reference.file)
       );
-    console.log(data.text_array);
-
     data.text_array &&
       data.text_array.map((text) => formData.append(text.name, text.formData));
 
@@ -115,8 +113,6 @@ function Index({ setStep, step }) {
       ...(tCustom && { t_custom: tCustom }),
     };
     formData.append("jsondataRequest", JSON.safeStringify(dataFin));
-
-    console.log(...formData);
 
     postCreateProject(formData)
       .then((res) => {

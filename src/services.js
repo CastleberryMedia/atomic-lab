@@ -63,6 +63,20 @@ export const updateDateReview = async ({ project_id, date }) =>
     date: date,
   });
 
+export const postFinalDesigns = async (formData) =>
+  axios.post(
+    `https://api.ticvzla.xyz/public/api/upload_files_finish_project`,
+    formData,
+    {
+      headers: headers,
+    }
+  );
+
+export const getFinalDesigns = async (project_id) =>
+  axios.get(
+    `https://api.ticvzla.xyz/public/api/get_files_finish_project/${project_id}`
+  );
+
 //Designers
 export const postAssignDesignerProject = async (data) =>
   axios.post(`https://api.ticvzla.xyz/public/api/assign_designer`, data);

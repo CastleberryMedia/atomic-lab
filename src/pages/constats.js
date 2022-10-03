@@ -739,6 +739,7 @@ export const SUMMARY_OPTIONS = {
 };
 
 export const PROJECTS_2 = (
+  rol_id,
   page,
   typeFin,
   navigate,
@@ -753,11 +754,12 @@ export const PROJECTS_2 = (
   modalPrivateNotes,
   setMenuFloat,
   menuFloat,
-  rol_id,
   setModalReviews,
   projectValues,
   flows,
-  updateDateNextReview
+  updateDateNextReview,
+  setModalFinalDesigns,
+  modalFinalDesigns
 ) => {
   const listContent = [
     {
@@ -899,6 +901,27 @@ export const PROJECTS_2 = (
       title: "Comentarios finales",
       isActive: page !== "home" && typeFin === "inactive" ? true : false,
       render: <div className="pointer">{Icons("comments_blue")}</div>,
+    },
+
+    {
+      title: "Diseños finales",
+      isActive:
+        page !== "home" && typeFin === "inactive" && rol_id === 3
+          ? true
+          : false,
+      render: (
+        <div
+          className="pointer"
+          onClick={() => {
+            setModalFinalDesigns(!modalFinalDesigns);
+            setDataModals({
+              project_id: project?.id,
+            });
+          }}
+        >
+          {Icons("comments_blue")}
+        </div>
+      ),
     },
 
     {
