@@ -35,7 +35,7 @@ function Index({ close, data }) {
 
   const [loading, setLoading] = useState(false);
   const [finalDesigns, setFinalDesigns] = useState(null);
-
+  /* 
   useEffect(() => {
     setLoading(true);
     getFinalDesigns(data.project_id)
@@ -49,7 +49,7 @@ function Index({ close, data }) {
         });
       });
     setLoading(false);
-  }, []);
+  }, []); */
 
   const saveDesigns = () => {
     const formData = new FormData();
