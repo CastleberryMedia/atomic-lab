@@ -43,6 +43,9 @@ export const NOTIFICATION_TEXT = (notification) => {
     case "finish-revision":
       noti = `Se ha <span> realizado una revisión </span> al proyecto <span> ${notification.name_project} </span>`;
       break;
+    case "upload_last_files":
+      noti = `Se han <span> subido archivos finales </span> al proyecto <span> ${notification.name_project} </span>`;
+      break;
 
     default:
       break;
