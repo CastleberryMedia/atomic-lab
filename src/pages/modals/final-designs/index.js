@@ -63,7 +63,8 @@ function Index({ close, data }) {
     };
 
     const dataFin = {
-      project_id: data.project_id,
+      project_id: data?.project_id,
+      user_id: userData?.id,
     };
 
     formData.append("jsondataRequest", JSON.safeStringify(dataFin));
