@@ -905,10 +905,7 @@ export const PROJECTS_2 = (
 
     {
       title: "Diseños finales",
-      isActive:
-        page !== "home" && typeFin === "inactive" && rol_id === 3
-          ? true
-          : false,
+      isActive: page !== "home" && typeFin === "inactive" ? true : false,
       render: (
         <div
           className="pointer"
@@ -924,7 +921,7 @@ export const PROJECTS_2 = (
       ),
     },
 
-    {
+    /*   {
       title: "Descargar",
       isActive: typeFin === "inactive" ? true : false,
       render: (
@@ -940,7 +937,7 @@ export const PROJECTS_2 = (
           </a>
         </div>
       ),
-    },
+    }, */
     {
       title: "Más Información",
       isActive: page === "home" && typeFin === "active" ? true : false,

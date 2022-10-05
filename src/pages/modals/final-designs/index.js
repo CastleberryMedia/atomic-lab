@@ -22,20 +22,11 @@ function Index({ close, data }) {
 
   const [uploadFile, setUploadFile] = useState("");
 
-  const handleFileReader = (event) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (e) => {
-      setUploadFile({
-        data: reader.result.split(",").pop(),
-        fileName: event.target.files[0].name,
-      });
-    };
-  };
-
   const [loading, setLoading] = useState(false);
   const [finalDesigns, setFinalDesigns] = useState(null);
-  /* 
+
+  console.log("finalDesigns", finalDesigns);
+
   useEffect(() => {
     setLoading(true);
     getFinalDesigns(data.project_id)
@@ -49,11 +40,11 @@ function Index({ close, data }) {
         });
       });
     setLoading(false);
-  }, []); */
+  }, []);
 
   const saveDesigns = () => {
     const formData = new FormData();
-    formData.append(uploadFile.fileName, uploadFile.data);
+    formData.append(uploadFile.name, uploadFile);
 
     JSON.safeStringify = (obj, indent = 2) => {
       let cache = [];
@@ -74,9 +65,8 @@ function Index({ close, data }) {
     const dataFin = {
       project_id: data.project_id,
     };
-    formData.append("jsondataRequest", JSON.safeStringify(dataFin));
 
-    console.log([...formData]);
+    formData.append("jsondataRequest", JSON.safeStringify(dataFin));
 
     postFinalDesigns(formData)
       .then((res) => {
@@ -102,9 +92,10 @@ function Index({ close, data }) {
     state,
     onClickHandler,
     uploadFile,
-    handleFileReader,
     finalDesigns,
     loading,
+    setUploadFile,
+    userData,
   };
 
   return <View {...properties} />;
