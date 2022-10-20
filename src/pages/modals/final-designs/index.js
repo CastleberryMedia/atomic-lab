@@ -25,8 +25,6 @@ function Index({ close, data }) {
   const [loading, setLoading] = useState(false);
   const [finalDesigns, setFinalDesigns] = useState(null);
 
-  console.log("finalDesigns", finalDesigns);
-
   useEffect(() => {
     setLoading(true);
     getFinalDesigns(data.project_id)

@@ -78,6 +78,7 @@ import comments_blue from "../icons/comments_blue.png";
 import hidde_eye from "../icons/hidde_eye.png";
 import eye from "../icons/eye.png";
 import check_circle from "../icons/check_circle.png";
+import sortable from "../icons/sortable.png";
 
 export const Icons = (icon) => {
   const listIcons = {
@@ -160,6 +161,7 @@ export const Icons = (icon) => {
     hidde_eye: hidde_eye,
     eye: eye,
     check_circle: check_circle,
+    sortable: sortable,
   };
 
   return <img src={listIcons[icon]} alt={icon} />;

@@ -1,54 +1,72 @@
 .help {
-    .modal-content {
-        width: 836px;
-        height: 557px;
+  .modal-content {
+    width: 836px;
+    height: 557px;
+  }
+
+  h3 {
+    color: #36ccd1;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  table {
+    margin: 20px 0;
+    width: 100%;
+
+    td {
+      height: 2.5em;
+
+      .flex {
+        gap: 10px;
+      }
     }
+  }
 
-    h3 {
-        color: #36ccd1;
-        text-align: center;
-        margin-bottom: 20px;
+  .button-blue,
+  .button-gray {
+    padding: 2px 10px;
+  }
+
+  .icon {
+    width: 2em;
+    display: flex;
+  }
+
+  .input-texarea {
+    width: 100%;
+  }
+
+  .footer-modal {
+    margin-bottom: 20px;
+    .icons {
+      display: flex;
+      gap: 20px;
     }
+    .section-buttons {
+      justify-content: space-between;
 
-    table {
-        margin: 20px 0;
-        width: 100%;
-
-        td {
-            height: 2.5em;
-
-            .flex {
-                gap: 10px;
-            }
-        }
-    }
-
-    .button-blue,
-    .button-gray {
-        padding: 2px 10px;
-    }
-
-    .icon {
-        width: 2em;
+      .buttons {
         display: flex;
-    }
-
-    .input-texarea {
-        width: 100%;
-    }
-
-    .footer-modal {
-        margin-bottom: 20px;
-        .icons {
-            display: flex;
-            gap: 20px;
+        gap: 15px;
+        div:last-child {
+          margin-right: 63px;
         }
-        .section-buttons {
-            justify-content: space-between;
-
-            .button {
-                margin-right: 35px;
-            }
-        }
+      }
     }
+  }
+
+  .questions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 10px;
+    img {
+      margin-top: 2px;
+    }
+  }
+
+  .text-blue {
+    cursor: default;
+  }
 }

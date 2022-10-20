@@ -44,4 +44,27 @@
   .review {
     gap: 5px;
   }
+
+  .filter-options {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    text-transform: capitalize;
+    font-weight: normal;
+    gap: 15px;
+    padding: 15px 7px;
+
+    label {
+      display: flex;
+      gap: 5px;
+    }
+    .button {
+      padding: 5px 15px;
+      margin: 0 auto;
+    }
+  }
+
+  .sortable {
+    transform: rotate(180deg);
+  }
 }

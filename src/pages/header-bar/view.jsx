@@ -103,8 +103,6 @@ function View({
         </div>
         <ReactTooltip type={"light"} place={"bottom"} data-for={2} />
 
-        {console.log(notifications)}
-
         {notificationsView && (
           <div className="float-notifications">
             {notifications.length ? (

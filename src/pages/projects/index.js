@@ -26,6 +26,9 @@ function Index({ type_home, page }) {
   const [modalReviews, setModalReviews] = useState(false);
   const [dataModals, setDataModals] = useState([]);
   const [menuFloat, setMenuFloat] = useState("");
+  const [filter, setFilter] = useState(null);
+
+  /*   console.log("----", filter); */
 
   const navigate = useNavigate();
 
@@ -40,7 +43,10 @@ function Index({ type_home, page }) {
   const getLastVersion = (project) => {
     let img = "";
 
-    if (Array.isArray(project.review_data) || project.review_data.length >= 1) {
+    if (
+      Array.isArray(project?.review_data) ||
+      project?.review_data.length >= 1
+    ) {
       const countReviews = project?.review_data?.length - 1;
       img =
         project?.review_data[countReviews]?.versions[
@@ -61,15 +67,76 @@ function Index({ type_home, page }) {
       .catch((error) => {});
   };
 
+  const [projectsFilterOriginal, setProjectsFilterOriginal] = useState([]);
   const [projectsFilter, setProjectsFilter] = useState([]);
 
   useEffect(() => {
-    setProjectsFilter(
-      allProjects
-        ?.filter((p) => JSON.parse(p?.flow)[3].status !== typeFin)
-        .sort((a, b) => b.id - a.id)
-    );
-  }, [typeFin, allProjects]);
+    allProjects?.forEach((p) => {
+      /* setProjectsFilterOriginal((projectsFilterOriginal) => [
+        ...projectsFilterOriginal,
+        { ...p, ...p?.values[0], flow_parse: JSON.parse(p?.flow) },
+      ]); */
+      setProjectsFilter((projectsFilter) => [
+        ...projectsFilter,
+        {
+          ...p,
+          ...p?.values[0],
+          flow_parse: JSON.parse(p?.flow),
+          flow_active: JSON.parse(p?.flow).filter(
+            (f) => f.status === "active"
+          )[0]?.id,
+        },
+      ]);
+    });
+  }, []);
+
+  console.log("projectsFilter", projectsFilter);
+
+  const [orderSelect, setOrderSelect] = useState(null);
+  const [asc, setAsc] = useState(true);
+
+  const applySort = (type) => {
+    const oldOrder = [...projectsFilter];
+
+    setOrderSelect(type);
+
+    switch (type) {
+      case "Nombre del proyecto":
+        setProjectsFilter(
+          asc
+            ? oldOrder.sort((a, b) =>
+                a.name_project.localeCompare(b.name_project)
+              )
+            : oldOrder.sort((a, b) =>
+                b.name_project.localeCompare(a.name_project)
+              )
+        );
+
+        break;
+      case "Fecha estimada próx. revisión":
+        setProjectsFilter(
+          asc
+            ? oldOrder.sort(
+                (a, b) => new Date(a.review_date) - new Date(b.review_date)
+              )
+            : oldOrder.sort(
+                (a, b) => new Date(b.review_date) - new Date(a.review_date)
+              )
+        );
+        break;
+      case "Estado":
+        setProjectsFilter(
+          asc
+            ? oldOrder.sort((a, b) => a.flow_active - b.flow_active)
+            : oldOrder.sort((a, b) => b.flow_active - a.flow_active)
+        );
+        break;
+
+      default:
+        break;
+    }
+    setAsc(!asc);
+  };
 
   const properties = {
     page,
@@ -105,6 +172,11 @@ function Index({ type_home, page }) {
     loadingAllProjects,
     setModalFinalDesigns,
     modalFinalDesigns,
+    filter,
+    setFilter,
+    applySort,
+    orderSelect,
+    asc,
   };
 
   return <View {...properties} />;

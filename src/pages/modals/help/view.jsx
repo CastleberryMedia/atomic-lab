@@ -1,9 +1,10 @@
 import React from "react";
 import { Icons } from "../../icons";
+import ReactiveButton from "reactive-button";
 import "../../modals/styles.scss";
 import "./styles.scss";
 
-function View({ close, data }) {
+function View({ close, textSend, setTextSend, onClickHandler, state }) {
   return (
     <div id="myModal" className="modal help">
       <div className="modal-content">
@@ -97,7 +98,7 @@ function View({ close, data }) {
             </tbody>
           </table>
 
-          <label htmlFor="questions">
+          <label htmlFor="questions" className="questions">
             ¿Cuáles son tus dudas?{Icons("help_circle")}
           </label>
           <p>
@@ -107,6 +108,7 @@ function View({ close, data }) {
               id=""
               cols="30"
               rows="10"
+              onChange={(e) => setTextSend(e.target.value)}
             ></textarea>
           </p>
         </div>
@@ -127,7 +129,27 @@ function View({ close, data }) {
               {Icons("instagram_black")}
             </div>
 
-            <div className="button">Enviar</div>
+            <div className="buttons">
+              <div className="button" onClick={() => close()}>
+                Cancelar
+              </div>
+
+              <div className="button-reactive">
+                <ReactiveButton
+                  className={
+                    !textSend ? "button-disabled" : "button button-purple"
+                  }
+                  buttonState={state}
+                  onClick={() => textSend && onClickHandler()}
+                  shadow={false}
+                  loadingText={"Enviando..."}
+                  outline={false}
+                  rounded={false}
+                  block={false}
+                  idleText={"Enviar"}
+                />
+              </div>
+            </div>
           </section>
         </section>
       </div>

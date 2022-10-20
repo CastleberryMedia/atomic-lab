@@ -88,7 +88,7 @@ function Index() {
                   <div className="with-icons-text">
                     <a
                       href={
-                        projectValues?.text_array.filter(
+                        projectValues?.text_array?.filter(
                           (text, indexx) => indexx === index
                         )[0]?.name
                       }

@@ -13,7 +13,6 @@ function View({
   userData,
   finalDesigns,
 }) {
-  console.log("userData?.rol_id", userData?.rol_id);
   return (
     <div id="myModal" className="modal private-notes">
       <div className="modal-content">

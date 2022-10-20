@@ -741,10 +741,13 @@ export const SUMMARY_OPTIONS = {
   },
 };
 
-export const PROJECTS_2 = (
-  rol_id,
+export const PROJECTS_2 = ({
+  rol,
   page,
-  typeFin,
+  type,
+  filter,
+  setFilter,
+  applyFilter,
   navigate,
   project,
   modalDesignerProject,
@@ -758,28 +761,31 @@ export const PROJECTS_2 = (
   setMenuFloat,
   menuFloat,
   setModalReviews,
-  projectValues,
-  flows,
   updateDateNextReview,
   setModalFinalDesigns,
-  modalFinalDesigns
-) => {
+  modalFinalDesigns,
+}) => {
+  /*  console.log("prov", projectValues);
+  console.log("project", project); */
+
   const listContent = [
     {
       title: "Nombre del proyecto",
       isActive: true,
-      render: projectValues?.name_project,
+      render: project?.name_project,
+      sortable: true,
     },
 
     {
       title: "Fecha Inicio",
-      isActive: page === "home" && typeFin === "inactive" ? true : false,
-      render: projectValues?.created_at,
+      isActive: page === "home" && type === "inactive" ? true : false,
+      render: project?.created_at,
     },
 
     {
       title: "Estado",
-      isActive: page === "home" ? (typeFin === "active" ? true : false) : true,
+      isActive: page === "home" ? (type === "active" ? true : false) : true,
+      sortable: true,
       subtitle: (
         <div
           className={"view-more pointer"}
@@ -796,22 +802,11 @@ export const PROJECTS_2 = (
         <div
           data-tip={
             STATUS_TABLES_FLOW.filter(
-              (flow) =>
-                flow.id ===
-                parseInt(
-                  Array.isArray(flows) &&
-                    flows.filter((flow) => flow.status === "active")[0].id
-                )
+              (flow) => flow.id === parseInt(project?.flow_active)
             )[0]?.text
           }
         >
-          {Icons(
-            "status_check_" +
-              parseInt(
-                Array.isArray(flows) &&
-                  flows.filter((flow) => flow.status === "active")[0].id
-              )
-          )}
+          {Icons("status_check_" + parseInt(project?.flow_active))}
           <ReactTooltip
             type={"light"}
             place={"bottom"}
@@ -822,17 +817,18 @@ export const PROJECTS_2 = (
     },
     {
       title: "Fecha Finalización",
-      isActive: typeFin === "inactive" ? true : false,
-      render: projectValues?.finish_at,
+      isActive: type === "inactive" ? true : false,
+      render: project?.finish_at,
     },
     {
       title: "Fecha estimada próx. revisión",
-      isActive: typeFin === "active" ? true : false,
+      isActive: type === "active" ? true : false,
       field: "review_date",
       icon: null,
-      type: rol_id === 3 || rol_id === 8 ? "date" : null,
+      type: rol === 3 || rol === 8 ? "date" : null,
+      sortable: true,
       render:
-        rol_id === 3 || rol_id === 8 ? (
+        rol === 3 || rol === 8 ? (
           <input
             className="select-date"
             type="date"
@@ -852,7 +848,7 @@ export const PROJECTS_2 = (
     },
     {
       title: "Retroalimentación revisiones",
-      isActive: typeFin === "active" ? true : false,
+      isActive: type === "active" ? true : false,
       render: (
         <div
           className="pointer"
@@ -883,7 +879,7 @@ export const PROJECTS_2 = (
 
     {
       title: "Visualizar diseño final",
-      isActive: typeFin === "inactive" ? true : false,
+      isActive: type === "inactive" ? true : false,
       render: (
         <div
           className="pointer"
@@ -902,13 +898,13 @@ export const PROJECTS_2 = (
 
     {
       title: "Comentarios finales",
-      isActive: page !== "home" && typeFin === "inactive" ? true : false,
+      isActive: page !== "home" && type === "inactive" ? true : false,
       render: <div className="pointer">{Icons("comments_blue")}</div>,
     },
 
     {
       title: "Diseños finales",
-      isActive: page !== "home" && typeFin === "inactive" ? true : false,
+      isActive: page !== "home" && type === "inactive" ? true : false,
       render: (
         <div
           className="pointer"
@@ -943,7 +939,7 @@ export const PROJECTS_2 = (
     }, */
     {
       title: "Más Información",
-      isActive: page === "home" && typeFin === "active" ? true : false,
+      isActive: page === "home" && type === "active" ? true : false,
       render: (
         <div
           className="pointer"
@@ -957,7 +953,7 @@ export const PROJECTS_2 = (
     },
     {
       title: "Visualizar última versión",
-      isActive: page !== "home" && typeFin === "active" ? true : false,
+      isActive: page !== "home" && type === "active" ? true : false,
       render: getLastVersion && getLastVersion(project) && (
         <div
           className="pointer"
@@ -975,13 +971,13 @@ export const PROJECTS_2 = (
     },
     {
       title: "Revisión",
-      isActive: page !== "home" && typeFin === "active" ? true : false,
+      isActive: page !== "home" && type === "active" ? true : false,
       render: (
         <div className="flex review">
           <p>
             {project?.review} de{" "}
-            {projectValues?.revisiones?.includes("Hasta")
-              ? projectValues?.revisiones?.replace("Hasta ", "")
+            {project?.revisiones?.includes("Hasta")
+              ? project?.revisiones?.replace("Hasta ", "")
               : "∞"}
           </p>
           <div
@@ -991,7 +987,7 @@ export const PROJECTS_2 = (
               setDataModals(project?.review);
             }}
           >
-            {projectValues?.revisiones?.includes("Hasta") && Icons("add_plus")}
+            {project?.revisiones?.includes("Hasta") && Icons("add_plus")}
           </div>
         </div>
       ),
@@ -999,7 +995,7 @@ export const PROJECTS_2 = (
 
     {
       title: "Diseñador",
-      isActive: page !== "home" && typeFin === "active" ? true : false,
+      isActive: page !== "home" && type === "active" ? true : false,
       render: (
         <div
           className="pointer"
@@ -1057,7 +1053,7 @@ export const PROJECTS_2 = (
       subtitle: (
         <div
           className={"view-more pointer"}
-          onClick={() => navigate(`/projects-${typeFin}`)}
+          onClick={() => navigate(`/projects-${type}`)}
         >
           Ver más...
         </div>

@@ -39,6 +39,11 @@ function View({
   loadingAllProjects,
   setModalFinalDesigns,
   modalFinalDesigns,
+  filter,
+  setFilter,
+  applySort,
+  orderSelect,
+  asc,
 }) {
   return (
     <div className="page active-projects">
@@ -67,18 +72,33 @@ function View({
           <table>
             <thead>
               <tr>
-                {PROJECTS_2(userData?.rol_id, page, typeFin).map(
-                  (item, index) => (
-                    <th key={index}>
-                      <div className="th-flex flex">
-                        <p>{item.title}</p>
-                        {item.title !== "" && (
-                          <p className="flex">{Icons("help_circle")}</p>
-                        )}
-                      </div>
-                    </th>
-                  )
-                )}
+                {PROJECTS_2({
+                  rol: userData?.rol_id,
+                  page: page,
+                  type: typeFin,
+                  filter: filter,
+                  setFilter: setFilter,
+                  /*  applyFilter: applyFilter, */
+                }).map((item, index) => (
+                  <th key={index}>
+                    <div className="th-flex flex">
+                      <p>{item.title}</p>
+                      {item.title !== "" && (
+                        <p className="flex">{Icons("help_circle")}</p>
+                      )}
+                      {item.sortable && (
+                        <div
+                          className={
+                            orderSelect === item.title && !asc && "sortable"
+                          }
+                          onClick={() => applySort(item.title)}
+                        >
+                          {Icons("sortable")}
+                        </div>
+                      )}
+                    </div>
+                  </th>
+                ))}
               </tr>
             </thead>
 
@@ -87,37 +107,31 @@ function View({
                 ?.filter((item, idx) =>
                   page === "home" ? idx < 5 : idx < 1000
                 )
+                ?.filter((item, idx) => item.flow_parse[3].status !== typeFin)
                 .map((project, index) => {
-                  const projectValues =
-                    project?.values !== null ? project?.values[0] : [];
-
-                  const flows = project.flow && JSON.parse(project?.flow);
-
                   return (
                     <tr key={index}>
-                      {PROJECTS_2(
-                        userData?.rol_id,
-                        page,
-                        typeFin,
-                        navigate,
-                        project,
-                        modalDesignerProject,
-                        setModalDesignerProject,
-                        setDataModals,
-                        modalZoomImg,
-                        setModalZoomImg,
-                        getLastVersion,
-                        setModalPrivateNotes,
-                        modalPrivateNotes,
-                        setMenuFloat,
-                        menuFloat,
-                        setModalReviews,
-                        projectValues,
-                        flows,
-                        updateDateNextReview,
-                        setModalFinalDesigns,
-                        modalFinalDesigns
-                      ).map((project_field) => (
+                      {PROJECTS_2({
+                        rol: userData?.rol_id,
+                        page: page,
+                        type: typeFin,
+                        navigate: navigate,
+                        project: project,
+                        modalDesignerProject: modalDesignerProject,
+                        setModalDesignerProject: setModalDesignerProject,
+                        setDataModals: setDataModals,
+                        modalZoomImg: modalZoomImg,
+                        setModalZoomImg: setModalZoomImg,
+                        getLastVersion: getLastVersion,
+                        setModalPrivateNotes: setModalPrivateNotes,
+                        modalPrivateNotes: modalPrivateNotes,
+                        setMenuFloat: setMenuFloat,
+                        menuFloat: menuFloat,
+                        setModalReviews: setModalReviews,
+                        updateDateNextReview: updateDateNextReview,
+                        setModalFinalDesigns: setModalFinalDesigns,
+                        modalFinalDesign: modalFinalDesigns,
+                      }).map((project_field) => (
                         <td>
                           <div>{project_field.render || "-"}</div>
                           <div>{project_field?.subtitle}</div>
