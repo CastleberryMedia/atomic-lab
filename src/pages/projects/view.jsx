@@ -3,6 +3,7 @@ import FadeLoader from "react-spinners/FadeLoader";
 import { Icons } from "../icons";
 import { PROJECTS_2 } from "../constats";
 import ModalPrivateNotes from "../modals/private-notes";
+import ModalFinalComments from "../modals/final-comments";
 import ModalFinalDesigns from "../modals/final-designs";
 import ModalZoomImg from "../modals/zoom-img";
 import ModalReviews from "../modals/reviews";
@@ -44,6 +45,8 @@ function View({
   applySort,
   orderSelect,
   asc,
+  setModalFinalComments,
+  modalFinalComments,
 }) {
   return (
     <div className="page active-projects">
@@ -131,6 +134,8 @@ function View({
                         updateDateNextReview: updateDateNextReview,
                         setModalFinalDesigns: setModalFinalDesigns,
                         modalFinalDesign: modalFinalDesigns,
+                        setModalFinalComments: setModalFinalComments,
+                        modalFinalComments: modalFinalComments,
                       }).map((project_field) => (
                         <td>
                           <div>{project_field.render || "-"}</div>
@@ -144,6 +149,12 @@ function View({
           </table>
           {modalPrivateNotes && (
             <ModalPrivateNotes close={setModalPrivateNotes} data={dataModals} />
+          )}
+          {modalFinalComments && (
+            <ModalFinalComments
+              close={setModalFinalComments}
+              data={dataModals}
+            />
           )}
           {modalFinalDesigns && (
             <ModalFinalDesigns close={setModalFinalDesigns} data={dataModals} />

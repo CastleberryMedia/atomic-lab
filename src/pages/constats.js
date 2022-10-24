@@ -764,6 +764,8 @@ export const PROJECTS_2 = ({
   updateDateNextReview,
   setModalFinalDesigns,
   modalFinalDesigns,
+  setModalFinalComments,
+  modalFinalComments,
 }) => {
   /*  console.log("prov", projectValues);
   console.log("project", project); */
@@ -899,7 +901,20 @@ export const PROJECTS_2 = ({
     {
       title: "Comentarios finales",
       isActive: page !== "home" && type === "inactive" ? true : false,
-      render: <div className="pointer">{Icons("comments_blue")}</div>,
+      render: (
+        <div
+          className="pointer"
+          onClick={() => {
+            setModalFinalComments(!modalFinalComments);
+            setDataModals({
+              ...project,
+              project_id: project?.id,
+            });
+          }}
+        >
+          {Icons("comments_blue")}
+        </div>
+      ),
     },
 
     {

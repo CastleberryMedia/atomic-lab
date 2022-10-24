@@ -170,3 +170,9 @@ export const updateProfileData = async (body) =>
 
 export const postHelp = async (data) =>
   axios.post(`https://api.atomiclabco.com/public/api/supports`, data);
+
+export const updateFinalComments = async ({ project_id, comments_finals }) =>
+  axios.put(
+    `https://api.atomiclabco.com/public/api/update_comments_finals_project/${project_id}`,
+    { comments_finals: comments_finals }
+  );

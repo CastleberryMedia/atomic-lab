@@ -1,0 +1,39 @@
+.private-notes {
+  .modal-content {
+    position: relative;
+    height: 28em;
+
+    .content-desc {
+      margin: 10px 0;
+    }
+
+    .content-notes {
+      margin-top: 6px;
+
+      p {
+        margin-bottom: 10px;
+      }
+      .input-texarea {
+        height: 150px;
+        background-color: #f5f5f5;
+        border: #f5f5f5;
+      }
+    }
+
+    .section-buttons {
+      position: absolute;
+      bottom: 20px;
+      justify-content: space-between;
+      width: 90%;
+    }
+    .button-reactive {
+      .reactive-btn .progress {
+        box-shadow: none;
+      }
+
+      .reactive-btn.button.primary {
+        box-shadow: none;
+      }
+    }
+  }
+}
