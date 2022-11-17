@@ -31,6 +31,8 @@ function View({
   notificationsView,
   setNotificationsView,
   brands,
+  search,
+  setSearch,
 }) {
   const path = location.pathname.replaceAll(
     "/",
@@ -88,7 +90,13 @@ function View({
 
       <div className="search flex">
         <div className="icon-search flex"> {Icons("search")}</div>
-        <input type="text" name="" id="" placeholder="Buscar..." />
+        <input
+          type="text"
+          name=""
+          id=""
+          placeholder="Buscar..."
+          onChange={(e) => setSearch(e.target.value.toLocaleLowerCase())}
+        />
       </div>
       {notificationsView}
       <div className="icon-notifications option notificaciones">

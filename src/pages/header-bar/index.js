@@ -24,6 +24,8 @@ function Index({ setIsAuthenticated }) {
     tourActive,
     setTourActive,
     setLoadingAllProjects,
+    search,
+    setSearch,
   } = useContext(DataContext);
 
   const navigate = useNavigate();
@@ -43,6 +45,10 @@ function Index({ setIsAuthenticated }) {
       setMenuActive(false);
     }
   };
+
+  useEffect(() => {
+    search && redirectTo("search");
+  }, [search]);
 
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
@@ -93,6 +99,8 @@ function Index({ setIsAuthenticated }) {
     notificationsView,
     setNotificationsView,
     brands,
+    search,
+    setSearch,
   };
 
   return <View {...properties} />;

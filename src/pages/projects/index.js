@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { updateDateReview, getAllProjects } from "../../services";
 import View from "./view";
 
-function Index({ type_home, page }) {
+function Index({ type_home, page, data }) {
   let location = useLocation();
 
   const [newProject] = useState(location?.state?.new_project);
@@ -70,31 +70,10 @@ function Index({ type_home, page }) {
   const [projectsFilterOriginal, setProjectsFilterOriginal] = useState([]);
 
   useEffect(() => {
-    allProjects?.forEach((p) => {
-      setProjectsFilterOriginal((projectsFilter) => [
-        ...projectsFilter,
-        {
-          ...p,
-          ...p?.values[0],
-          flow_parse: JSON.parse(p?.flow),
-          flow_active: JSON.parse(p?.flow).filter(
-            (f) => f.status === "active"
-          )[0]?.id,
-        },
-      ]);
-      setProjectsFilter((projectsFilter) => [
-        ...projectsFilter,
-        {
-          ...p,
-          ...p?.values[0],
-          flow_parse: JSON.parse(p?.flow),
-          flow_active: JSON.parse(p?.flow).filter(
-            (f) => f.status === "active"
-          )[0]?.id,
-        },
-      ]);
-    });
-  }, [allProjects]);
+    if (data) {
+      setProjectsFilterOriginal(data);
+    }
+  }, [data]);
 
   const [orderSelect, setOrderSelect] = useState(null);
   const [asc, setAsc] = useState(true);
@@ -154,11 +133,26 @@ function Index({ type_home, page }) {
     setProjectsFilter(
       paginate(
         projectsFilterOriginal,
-        paginationPage === 1 ? paginationPage : paginationPage - 1,
+        paginationPage === 1 ? 0 : paginationPage - 1,
         5
       )
     );
-  }, [paginationPage, projectsFilter]);
+  }, [paginationPage, projectsFilterOriginal]);
+
+  useEffect(() => {
+    allProjects?.forEach((p) => {
+      const info = {
+        ...p,
+        ...p?.values[0],
+        flow_parse: JSON.parse(p?.flow),
+        flow_active: JSON.parse(p?.flow).filter((f) => f.status === "active")[0]
+          ?.id,
+      };
+
+      setProjectsFilterOriginal((projectsFilter) => [...projectsFilter, info]);
+      setProjectsFilter((projectsFilter) => [...projectsFilter, info]);
+    });
+  }, [allProjects]);
 
   const properties = {
     page,

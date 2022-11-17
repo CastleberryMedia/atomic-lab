@@ -29,6 +29,7 @@ import Onboarding from "./pages/onboarding";
 import Reviews from "./pages/reviews";
 import MoreInfo from "./pages/more-info";
 import ProjectDetail from "./pages/project-detail";
+import SearchPage from "./pages/search-page";
 
 import Projects from "./pages/projects";
 
@@ -52,6 +53,7 @@ function App() {
   const [loadingAllProjects, setLoadingAllProjects] = useState(false);
   const [onboarding, setOnboarding] = useState(undefined);
   const [tourActive, setTourActive] = useState(false);
+  const [search, setSearch] = useState(null);
 
   const user_id = JSON.parse(
     sessionStorage?.getItem("atomiclab-user")
@@ -90,6 +92,8 @@ function App() {
           setTourActive,
           loadingAllProjects,
           setLoadingAllProjects,
+          search,
+          setSearch,
         }}
       >
         <HashRouter>
@@ -141,6 +145,7 @@ function App() {
                 <Route path="project-detail/:id" element={<ProjectDetail />} />
                 <Route path="projects-active" element={<Projects />} />
                 <Route path="projects-inactive" element={<Projects />} />
+                <Route path="search" element={<SearchPage />} />
               </>
             ) : (
               <>

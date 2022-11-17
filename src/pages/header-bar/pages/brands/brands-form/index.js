@@ -31,9 +31,9 @@ function Index() {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
+  /* useEffect(() => {
     id && reset(dataBrand);
-  }, []);
+  }, []); */
 
   const [selectedImg, setSelectedImg] = useState();
   const [selectedImgArray, setSelectedImgArray] = useState([]);
@@ -49,7 +49,7 @@ function Index() {
     setSelectedImg(e.target.files[0]);
   };
 
-  useEffect(() => {
+  /*  useEffect(() => {
     if (!selectedImg) {
       return;
     }
@@ -60,7 +60,7 @@ function Index() {
       name: selectedImg.name,
       formData: selectedImg,
     });
-  }, [selectedImg]);
+  }, [selectedImg]); */
 
   const onSubmit = (data) => {
     const dataBrand = {

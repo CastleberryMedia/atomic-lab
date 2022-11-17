@@ -7,9 +7,6 @@ import "@recogito/annotorious/dist/annotorious.min.css";
 import View from "./view";
 
 function Index({ close, data }) {
-
-
-
   // Ref to the image DOM element
   const imgEl = useRef();
 
@@ -19,20 +16,17 @@ function Index({ close, data }) {
   const [allAnnotatios, setAllAnnotatios] = useState(null);
   const [countAnnotations, setCountAnnotations] = useState([]);
 
-
-
   useEffect(() => {
-
-    data.type !== "normal" && getAnnotationsImage(data.id).then(({ data }) => {
-      setAllAnnotatios(
-        data &&
-        data.annotations &&
-        data.annotations.length >= 1 &&
-        JSON.parse(data.annotations[0].annotations)
-      );
-    });
+    data.type !== "normal" &&
+      getAnnotationsImage(data.id).then(({ data }) => {
+        setAllAnnotatios(
+          data &&
+            data.annotations &&
+            data.annotations.length >= 1 &&
+            JSON.parse(data.annotations[0].annotations)
+        );
+      });
   }, []);
-
 
   useEffect(() => {
     let annotorious = null;

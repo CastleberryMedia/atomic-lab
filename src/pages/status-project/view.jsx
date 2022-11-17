@@ -10,8 +10,6 @@ function View({ projectData, rate, redirectTo, designers }) {
   const flowActive =
     projectData?.flow?.filter((item) => item.status === "active")[0]?.id - 1;
 
-  console.log("projectData", projectData);
-
   return (
     <div className="page status-projects">
       <PageTitle page={"status"} user={true} title="Estado detallado" />
