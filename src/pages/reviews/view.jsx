@@ -40,6 +40,7 @@ function View({
   projectExtraData,
   modalMessageFinish3,
   setModalMessageFinish3,
+  reviewSelect,
 }) {
   return (
     <div className="page reviews">
@@ -173,76 +174,60 @@ function View({
           </p>
 
           <div className="versions-content flex">
-            {reviews?.review_data?.filter(
-              (filter) => filter.version === versionSelect
-            )[0] &&
-              reviews?.review_data
-                ?.filter((filter) => filter.version === versionSelect)[0]
-                .versions?.map((version, index) => (
-                  <div key={index} className="version">
-                    <div className="version-id">Opción {version.id}</div>
+            {reviewSelect?.versions?.map((version, index) => (
+              <div key={index} className="version">
+                <div className="version-id">Opción {version.id}</div>
 
-                    <div
-                      className={`version-img ${
-                        reviews?.review_data?.filter(
-                          (filter) => filter.version === versionSelect
-                        )[0].versions.length >= 2
-                          ? "img-2"
-                          : "img-1"
-                      } ${
-                        reviews.lasts_versions.filter(
-                          (last) => last.version === versionSelect
-                        )[0]?.last_selection_imageid === version.id
-                          ? "img-select"
-                          : "img-no-select"
-                      }`}
-                      onClick={() => {
-                        setModalData({
-                          id: version.id,
-                          img: version.content,
-                          version_id: versionSelect,
-                          project_id: id,
-                        });
-                        setModalZoomImg(!modalZoomImg);
-                      }}
-                    >
-                      <img
-                        className="img-load"
-                        src={version.content}
-                        alt={version.id}
-                      />
-                    </div>
-                  </div>
-                ))}
+                <div
+                  className={`version-img ${
+                    reviewSelect?.versions?.length >= 2 ? "img-2" : "img-1"
+                  } ${
+                    typeof reviews?.lasts_versions === "array" &&
+                    reviews?.lasts_versions?.filter(
+                      (last) => last.version === versionSelect
+                    )[0]?.last_selection_imageid === version.id
+                      ? "img-select"
+                      : "img-no-select"
+                  }`}
+                  onClick={() => {
+                    setModalData({
+                      id: version.id,
+                      img: version.content,
+                      version_id: versionSelect,
+                      project_id: id,
+                    });
+                    setModalZoomImg(!modalZoomImg);
+                  }}
+                >
+                  <img
+                    className="img-load"
+                    src={version.content}
+                    alt={version.id}
+                  />
+                </div>
+              </div>
+            ))}
 
-            {!reviews.lasts_versions.filter(
-              (last) => last.version === versionSelect
-            )[0] &&
+            {reviewSelect?.versions &&
               userData?.rol_id !== 3 &&
-              reviews?.review_data?.filter(
-                (filter) => filter.version === versionSelect
-              )[0].versions?.length >= 2 && (
+              reviewSelect?.versions?.length >= 2 && (
                 <div className="versio vote-main">
                   <p>De las anteriores propuestas, ¿Cuál te gusta más?</p>
 
-                  {reviews?.review_data
-                    ?.filter((filter) => filter.version === versionSelect)[0]
-                    .versions?.map((version, index) => (
-                      <div key={index} className="version-vote flex">
-                        <div className="version-vote-id">
-                          Opción {version.id}
-                        </div>
-                        <div className="version-vote-id">
-                          <input
-                            checked={version.id === versionVote}
-                            type="checkbox"
-                            name=""
-                            id=""
-                            onClick={() => setVersionVote(version.id)}
-                          />
-                        </div>
+                  {reviewSelect?.versions?.map((version, index) => (
+                    <div key={index} className="version-vote flex">
+                      <div className="version-vote-id">Opción {version.id}</div>
+                      <div className="version-vote-id">
+                        <input
+                          checked={version.id === versionVote}
+                          type="checkbox"
+                          name=""
+                          id=""
+                          onClick={() => setVersionVote(version.id)}
+                        />
                       </div>
-                    ))}
+                    </div>
+                  ))}
                 </div>
               )}
           </div>

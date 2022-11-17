@@ -24,6 +24,9 @@ function Index() {
         ...filterProject,
         flow: JSON.parse(filterProject?.flow),
         values: filterProject?.values,
+        total_reviews: parseInt(
+          filterProject?.values[0].revisiones.replace(/\D/g, "")
+        ),
       }
     );
   }, [filterProject]);

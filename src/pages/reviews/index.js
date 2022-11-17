@@ -23,6 +23,7 @@ function Index() {
   const { userData, allProjects, setAllProjects } = useContext(DataContext);
   const [reviews, setReviews] = useState(null);
   const [versionSelect, setVersionSelect] = useState(1);
+  const [reviewSelect, setReviewSelect] = useState([]);
 
   const [versionVote, setVersionVote] = useState(null);
 
@@ -38,6 +39,14 @@ function Index() {
       );
     });
   };
+
+  useEffect(() => {
+    setReviewSelect(
+      reviews?.review_data.filter((x) => x.version === versionSelect)[0]
+    );
+  }, [versionSelect, reviews]);
+
+  console.log("reviews", versionSelect, reviews);
 
   const projectExtraData =
     filterProject?.extra_data && JSON.parse(filterProject?.extra_data);
@@ -227,6 +236,7 @@ function Index() {
     projectExtraData,
     modalMessageFinish3,
     setModalMessageFinish3,
+    reviewSelect,
   };
 
   return <View {...properties} />;

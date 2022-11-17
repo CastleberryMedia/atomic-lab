@@ -67,4 +67,43 @@
   .sortable {
     transform: rotate(180deg);
   }
+
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+
+    div {
+      cursor: pointer;
+    }
+
+    &-page {
+      border: 1px solid #ffffff;
+      padding: 5px 10px;
+      border-radius: 7px;
+      cursor: pointer;
+
+      &:hover {
+        color: #ffffff;
+        background-color: #6b72fd;
+        border: 1px solid #6b72fd;
+        padding: 5px 10px;
+        border-radius: 7px;
+      }
+    }
+
+    &-page.not-view {
+      visibility: hidden;
+    }
+
+    &-page.active {
+      color: #ffffff;
+      background-color: #6b72fd;
+      border: 1px solid #6b72fd;
+      padding: 5px 10px;
+      border-radius: 7px;
+    }
+  }
 }

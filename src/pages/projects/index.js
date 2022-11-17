@@ -29,8 +29,6 @@ function Index({ type_home, page }) {
   const [menuFloat, setMenuFloat] = useState("");
   const [filter, setFilter] = useState(null);
 
-  /*   console.log("----", filter); */
-
   const navigate = useNavigate();
 
   const redirectToStatusProject = (project_id) =>
@@ -68,15 +66,22 @@ function Index({ type_home, page }) {
       .catch((error) => {});
   };
 
-  const [projectsFilterOriginal, setProjectsFilterOriginal] = useState([]);
   const [projectsFilter, setProjectsFilter] = useState([]);
+  const [projectsFilterOriginal, setProjectsFilterOriginal] = useState([]);
 
   useEffect(() => {
     allProjects?.forEach((p) => {
-      /* setProjectsFilterOriginal((projectsFilterOriginal) => [
-        ...projectsFilterOriginal,
-        { ...p, ...p?.values[0], flow_parse: JSON.parse(p?.flow) },
-      ]); */
+      setProjectsFilterOriginal((projectsFilter) => [
+        ...projectsFilter,
+        {
+          ...p,
+          ...p?.values[0],
+          flow_parse: JSON.parse(p?.flow),
+          flow_active: JSON.parse(p?.flow).filter(
+            (f) => f.status === "active"
+          )[0]?.id,
+        },
+      ]);
       setProjectsFilter((projectsFilter) => [
         ...projectsFilter,
         {
@@ -89,9 +94,7 @@ function Index({ type_home, page }) {
         },
       ]);
     });
-  }, []);
-
-  console.log("projectsFilter", projectsFilter);
+  }, [allProjects]);
 
   const [orderSelect, setOrderSelect] = useState(null);
   const [asc, setAsc] = useState(true);
@@ -139,6 +142,24 @@ function Index({ type_home, page }) {
     setAsc(!asc);
   };
 
+  function paginate(a, pageIndex, pageSize) {
+    var endIndex = Math.min((pageIndex + 1) * pageSize, a.length);
+
+    return a.slice(Math.max(endIndex - pageSize, 0), endIndex);
+  }
+
+  const [paginationPage, setPaginationPage] = useState(1);
+
+  useEffect(() => {
+    setProjectsFilter(
+      paginate(
+        projectsFilterOriginal,
+        paginationPage === 1 ? paginationPage : paginationPage - 1,
+        5
+      )
+    );
+  }, [paginationPage, projectsFilter]);
+
   const properties = {
     page,
     setModalPrivateNotes,
@@ -180,6 +201,9 @@ function Index({ type_home, page }) {
     asc,
     setModalFinalComments,
     modalFinalComments,
+    paginationPage,
+    setPaginationPage,
+    projectsFilterOriginal,
   };
 
   return <View {...properties} />;

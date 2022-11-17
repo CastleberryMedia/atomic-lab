@@ -21,16 +21,26 @@
         img {
           margin-top: 3px;
           z-index: 1;
+          position: relative;
         }
       }
 
       .line-td {
         background-color: #d8dbfa;
         width: 4px;
-        height: 214px;
+        height: 100%;
         position: absolute;
         top: 49px;
         left: 21px;
+        z-index: 0;
+      }
+      .line-td-2 {
+        background-color: #d8dbfa;
+        width: 4px;
+        height: 100%;
+        position: absolute;
+        top: 25px;
+        left: 11px;
         z-index: 0;
       }
     }
@@ -117,6 +127,34 @@
       overflow: hidden;
       white-space: nowrap;
       font-size: 13px;
+    }
+  }
+
+  .p-upload-group {
+    margin: 10px 20px;
+    .p-upload {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+
+      &:last-child {
+        .text {
+          border: none;
+        }
+      }
+
+      img {
+        margin-top: 3px;
+        z-index: 1;
+        position: relative;
+      }
+
+      .text {
+        padding: 20px 0;
+        border-bottom: 1px solid #e7e7e8;
+        width: 100%;
+      }
     }
   }
 }

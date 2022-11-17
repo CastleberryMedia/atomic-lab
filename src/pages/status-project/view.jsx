@@ -10,6 +10,8 @@ function View({ projectData, rate, redirectTo, designers }) {
   const flowActive =
     projectData?.flow?.filter((item) => item.status === "active")[0]?.id - 1;
 
+  console.log("projectData", projectData);
+
   return (
     <div className="page status-projects">
       <PageTitle page={"status"} user={true} title="Estado detallado" />
@@ -41,7 +43,10 @@ function View({ projectData, rate, redirectTo, designers }) {
                   {Icons(
                     flowActive >= index ? "check_blue" : "check_blue_none"
                   )}
-                  {index === 0 && <div className="line-td"></div>}
+
+                  {index + 1 < projectData?.flow?.length && (
+                    <div className="line-td"></div>
+                  )}
                 </td>
                 <td>
                   {
@@ -49,6 +54,25 @@ function View({ projectData, rate, redirectTo, designers }) {
                       (item) => item.id === status.id
                     )[0].text
                   }
+                  {STATUS_TABLES_FLOW.filter((item) => item.id === status.id)[0]
+                    .text === "Proyecto Cargado" && (
+                    <div className="p-upload-group">
+                      {[...Array(projectData.total_reviews)].map((x, i) => (
+                        <div className="p-upload">
+                          {Icons(
+                            projectData.review >= i + 1
+                              ? "check_blue"
+                              : "check_blue_none"
+                          )}
+                          {i < projectData.total_reviews - 1 && (
+                            <div className="line-td-2"></div>
+                          )}
+
+                          <div className="text">Revision {i + 1}</div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </td>
 
                 <td>
@@ -58,13 +82,10 @@ function View({ projectData, rate, redirectTo, designers }) {
                 </td>
                 <td>
                   {status.id === 2 && (
-                    <div>
-                      <p>Diseñador asignado: </p>
-                      <div className="designers">
-                        {designers.map((des) => (
-                          <div>{des.name}</div>
-                        ))}
-                      </div>
+                    <div className="designers">
+                      {designers.map((des) => (
+                        <div>{des.name}</div>
+                      ))}
                     </div>
                   )}
                 </td>

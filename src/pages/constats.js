@@ -695,7 +695,7 @@ export const STATUS_TABLES = (page) => {
   const listContent = [
     { title: "Estado", isActive: true },
     { title: "Fecha y Hora", isActive: true },
-    { title: "", isActive: true },
+    { title: "Diseñador asignado", isActive: true },
     { title: "Ver proyecto", isActive: true },
   ];
   return listContent.filter((item) => item.isActive === true);
@@ -767,9 +767,6 @@ export const PROJECTS_2 = ({
   setModalFinalComments,
   modalFinalComments,
 }) => {
-  /*  console.log("prov", projectValues);
-  console.log("project", project); */
-
   const listContent = [
     {
       title: "Nombre del proyecto",

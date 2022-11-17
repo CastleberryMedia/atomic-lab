@@ -47,6 +47,9 @@ function View({
   asc,
   setModalFinalComments,
   modalFinalComments,
+  paginationPage,
+  setPaginationPage,
+  projectsFilterOriginal,
 }) {
   return (
     <div className="page active-projects">
@@ -147,6 +150,41 @@ function View({
                 })}
             </tbody>
           </table>
+
+          <div className="pagination">
+            <div
+              className={`pagination-page ${
+                paginationPage === 1 && "not-view"
+              } `}
+              onClick={() => setPaginationPage(paginationPage - 1)}
+            >
+              {"< Prev"}
+            </div>
+
+            {[...Array(Math.round(projectsFilterOriginal.length / 5))].map(
+              (item, index) => (
+                <div
+                  onClick={() => setPaginationPage(index + 1)}
+                  className={`pagination-page ${
+                    paginationPage === index + 1 ? "active" : "inactive"
+                  }`}
+                >
+                  {index + 1}
+                </div>
+              )
+            )}
+
+            <div
+              className={`pagination-page ${
+                paginationPage ===
+                  Math.round(projectsFilterOriginal.length / 5) && "not-view"
+              } `}
+              onClick={() => setPaginationPage(paginationPage + 1)}
+            >
+              {"Next >"}
+            </div>
+          </div>
+
           {modalPrivateNotes && (
             <ModalPrivateNotes close={setModalPrivateNotes} data={dataModals} />
           )}
