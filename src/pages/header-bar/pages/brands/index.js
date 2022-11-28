@@ -5,7 +5,7 @@ import { putPredeterminateBrand, getBrands } from "../../../../services";
 
 import View from "./view";
 
-function Index() {
+function Index({ brandsFilter }) {
   const { brands, setBrands, userData } = useContext(DataContext);
   const navigate = useNavigate();
   const [modalMessage, setModalMessage] = useState({
@@ -40,11 +40,12 @@ function Index() {
 
   const properties = {
     redirectToBrandForm,
-    brands,
+    brands: brandsFilter || brands,
     predeterminateBrand,
     modalMessage,
     setModalMessage,
     delete_brand,
+    brandsFilter,
   };
 
   return <View {...properties} />;

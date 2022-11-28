@@ -13,6 +13,7 @@ function View({
   modalHelp,
   setModalHelp,
   userData,
+  help,
 }) {
   return (
     <>
@@ -30,7 +31,7 @@ function View({
           {page === "attached-page" && Icons("clip_circle")}
           {page === "team-page" && Icons("team_circle")}
 
-          {page === "home" ? <h2>{title}</h2> : <h1>{title}</h1>}
+          {page === "home" ? <h2>{title}</h2> : <h2>{title}</h2>}
         </div>
 
         <div className="section-header-rigth flex">
@@ -66,7 +67,7 @@ function View({
             </div>
           )}
 
-          {page !== "home" && (
+          {page !== "home" && (help || help === undefined) && (
             <div
               className="section-header-help flex pointer"
               onClick={() => setModalHelp(!modalHelp)}

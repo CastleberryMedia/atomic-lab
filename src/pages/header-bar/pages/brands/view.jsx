@@ -12,18 +12,29 @@ function View({
   modalMessage,
   setModalMessage,
   delete_brand,
+  brandsFilter,
 }) {
   return (
     <div className="brands-page page">
-      <PageTitle page={"brands-page"} user={true} title="Mis marcas" />
-      <div className="description">
-        Agrega la información de tu empresa y de la marca. Si tienes otras
-        marcas, las puedes agregar aqui.
-      </div>
+      <PageTitle
+        page={"brands-page"}
+        user={!brandsFilter}
+        title="Mis marcas"
+        help={false}
+      />
+      {!brandsFilter && (
+        <div className="description">
+          Agrega la información de tu empresa y de la marca. Si tienes otras
+          marcas, las puedes agregar aqui.
+        </div>
+      )}
 
       <section className="content flex">
         {brands?.map((brand, index) => (
-          <div key={index} className="brand-card">
+          <div
+            key={index}
+            className={`brand-card${brandsFilter ? "-filter" : ""}`}
+          >
             <div
               className="delete-icon"
               data-tip={"Borrar marca"}
@@ -64,7 +75,10 @@ function View({
             </div>
           </div>
         ))}
-        <div className="brand-card" onClick={() => redirectToBrandForm()}>
+        <div
+          className={`brand-card${brandsFilter ? "-filter" : ""}`}
+          onClick={() => redirectToBrandForm()}
+        >
           <div className="card-content">
             <p>Perfil de la marca</p>
 

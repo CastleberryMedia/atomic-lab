@@ -4,9 +4,19 @@
     gap: 50px;
     flex-wrap: wrap;
   }
+
+  .brand-card-filter {
+    width: 200px;
+    /*     height: 200px; */
+  }
+
   .brand-card {
     width: 378px;
     height: 283px;
+  }
+
+  .brand-card,
+  .brand-card-filter {
     border-radius: 13px;
     background-color: #ffffff;
     text-align: center;

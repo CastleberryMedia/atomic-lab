@@ -5,4 +5,11 @@
     min-height: auto;
     margin-bottom: 30px;
   }
+
+  .content {
+    &-section {
+      border-bottom: 1px solid lightgray;
+      margin-bottom: 20px;
+    }
+  }
 }

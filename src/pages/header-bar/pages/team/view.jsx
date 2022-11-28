@@ -12,14 +12,16 @@ function View({
   team,
   deleteMember,
   userData,
+  teamFilter,
 }) {
   return (
     <div className="team-page page">
       <PageTitle
-        page={"team-page"}
-        user={true}
+        page={!teamFilter && "team-page"}
+        user={!teamFilter}
         title="Mi equipo"
         func={setModalAddMember}
+        help={false}
       />
 
       <div className="table-data">
@@ -80,11 +82,13 @@ function View({
         )}
       </div>
 
-      <section className="footer">
-        <section className="section-buttons flex">
-          <div className="button">Guardar cambios</div>
+      {!teamFilter && (
+        <section className="footer">
+          <section className="section-buttons flex">
+            <div className="button">Guardar cambios</div>
+          </section>
         </section>
-      </section>
+      )}
 
       {modalAddMember && (
         <ModalAddMember close={setModalAddMember} data={dataModals} />

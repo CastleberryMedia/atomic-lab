@@ -3,7 +3,7 @@ import DataContext from "../../data-context";
 import View from "./view";
 
 function Index() {
-  const { search, allProjects } = useContext(DataContext);
+  const { search, allProjects, team, brands } = useContext(DataContext);
 
   const [dataActive, setDataActive] = useState([]);
 
@@ -17,13 +17,20 @@ function Index() {
         flow_active: JSON.parse(p?.flow).filter((f) => f.status === "active")[0]
           ?.id,
       };
-
       setDataActive((dataActive) => [...dataActive, info]);
     });
   }, [allProjects]);
 
+  console.log("brands", brands);
+
   const properties = {
-    dataActive: dataActive.filter((p) => p.nameMin.includes(search)),
+    dataActive: dataActive?.filter((p) => p.nameMin.includes(search)),
+    teamFilter: search
+      ? team?.filter((t) => t.name.toLowerCase().includes(search))
+      : [],
+    brandsFilter: search
+      ? brands?.filter((b) => b.name.toLowerCase().includes(search))
+      : [],
     search,
   };
 
