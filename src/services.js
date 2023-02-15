@@ -186,6 +186,6 @@ export const recoveryPassword = async (email) =>
 //new password
 export const newPassword = async ({ user_id, data }) =>
   axios.put(
-    `https://api.ticvzla.xyz/public/api/reset_password/${user_id}`,
+    `https://api.atomiclabco.com/public/api/reset_password/${user_id}`,
     data
   );
