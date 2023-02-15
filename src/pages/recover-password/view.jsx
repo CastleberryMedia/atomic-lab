@@ -2,7 +2,7 @@ import React from "react";
 import { Icons } from "../icons";
 import "./styles.scss";
 
-function View({ redirectTo }) {
+function View({ redirectTo, setEmail, sendMailRecovery }) {
   return (
     <div className="recover-password">
       <div className="login-content flex">
@@ -14,16 +14,18 @@ function View({ redirectTo }) {
               <div className="text-purple">
                 <h2>Recuperar contraseña</h2>
               </div>
-              <input type="email" className="input-txt" placeholder="Email" />
+              <input
+                type="email"
+                className="input-txt"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
 
               <div className="buttons">
                 <div className="button" onClick={() => redirectTo("/")}>
                   Atrás
                 </div>
-                <div
-                  className="button-blue"
-                  onClick={() => redirectTo("/recover-password/email")}
-                >
+                <div className="button-blue" onClick={() => sendMailRecovery()}>
                   Recuperar
                 </div>
               </div>

@@ -25,6 +25,7 @@ import Configuration from "./pages/header-bar/pages/configuration";
 import HelpSupport from "./pages/header-bar/pages/help-support";
 import RecoverPassword from "./pages/recover-password";
 import RecoverPasswordEmail from "./pages/recover-password/send-email";
+import NewPassword from "./pages/new-password";
 import Onboarding from "./pages/onboarding";
 import Reviews from "./pages/reviews";
 import MoreInfo from "./pages/more-info";
@@ -163,6 +164,7 @@ function App() {
                 <Route path="/sing-up/email" element={<SignUpEmail />} />
                 <Route path="/sing-up" element={<SignUp />} />
                 <Route path="/recover-password" element={<RecoverPassword />} />
+                <Route path="/new-password/:id" element={<NewPassword />} />
                 <Route
                   path="/recover-password/email"
                   element={<RecoverPasswordEmail />}

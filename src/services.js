@@ -176,3 +176,16 @@ export const updateFinalComments = async ({ project_id, comments_finals }) =>
     `https://api.atomiclabco.com/public/api/update_comments_finals_project/${project_id}`,
     { comments_finals: comments_finals }
   );
+
+//recovery password
+export const recoveryPassword = async (email) =>
+  axios.get(
+    `https://api.atomiclabco.com/public/api/consult_password_recovery/${email}`
+  );
+
+//new password
+export const newPassword = async ({ user_id, data }) =>
+  axios.put(
+    `https://api.ticvzla.xyz/public/api/reset_password/${user_id}`,
+    data
+  );
