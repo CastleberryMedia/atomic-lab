@@ -139,8 +139,6 @@ function Index({ type_home, page, data }) {
     );
   }, [paginationPage, projectsFilterOriginal]);
 
-  console.log("allProjects", allProjects);
-
   useEffect(() => {
     allProjects?.forEach((p) => {
       if (p.values) {

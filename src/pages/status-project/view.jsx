@@ -52,23 +52,25 @@ function View({ projectData, rate, redirectTo, designers }) {
                       (item) => item.id === status.id
                     )[0].text
                   }
+
                   {STATUS_TABLES_FLOW.filter((item) => item.id === status.id)[0]
                     .text === "Proyecto Cargado" && (
                     <div className="p-upload-group">
-                      {[...Array(projectData.total_reviews)].map((x, i) => (
-                        <div className="p-upload">
-                          {Icons(
-                            projectData.review >= i + 1
-                              ? "check_blue"
-                              : "check_blue_none"
-                          )}
-                          {i < projectData.total_reviews - 1 && (
-                            <div className="line-td-2"></div>
-                          )}
+                      {!isNaN(projectData?.total_reviews) &&
+                        [...Array(projectData?.total_reviews)].map((x, i) => (
+                          <div className="p-upload">
+                            {Icons(
+                              projectData.review >= i + 1
+                                ? "check_blue"
+                                : "check_blue_none"
+                            )}
+                            {i < projectData.total_reviews - 1 && (
+                              <div className="line-td-2"></div>
+                            )}
 
-                          <div className="text">Revision {i + 1}</div>
-                        </div>
-                      ))}
+                            <div className="text">Revision {i + 1}</div>
+                          </div>
+                        ))}
                     </div>
                   )}
                 </td>

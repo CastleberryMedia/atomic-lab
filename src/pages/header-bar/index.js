@@ -67,8 +67,6 @@ function Index({ setIsAuthenticated }) {
       setAttached(data.attached);
     });
     getAllProjects(user_id).then(({ data }) => {
-      console.log("data", data);
-
       setAllProjects(data.response);
       setLoadingAllProjects(false);
     });

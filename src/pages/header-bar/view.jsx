@@ -119,7 +119,13 @@ function View({
                   ?.slice(0)
                   .reverse()
                   .map((noti, index) => (
-                    <div className="float-notifications-list-item" key={index}>
+                    <div
+                      className="float-notifications-list-item"
+                      key={index}
+                      onClick={() =>
+                        redirectTo(`/project-detail/${noti.project_id}`)
+                      }
+                    >
                       <div className="float-notifications-list-item-text">
                         {parse(NOTIFICATION_TEXT(noti))}
                       </div>

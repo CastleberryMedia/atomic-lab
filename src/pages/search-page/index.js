@@ -21,8 +21,6 @@ function Index() {
     });
   }, [allProjects]);
 
-  console.log("brands", brands);
-
   const properties = {
     dataActive: dataActive?.filter((p) => p.nameMin.includes(search)),
     teamFilter: search

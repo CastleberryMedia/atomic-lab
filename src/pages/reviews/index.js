@@ -46,8 +46,6 @@ function Index() {
     );
   }, [versionSelect, reviews]);
 
-  console.log("reviews", versionSelect, reviews);
-
   const projectExtraData =
     filterProject?.extra_data && JSON.parse(filterProject?.extra_data);
 
