@@ -96,6 +96,8 @@ function Index({ setStep, step }) {
     setStep,
     step,
     onSelectText,
+    selectedImgArray,
+    selectedTextArray,
   };
 
   return <View {...properties} />;

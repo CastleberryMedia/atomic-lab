@@ -1157,7 +1157,7 @@ export const SERVICES_DATA = [
         title: "¿Qué NO incluye?",
         options: [
           "Fotografias",
-          "Creacióm de textos",
+          "Creación de textos",
           "Redaccióm de contenido",
           "Retoque fotográfico",
           "Realización de reels y videos",

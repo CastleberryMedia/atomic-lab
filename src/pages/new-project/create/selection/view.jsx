@@ -7,7 +7,15 @@ import Post from "./post";
 import "../styles.scss";
 import "./styles.scss";
 
-function View({ selectedImg, onSelectFile, setStep, step, onSelectText }) {
+function View({
+  selectedImg,
+  onSelectFile,
+  setStep,
+  step,
+  onSelectText,
+  selectedImgArray,
+  selectedTextArray,
+}) {
   const data = useContext(CreateFormContext);
   const [formData, setFormData] = useContext(CreateFormContext);
 
@@ -93,7 +101,10 @@ function View({ selectedImg, onSelectFile, setStep, step, onSelectText }) {
             Atrás
           </div>
 
-          {!formData.idea_post || !post ? (
+          {!formData.idea_post ||
+          !post ||
+          selectedTextArray?.length === 0 ||
+          selectedImgArray?.length === 0 ? (
             <div className="button-gray">Continuar</div>
           ) : (
             <div
