@@ -139,18 +139,26 @@ function Index({ type_home, page, data }) {
     );
   }, [paginationPage, projectsFilterOriginal]);
 
+  console.log("allProjects", allProjects);
+
   useEffect(() => {
     allProjects?.forEach((p) => {
-      const info = {
-        ...p,
-        ...p?.values[0],
-        flow_parse: JSON.parse(p?.flow),
-        flow_active: JSON.parse(p?.flow).filter((f) => f.status === "active")[0]
-          ?.id,
-      };
+      if (p.values) {
+        const info = {
+          ...p,
+          ...p?.values[0],
+          flow_parse: JSON.parse(p?.flow),
+          flow_active: JSON.parse(p?.flow).filter(
+            (f) => f.status === "active"
+          )[0]?.id,
+        };
 
-      setProjectsFilterOriginal((projectsFilter) => [...projectsFilter, info]);
-      setProjectsFilter((projectsFilter) => [...projectsFilter, info]);
+        setProjectsFilterOriginal((projectsFilter) => [
+          ...projectsFilter,
+          info,
+        ]);
+        setProjectsFilter((projectsFilter) => [...projectsFilter, info]);
+      }
     });
   }, [allProjects]);
 

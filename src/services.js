@@ -34,6 +34,7 @@ export const updateConfigurations = async ({ user_id, data }) =>
 //projects
 export const getAllProjects = async (user_id) =>
   axios.get(`${base_url}/public/api/get_data_user_projects/${user_id}`);
+
 export const postCreateProject = async (formData) =>
   axios.post(`${base_url}/public/api/project_values`, formData, {
     headers: headers,
