@@ -15,7 +15,7 @@ function Index({ close, data }) {
   const [teamFilter, setTeamFilter] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  /* useEffect(() => {
+  useEffect(() => {
     setLoading(true);
     getAssignDesignerProject(data.project_id)
       .then((res) => {
@@ -24,7 +24,7 @@ function Index({ close, data }) {
       .catch((error) => {});
     setLoading(false);
     setTeamFilter(team?.filter((user) => user.rol_id === 3));
-  }, [data]); */
+  }, [data]);
 
   const deleteDesigner = (designer_id, union_id) => {
     setListDesigner(

@@ -2,7 +2,7 @@ import moment from "moment";
 import { Icons } from "./icons";
 import ReactTooltip from "react-tooltip";
 
-export const URL_IMG = "https://api.ticvzla.xyz/public/images/";
+export const URL_IMG = "https://api.atomiclabco.com";
 
 export const TEAM_ROL = [
   {

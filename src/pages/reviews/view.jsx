@@ -200,7 +200,7 @@ function View({
                   }}
                 >
                   <img
-                    className="img-load"
+                    className="img-load2"
                     src={version.content}
                     alt={version.id}
                   />
