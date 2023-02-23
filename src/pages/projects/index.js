@@ -3,6 +3,7 @@ import DataContext from "../../data-context";
 import { useLocation, useNavigate } from "react-router-dom";
 import { updateDateReview, getAllProjects } from "../../services";
 import View from "./view";
+import moment from "moment";
 
 function Index({ type_home, page, data }) {
   let location = useLocation();
@@ -78,40 +79,72 @@ function Index({ type_home, page, data }) {
   const [orderSelect, setOrderSelect] = useState(null);
   const [asc, setAsc] = useState(true);
 
-  const applySort = (type) => {
-    const oldOrder = [...projectsFilter];
+  const applySort = (type, data) => {
+    const oldOrder = data || projectsFilterOriginal;
+
+    setPaginationPage(1);
 
     setOrderSelect(type);
 
     switch (type) {
       case "Nombre del proyecto":
         setProjectsFilter(
-          asc
-            ? oldOrder.sort((a, b) =>
-                a.name_project.localeCompare(b.name_project)
-              )
-            : oldOrder.sort((a, b) =>
-                b.name_project.localeCompare(a.name_project)
-              )
+          paginate(
+            asc
+              ? oldOrder.sort((a, b) =>
+                  a.name_project.localeCompare(b.name_project)
+                )
+              : oldOrder.sort((a, b) =>
+                  b.name_project.localeCompare(a.name_project)
+                ),
+            paginationPage === 1 ? 0 : paginationPage - 1,
+            5
+          )
         );
 
         break;
+
       case "Fecha estimada próx. revisión":
         setProjectsFilter(
-          asc
-            ? oldOrder.sort(
-                (a, b) => new Date(a.review_date) - new Date(b.review_date)
-              )
-            : oldOrder.sort(
-                (a, b) => new Date(b.review_date) - new Date(a.review_date)
-              )
+          paginate(
+            asc
+              ? oldOrder.sort(
+                  (a, b) => new Date(a.review_date) - new Date(b.review_date)
+                )
+              : oldOrder.sort(
+                  (a, b) => new Date(b.review_date) - new Date(a.review_date)
+                ),
+            paginationPage === 1 ? 0 : paginationPage - 1,
+            5
+          )
         );
         break;
       case "Estado":
         setProjectsFilter(
-          asc
-            ? oldOrder.sort((a, b) => a.flow_active - b.flow_active)
-            : oldOrder.sort((a, b) => b.flow_active - a.flow_active)
+          paginate(
+            asc
+              ? oldOrder.sort((a, b) => a.flow_active - b.flow_active)
+              : oldOrder.sort((a, b) => b.flow_active - a.flow_active),
+            paginationPage === 1 ? 0 : paginationPage - 1,
+            5
+          )
+        );
+        break;
+      case "Creacion":
+        setProjectsFilter(
+          paginate(
+            asc
+              ? oldOrder.sort(
+                  (a, b) =>
+                    new Date(b.created_format) - new Date(a.created_format)
+                )
+              : oldOrder.sort(
+                  (a, b) =>
+                    new Date(a.created_format) - new Date(b.created_format)
+                ),
+            paginationPage === 1 ? 0 : paginationPage - 1,
+            5
+          )
         );
         break;
 
@@ -140,6 +173,8 @@ function Index({ type_home, page, data }) {
   }, [paginationPage, projectsFilterOriginal]);
 
   useEffect(() => {
+    let tempList = [];
+
     allProjects?.forEach((p) => {
       if (p.values) {
         const info = {
@@ -149,16 +184,21 @@ function Index({ type_home, page, data }) {
           flow_active: JSON.parse(p?.flow).filter(
             (f) => f.status === "active"
           )[0]?.id,
+          created_format: moment(p.created_at).format("YYYY-MM-DD"),
         };
 
-        setProjectsFilterOriginal((projectsFilter) => [
-          ...projectsFilter,
-          info,
-        ]);
-        setProjectsFilter((projectsFilter) => [...projectsFilter, info]);
+        tempList.push(info);
       }
     });
+
+    setProjectsFilterOriginal(tempList);
+    setProjectsFilter(tempList);
+    applySort("Creacion", tempList);
   }, [allProjects]);
+
+  /*  useEffect(() => {
+    applySort("Nombre del proyecto");
+  }, []); */
 
   const properties = {
     page,
