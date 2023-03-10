@@ -137,3 +137,7 @@ export const recoveryPassword = async (email) =>
 //new password
 export const newPassword = async ({ user_id, data }) =>
   axios.put(`${base_url}/public/api/reset_password/${user_id}`, data);
+
+//delete proyect
+export const putDeleteProject = async (project_id) =>
+  axios.put(`${base_url}/public/api/remove_project/${project_id}`);

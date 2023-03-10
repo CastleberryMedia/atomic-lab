@@ -9,6 +9,7 @@ import ModalZoomImg from "../modals/zoom-img";
 import ModalReviews from "../modals/reviews";
 import DesignerProject from "../modals/designers-project";
 import ModalMessage from "../modals/message";
+import ModalDeleteProject from "../modals/deleteProject";
 import PageTitle from "../page-title";
 import ModalDownloadPDF from "./components/infoPDF";
 
@@ -196,6 +197,14 @@ function View({
 
           {modals.infoPDF && (
             <ModalDownloadPDF
+              modals={modals}
+              data={dataModals}
+              setModals={setModals}
+            />
+          )}
+
+          {modals.deleteProject && (
+            <ModalDeleteProject
               modals={modals}
               data={dataModals}
               setModals={setModals}

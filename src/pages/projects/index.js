@@ -20,6 +20,7 @@ function Index({ type_home, page, data }) {
 
   const [modals, setModals] = useState({
     infoPDF: false,
+    deleteProject: false,
   });
 
   const [modalMessage, setModalMessage] = useState(newProject);

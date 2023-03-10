@@ -1057,7 +1057,16 @@ export const PROJECTS_2 = ({
                 <p>Invitar personas</p>
                 {Icons("help_circle")}
               </div>
-              <div className="menu-float-item flex">
+              <div
+                className="menu-float-item flex"
+                onClick={() => {
+                  setModals({
+                    ...modals,
+                    deleteProject: true,
+                  });
+                  setDataModals(project);
+                }}
+              >
                 <p>Eliminar</p>
                 {Icons("help_circle")}
               </div>

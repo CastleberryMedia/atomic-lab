@@ -127,7 +127,7 @@ const MyDocument = (data) => {
 
 function InfoPDF({ modals, data, setModals }) {
   return (
-    <div id="myModal" className="modal add-member">
+    <div id="myModal" className="modal modal-pdf">
       <div className="modal-content">
         <div className="content">
           {Icons("download")}

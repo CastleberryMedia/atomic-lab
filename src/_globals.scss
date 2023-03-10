@@ -60,6 +60,22 @@ textarea {
   background-color: #dddddd;
   color: #ffffff;
 }
+.button-purple:disabled {
+  padding: 10px 30px;
+  border-radius: 22px;
+  border: 1px solid #dddddd;
+  background-color: #dddddd;
+  color: #ffffff;
+}
+
+.button-purple:hover:disabled {
+  cursor: default;
+  padding: 10px 30px;
+  border-radius: 22px;
+  border: 1px solid #dddddd;
+  background-color: #dddddd;
+  color: #ffffff;
+}
 
 .button-reactive {
   .reactive-btn {
