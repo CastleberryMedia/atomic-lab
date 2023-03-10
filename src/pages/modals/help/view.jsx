@@ -23,14 +23,14 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
                   <div className="flex">
                     <div className="icon">{Icons("tel")}</div>
                     <p className="text-blue">Teléfono</p>
-                    <p>+1 519 778 1224</p>
+                    <p>+57 321 224 9904</p>
                   </div>
                 </td>
                 <td>
                   <div className="flex">
                     <div className="icon">{Icons("email")} </div>
                     <p className="text-blue">Email</p>
-                    <p>info@atomiclabco.com</p>
+                    <p>finances@atomiclabco.com</p>
                   </div>
                 </td>
               </tr>
@@ -40,22 +40,22 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
                     <div className="icon">{Icons("whatsapp")} </div>
                     <p className="text-blue">WhatsApp</p>
                     <a
-                      href="https://api.whatsapp.com/send?phone=15197781224"
+                      href="https://api.whatsapp.com/send?phone=573212249904"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      +1 519 778 1224
+                      +57 321 224 9904
                     </a>
                   </div>
                 </td>
-                <td>
+                {/* <td>
                   <div className="flex">
                     <div className="icon">{Icons("video_call")} </div>
                     <p className="button-gray">Videollamada</p>
                   </div>
-                </td>
+                </td> */}
               </tr>
-              <tr>
+              {/* <tr>
                 <td>
                   <a
                     href="https://www.atomiclabco.com/#FAQ"
@@ -80,8 +80,8 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
                     </div>
                   </a>
                 </td>
-              </tr>
-              <tr>
+              </tr> */}
+              {/* <tr>
                 <td>
                   <div className="flex">
                     <div className="icon">{Icons("form")} </div>
@@ -94,7 +94,7 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
                     <p className="button-gray">Chat</p>
                   </div>
                 </td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
 

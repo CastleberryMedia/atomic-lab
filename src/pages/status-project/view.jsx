@@ -68,7 +68,15 @@ function View({ projectData, rate, redirectTo, designers }) {
                               <div className="line-td-2"></div>
                             )}
 
-                            <div className="text">Revision {i + 1}</div>
+                            <div
+                              className="text"
+                              onClick={() =>
+                                projectData.review >= i + 1 &&
+                                redirectTo(`/reviews/${projectData?.id}`)
+                              }
+                            >
+                              Revision {i + 1}
+                            </div>
                           </div>
                         ))}
                     </div>
