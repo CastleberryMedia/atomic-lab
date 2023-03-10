@@ -18,6 +18,10 @@ function Index({ type_home, page, data }) {
   const { userData, team, allProjects, setAllProjects, loadingAllProjects } =
     useContext(DataContext);
 
+  const [modals, setModals] = useState({
+    infoPDF: false,
+  });
+
   const [modalMessage, setModalMessage] = useState(newProject);
   const [modalMessageFinish, setModalMessageFinish] = useState(finishProject);
   const [modalPrivateNotes, setModalPrivateNotes] = useState(false);
@@ -244,6 +248,8 @@ function Index({ type_home, page, data }) {
     paginationPage,
     setPaginationPage,
     projectsFilterOriginal,
+    modals,
+    setModals,
   };
 
   return <View {...properties} />;

@@ -745,9 +745,6 @@ export const PROJECTS_2 = ({
   rol,
   page,
   type,
-  filter,
-  setFilter,
-  applyFilter,
   navigate,
   project,
   modalDesignerProject,
@@ -766,6 +763,8 @@ export const PROJECTS_2 = ({
   modalFinalDesigns,
   setModalFinalComments,
   modalFinalComments,
+  modals,
+  setModals,
 }) => {
   const listContent = [
     {
@@ -1041,7 +1040,16 @@ export const PROJECTS_2 = ({
                 <p>Más información</p>
                 {Icons("help_circle")}
               </div>
-              <div className="menu-float-item flex">
+              <div
+                className="menu-float-item flex"
+                onClick={() => {
+                  setModals({
+                    ...modals,
+                    infoPDF: true,
+                  });
+                  setDataModals(project);
+                }}
+              >
                 <p>Compartir</p>
                 {Icons("help_circle")}
               </div>

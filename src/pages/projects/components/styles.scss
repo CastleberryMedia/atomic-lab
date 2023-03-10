@@ -1,0 +1,21 @@
+.modal {
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      flex-direction: column;
+      gap: 10px;
+
+      &-button {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}

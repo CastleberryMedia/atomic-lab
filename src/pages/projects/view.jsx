@@ -10,6 +10,7 @@ import ModalReviews from "../modals/reviews";
 import DesignerProject from "../modals/designers-project";
 import ModalMessage from "../modals/message";
 import PageTitle from "../page-title";
+import ModalDownloadPDF from "./components/infoPDF";
 
 import "./styles.scss";
 
@@ -50,6 +51,8 @@ function View({
   paginationPage,
   setPaginationPage,
   projectsFilterOriginal,
+  modals,
+  setModals,
 }) {
   return (
     <div className="page active-projects">
@@ -139,6 +142,8 @@ function View({
                         modalFinalDesign: modalFinalDesigns,
                         setModalFinalComments: setModalFinalComments,
                         modalFinalComments: modalFinalComments,
+                        modals: modals,
+                        setModals: setModals,
                       }).map((project_field) => (
                         <td>
                           <div>{project_field.render || "-"}</div>
@@ -187,6 +192,19 @@ function View({
             </div>
           )}
 
+          {console.log(modals)}
+
+          {modals.infoPDF && (
+            <ModalDownloadPDF
+              modals={modals}
+              data={dataModals}
+              setModals={setModals}
+            />
+          )}
+
+          {modalPrivateNotes && (
+            <ModalPrivateNotes close={setModalPrivateNotes} data={dataModals} />
+          )}
           {modalPrivateNotes && (
             <ModalPrivateNotes close={setModalPrivateNotes} data={dataModals} />
           )}
