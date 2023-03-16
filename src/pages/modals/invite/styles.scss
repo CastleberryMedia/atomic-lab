@@ -1,0 +1,26 @@
+.modal-invite {
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      flex-direction: column;
+      gap: 30px;
+
+      .text {
+        text-align: center;
+      }
+
+      &-button {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+  }
+}

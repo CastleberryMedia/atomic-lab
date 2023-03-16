@@ -10,6 +10,7 @@ import ModalReviews from "../modals/reviews";
 import DesignerProject from "../modals/designers-project";
 import ModalMessage from "../modals/message";
 import ModalDeleteProject from "../modals/deleteProject";
+import ModalInvite from "../modals/invite";
 import PageTitle from "../page-title";
 import ModalDownloadPDF from "./components/infoPDF";
 
@@ -193,10 +194,16 @@ function View({
             </div>
           )}
 
-          {console.log(modals)}
-
           {modals.infoPDF && (
             <ModalDownloadPDF
+              modals={modals}
+              data={dataModals}
+              setModals={setModals}
+            />
+          )}
+
+          {modals.invite && (
+            <ModalInvite
               modals={modals}
               data={dataModals}
               setModals={setModals}
