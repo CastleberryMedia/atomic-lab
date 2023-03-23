@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { postCreateAccount } from "../../services";
 import View from "./view";
 
@@ -9,6 +9,10 @@ function Index() {
   const redirectTo = (item) => {
     navigate(item);
   };
+
+  let { id_project } = useParams();
+
+  console.log(id_project);
 
   const [name, setName] = useState(null);
   const [lastName, setLastName] = useState(null);
@@ -24,38 +28,27 @@ function Index() {
     return String(e).search(filter) != -1;
   }
 
-
-
-
-
   const createAccount = () => {
     postCreateAccount({
       name: name,
       last_name: lastName,
       email: email,
       password: password,
+      ...(id_project && { project_id: id_project }),
     })
       .then((res) => {
-
-        redirectTo("/sing-up/email")
-
+        redirectTo("/sing-up/email");
       })
       .catch((error) => {
-
         setState("idle");
-
-
       });
   };
 
   const onClickHandler = () => {
     setState("loading");
 
-
     setTimeout(() => {
-
       createAccount();
-
     }, 2000);
   };
 

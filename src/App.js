@@ -162,7 +162,8 @@ function App() {
                 />
 
                 <Route path="/sing-up/email" element={<SignUpEmail />} />
-                <Route path="/sing-up" element={<SignUp />} />
+                <Route path="/sing-up/" element={<SignUp />} />
+                <Route path="/sing-up/:id_project" element={<SignUp />} />
                 <Route path="/recover-password" element={<RecoverPassword />} />
                 <Route path="/new-password/:id" element={<NewPassword />} />
                 <Route

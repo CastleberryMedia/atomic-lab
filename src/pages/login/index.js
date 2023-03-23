@@ -8,15 +8,11 @@ import View from "./view";
 function Index() {
   const navigate = useNavigate();
   const { toggleAuthenticated } = useContext(AuthContext);
-
+  const [remember, setRemember] = useState(false);
 
   const redirectTo = (item) => {
     navigate(item);
   };
-
-
-
-
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +21,6 @@ function Index() {
   const [messageValidation, setMessageValidation] = useState(false);
   const [viewPassword, setViewPassword] = useState(false);
 
-
   function validateEmail(e) {
     var filter =
       /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
@@ -33,34 +28,28 @@ function Index() {
   }
 
   const login = () => {
-
     setPasswordValidation(false);
     postLogin({ email: email, password: password })
       .then((res) => {
-
         if (res.data.token) {
+          remember && sessionStorage.setItem("remember", JSON.stringify(true));
+
           sessionStorage.setItem("atomiclab-user", JSON.stringify(res.data));
-          toggleAuthenticated()
-        }
-        else if (res.data.error) {
-          setMessageValidation(true)
+          toggleAuthenticated();
+        } else if (res.data.error) {
+          setMessageValidation(true);
           setState("idle");
         }
-
-
       })
       .catch((error) => {
-        setMessageValidation(true)
+        setMessageValidation(true);
         setState("idle");
-
       });
   };
 
-
-
   const onClickHandler = () => {
     setState("loading");
-    setMessageValidation(false)
+    setMessageValidation(false);
 
     setTimeout(() => {
       if (validateEmail(email) === false) {
@@ -74,7 +63,7 @@ function Index() {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      password && email && onClickHandler()
+      password && email && onClickHandler();
     }
   };
 
@@ -89,7 +78,10 @@ function Index() {
     onClickHandler,
     messageValidation,
     handleKeyPress,
-    viewPassword, setViewPassword
+    viewPassword,
+    setViewPassword,
+    remember,
+    setRemember,
   };
 
   return <View {...properties} />;

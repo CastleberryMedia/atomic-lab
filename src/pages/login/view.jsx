@@ -16,6 +16,8 @@ function View({
   handleKeyPress,
   viewPassword,
   setViewPassword,
+  remember,
+  setRemember,
 }) {
   return (
     <div className="login">
@@ -61,12 +63,23 @@ function View({
               </div>
             )}
 
-            <p
+            <div
               className="text-purple recovery"
               onClick={() => redirectTo("recover-password")}
             >
               ¿Olvidaste tu contraseña?
-            </p>
+            </div>
+
+            <div className="remember">
+              <input
+                defaultChecked={remember}
+                type="checkbox"
+                name="remember"
+                id="remember"
+                onChange={() => setRemember(!remember)}
+              />
+              Recordar contraseña
+            </div>
 
             <div className="button-reactive">
               <ReactiveButton

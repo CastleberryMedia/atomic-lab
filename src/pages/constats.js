@@ -4,6 +4,8 @@ import ReactTooltip from "react-tooltip";
 
 export const URL_IMG = "https://api.atomiclabco.com";
 
+const remember = JSON.parse(sessionStorage?.getItem("remember"));
+
 export const TEAM_ROL = [
   {
     id: 5,
