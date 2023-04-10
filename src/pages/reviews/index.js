@@ -26,6 +26,17 @@ function Index() {
   const [reviewSelect, setReviewSelect] = useState([]);
 
   const [versionVote, setVersionVote] = useState(null);
+  const [aditionalComments, setAditionalComments] = useState(null);
+
+  useEffect(() => {
+    const comments =
+      Array.isArray(reviews?.lasts_versions) &&
+      reviews?.lasts_versions
+        ?.filter((last) => last.version === versionSelect)
+        .slice(-1)[0]?.general_comments;
+
+    setAditionalComments(comments || null);
+  }, [reviews, versionSelect]);
 
   const filterProject = allProjects?.filter(
     (project) => project.id === parseInt(id)
@@ -169,6 +180,7 @@ function Index() {
         reviews?.review_data[versionSelect - 1]?.versions.length === 1
           ? reviews?.review_data[versionSelect - 1].versions[0].id
           : versionVote,
+      aditionalComments: aditionalComments,
     }).then((res) => {
       setModalMessageFinish3(true);
       setStateFinishReview("idle");
@@ -235,6 +247,8 @@ function Index() {
     modalMessageFinish3,
     setModalMessageFinish3,
     reviewSelect,
+    setAditionalComments,
+    aditionalComments,
   };
 
   return <View {...properties} />;

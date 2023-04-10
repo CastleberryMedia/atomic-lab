@@ -106,9 +106,14 @@ export const getAttached = async (user_id) =>
 //reviews
 export const getReviewsProject = async (project_id) =>
   axios.get(`${base_url}/get_last_versions_data/${project_id}`);
-export const putFinishReview = async ({ project_id, img_id }) =>
+export const putFinishReview = async ({
+  project_id,
+  img_id,
+  aditionalComments,
+}) =>
   axios.put(`${base_url}/finish_revision/${project_id}`, {
     img_id: img_id,
+    general_comments: aditionalComments,
   });
 
 //annotations

@@ -41,6 +41,8 @@ function View({
   modalMessageFinish3,
   setModalMessageFinish3,
   reviewSelect,
+  setAditionalComments,
+  aditionalComments,
 }) {
   return (
     <div className="page reviews">
@@ -182,7 +184,7 @@ function View({
                   className={`version-img ${
                     reviewSelect?.versions?.length >= 2 ? "img-2" : "img-1"
                   } ${
-                    typeof reviews?.lasts_versions === "array" &&
+                    Array.isArray(reviews?.lasts_versions) &&
                     reviews?.lasts_versions?.filter(
                       (last) => last.version === versionSelect
                     )[0]?.last_selection_imageid === version.id
@@ -362,39 +364,53 @@ function View({
 
           {userData?.rol_id !== 3 &&
           versionSelect === reviews?.review_data?.length ? (
-            <div className="buttons-approve flex">
-              <div className="button-reactive">
-                <div className="globe-text">
-                  Si estas satisfecho con el diseño, haz click en
-                  <div className="text-red">aprobar proyecto</div> para darlo
-                  por terminado.
-                </div>
-                <div
-                  className="button"
-                  onClick={() => setModalMessageFinish1(true)}
-                >
-                  Aprobar proyecto
+            <>
+              <div className="area-add-comment">
+                <div>Comentarios adicionales</div>
+                <div>
+                  <textarea
+                    className="add_comment"
+                    name="add_comment"
+                    id="add_comment"
+                    onChange={(e) => setAditionalComments(e.target.value)}
+                    value={aditionalComments}
+                  ></textarea>
                 </div>
               </div>
-              <div className="button-reactive">
-                <div className="globe-text">
-                  Si ya realizaste todos tus comentarios, haz click en
-                  <div className="text-purple">finalizar revisión</div> para
-                  notificarle al diseñador.
+              <div className="buttons-approve flex">
+                <div className="button-reactive">
+                  <div className="globe-text">
+                    Si estas satisfecho con el diseño, haz click en
+                    <div className="text-red">aprobar proyecto</div> para darlo
+                    por terminado.
+                  </div>
+                  <div
+                    className="button"
+                    onClick={() => setModalMessageFinish1(true)}
+                  >
+                    Aprobar proyecto
+                  </div>
                 </div>
-                <ReactiveButton
-                  className="button"
-                  buttonState={stateFinishReview}
-                  onClick={() => onClickHandlerFinishReview()}
-                  shadow={false}
-                  loadingText={"Finalizando...."}
-                  outline={false}
-                  rounded={false}
-                  block={false}
-                  idleText={"Finalizar revisión"}
-                />
+                <div className="button-reactive">
+                  <div className="globe-text">
+                    Si ya realizaste todos tus comentarios, haz click en
+                    <div className="text-purple">finalizar revisión</div> para
+                    notificarle al diseñador.
+                  </div>
+                  <ReactiveButton
+                    className="button"
+                    buttonState={stateFinishReview}
+                    onClick={() => onClickHandlerFinishReview()}
+                    shadow={false}
+                    loadingText={"Finalizando...."}
+                    outline={false}
+                    rounded={false}
+                    block={false}
+                    idleText={"Finalizar revisión"}
+                  />
+                </div>
               </div>
-            </div>
+            </>
           ) : (
             selectedImgArray.length >= 1 && (
               <div className="button-reactive">
