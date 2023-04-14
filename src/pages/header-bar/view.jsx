@@ -153,6 +153,17 @@ function View({
           </div>
         )}
       </div>
+
+      {userData?.rol_id === 8 && (
+        <button
+          className="button-purple"
+          onClick={() => {
+            redirectTo("/discounts");
+          }}
+        >
+          Descuentos
+        </button>
+      )}
       {/* {userData?.rol_id === 1 && (
         <div className="credits flex">
           <div className="icon-credit flex">

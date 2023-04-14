@@ -1,0 +1,88 @@
+.discount {
+  .content {
+    display: flex;
+    gap: 50px;
+    h3 {
+      margin-bottom: 30px;
+    }
+
+    &-add {
+      flex: 1;
+
+      .inputs {
+        display: flex;
+        justify-content: space-between;
+
+        .input {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 25px;
+
+          &-percent {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+
+            .input-txt {
+              width: 40px;
+              font-size: 20px;
+              text-align: center;
+            }
+          }
+        }
+
+        label {
+          font-size: 14px;
+        }
+        .input-txt {
+          width: fit-content;
+        }
+
+        .code-discount {
+          width: fit-content;
+          padding: 10px 20px;
+          border: 2px dotted #6b72fd;
+          border-radius: 10px;
+          color: #6b72fd;
+        }
+      }
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+      }
+    }
+
+    &-list {
+      flex: 2;
+
+      .table-discounts {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+          border-bottom: 1px solid #6b72fd;
+
+          th {
+            padding: 15px 0;
+          }
+        }
+        tbody {
+          td {
+            padding: 10px 0 0 0;
+          }
+        }
+        .table-code {
+          text-transform: uppercase;
+          text-align: center;
+        }
+        .table-percent {
+          text-align: center;
+        }
+        .table-actions {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

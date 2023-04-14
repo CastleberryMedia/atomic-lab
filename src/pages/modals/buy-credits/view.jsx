@@ -29,6 +29,18 @@ function View({ close, state, onClickHandler, methodSelect, setMethodSelect }) {
             </div>
           ))}
         </div>
+        <div className="discount">
+          <p>Ingrese cupón de descuento</p>
+          <div className="discount-form">
+            <input
+              type="text"
+              name="discount"
+              id="discount"
+              className="input-txt"
+            />
+            <button className="button">Aplicar</button>
+          </div>
+        </div>
 
         <section className="footer">
           <section className="section-buttons flex">

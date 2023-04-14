@@ -31,6 +31,7 @@ import Reviews from "./pages/reviews";
 import MoreInfo from "./pages/more-info";
 import ProjectDetail from "./pages/project-detail";
 import SearchPage from "./pages/search-page";
+import Discounts from "./pages/discounts";
 
 import Projects from "./pages/projects";
 
@@ -147,6 +148,7 @@ function App() {
                 <Route path="projects-active" element={<Projects />} />
                 <Route path="projects-inactive" element={<Projects />} />
                 <Route path="search" element={<SearchPage />} />
+                <Route path="discounts" element={<Discounts />} />
               </>
             ) : (
               <>
