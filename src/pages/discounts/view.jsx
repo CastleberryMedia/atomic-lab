@@ -1,30 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PageTitle from "../page-title";
-import Projects from "../projects";
-import Team from "../header-bar/pages/team";
-import Brands from "../header-bar/pages/brands";
 import { Icons } from "../icons";
 import "./styles.scss";
 
-function View({ generateCode, code, percent }) {
-  const [DATA, setDATA] = useState([]);
-  useEffect(() => {
-    let DATATemp = [];
-    const count = Math.floor(Math.random() * (20 - 5) + 5);
-    function codeR() {
-      return (Math.random() + 1).toString(36).substring(2);
-    }
-    function percentR() {
-      return Math.floor(Math.random() * (1 - 99) + 99);
-    }
-
-    [...Array(count)].map(() =>
-      DATATemp.push({ code: codeR(), percent: percentR() })
-    );
-
-    setDATA(DATATemp.sort((a, b) => b.percent - a.percent));
-  }, []);
-
+function View({
+  generateCode,
+  code,
+  percent,
+  setPercent,
+  createDiscount,
+  discountsList,
+  handleDeleteDiscount,
+  loading,
+}) {
   return (
     <div className="page discount">
       <PageTitle user={true} title={`Gestion de descuentos`} />
@@ -40,15 +28,20 @@ function View({ generateCode, code, percent }) {
             </div>
             <div className="input">
               <label htmlFor="percent">Porcentaje</label>
-              <div className="input-percent">
+              <div className="input-percent" /* key={percent} */>
                 <input
                   name="percent"
                   id="percent"
                   className="input-txt"
+                  type="number"
+                  min={1}
+                  max={100}
+                  onChange={(e) => setPercent(e.target.value)}
+                  defaultValue={percent}
                   value={percent}
-                  type="text"
-                  pattern="\d*"
-                  maxLength="2"
+                  onKeyUp={(e) =>
+                    e.target.value > 100 && setPercent(percent.slice(0, -1))
+                  }
                 />
                 %
               </div>
@@ -58,7 +51,13 @@ function View({ generateCode, code, percent }) {
             <button className="button-purple" onClick={() => generateCode()}>
               Generar
             </button>
-            <button className="button-purple">Guardar</button>
+            <button
+              className="button-purple"
+              onClick={() => createDiscount()}
+              disabled={!percent}
+            >
+              Guardar
+            </button>
           </div>
         </div>
         <div className="content-list">
@@ -75,13 +74,26 @@ function View({ generateCode, code, percent }) {
                 </tr>
               </thead>
               <tbody>
-                {DATA.map((d) => (
-                  <tr>
-                    <td className="table-code">{d?.code}</td>
-                    <td className="table-percent">{d?.percent}%</td>
-                    <td className="table-actions">{Icons("delete_circle")}</td>
-                  </tr>
-                ))}
+                {loading ? (
+                  <tr className="loading">Cargando...</tr>
+                ) : (
+                  discountsList
+                    ?.sort((a, b) => b.percentage - a.percentage)
+                    .map((d) => (
+                      <tr key={d?.code}>
+                        <td className="table-code">{d?.code}</td>
+                        <td className="table-percent">{d?.percentage}%</td>
+                        <td className="table-actions">
+                          <div
+                            onClick={() => handleDeleteDiscount(d?.id)}
+                            className="delete-discount"
+                          >
+                            {Icons("delete_circle")}
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                )}
               </tbody>
             </table>
           </div>

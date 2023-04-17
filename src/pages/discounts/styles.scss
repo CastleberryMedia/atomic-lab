@@ -20,11 +20,11 @@
 
           &-percent {
             display: flex;
-            gap: 20px;
+            gap: 5px;
             align-items: center;
 
             .input-txt {
-              width: 40px;
+              width: 60px;
               font-size: 20px;
               text-align: center;
             }
@@ -81,6 +81,17 @@
         }
         .table-actions {
           text-align: center;
+        }
+
+        .delete-discount {
+          cursor: pointer;
+          width: fit-content;
+        }
+
+        .loading {
+          color: #6b72fd;
+          font-size: 20px;
+          margin-top: 50px;
         }
       }
     }

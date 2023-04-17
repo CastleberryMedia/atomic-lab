@@ -148,3 +148,12 @@ export const putDeleteProject = async (project_id) =>
 //Invite person to project
 export const putinvite = async (data) =>
   axios.put(`${base_url}/invite_user/${data.user_id}`, data);
+
+//Discounts
+export const postCreateDiscount = async (data) =>
+  axios.post(`${base_url}/discounts`, data);
+
+export const getDiscountsAll = async () => axios.get(`${base_url}/discounts`);
+
+export const deleteDiscount = async ({ code }) =>
+  axios.delete(`${base_url}/discounts/${code}`);
