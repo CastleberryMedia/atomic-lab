@@ -32,6 +32,7 @@ import MoreInfo from "./pages/more-info";
 import ProjectDetail from "./pages/project-detail";
 import SearchPage from "./pages/search-page";
 import Discounts from "./pages/discounts";
+import PaymentStatus from "./pages/payments";
 
 import Projects from "./pages/projects";
 
@@ -149,6 +150,18 @@ function App() {
                 <Route path="projects-inactive" element={<Projects />} />
                 <Route path="search" element={<SearchPage />} />
                 <Route path="discounts" element={<Discounts />} />
+                <Route
+                  path="payment-success"
+                  element={<PaymentStatus type="success" />}
+                />
+                <Route
+                  path="payment-failure"
+                  element={<PaymentStatus type="failure" />}
+                />
+                <Route
+                  path="payment-pending"
+                  element={<PaymentStatus type="pending" />}
+                />
               </>
             ) : (
               <>

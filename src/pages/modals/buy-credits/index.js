@@ -1,46 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { postBilling, getPercentageDiscount } from "../../../services";
+import DataContext from "../../../data-context";
 import View from "./view";
 
 function Index({ close, data }) {
+  const [coinsQ, setCoinsQ] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [idWallet, setIdWallet] = useState();
+  const { userData } = useContext(DataContext);
+  const [loadingDiscount, setLoadingDiscount] = useState(false);
+  const [discountValidate, setDiscountValidate] = useState(null);
+  const [codeInput, setCodeInput] = useState(null);
+  const [discountTotal, setDiscountTotal] = useState(null);
 
+  useEffect(() => {
+    proccessTotal();
+  }, [coinsQ, discountTotal]);
 
-  const [methodSelect, setMethodSelect] = useState(null)
+  useEffect(() => {
+    codeInput && getPercentajeCode(codeInput);
+  }, [codeInput]);
 
-  const onSubmit = () => {
-    /* const data = {
-      name: name,
-      email: email,
-      rol_id: parseInt(rol),
-      project_id: 1,
-      user_id: JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id,
-    };
-
-    postAddTeam(data)
+  function getPercentajeCode(code) {
+    setLoadingDiscount(true);
+    let percentage = getPercentageDiscount(code)
       .then((res) => {
-        getTeam(user_id).then(({ data }) => {
-          setTeam(data.team);
-        });
-        close();
+        setLoadingDiscount(false);
+        setDiscountValidate(true);
+        setDiscountTotal(parseInt(res.data.percentage));
       })
       .catch((error) => {
-        setState("idle");
-      }); */
-  };
+        setLoadingDiscount(false);
+        setDiscountValidate(false);
+      });
 
-  const [state, setState] = useState("idle");
+    return percentage;
+  }
 
-  const onClickHandler = () => {
-    setState("loading");
-    setTimeout(() => {
-      onSubmit();
-    }, 2000);
+  function proccessTotal() {
+    discountTotal === null
+      ? setTotal(coinsQ * 1000)
+      : setTotal(coinsQ * 1000 - (coinsQ * 1000 * discountTotal) / 100);
+  }
+
+  useEffect(() => {
+    total > 0 && excBuy();
+  }, [total]);
+
+  const excBuy = () => {
+    const data = {
+      description: "Creditos Atomic Lab",
+      unit_price: total,
+      quantity: 1,
+      first_name: userData?.name,
+      last_name: userData?.last_name,
+      email: userData?.email,
+      dni: userData?.cedula,
+      external_reference: `coins-${total}`,
+    };
+
+    postBilling(data)
+      .then((res) => {
+        setIdWallet(res.data.id);
+      })
+      .catch((error) => {});
   };
 
   const properties = {
     close,
-    state,
-    onClickHandler,
-    methodSelect, setMethodSelect
+    setCoinsQ,
+    total,
+    coinsQ,
+    idWallet,
+    discountValidate,
+    loadingDiscount,
+    setCodeInput,
+    discountTotal,
   };
   return <View {...properties} />;
 }

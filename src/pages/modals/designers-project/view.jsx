@@ -42,7 +42,7 @@ function View({
                 )}
               </div>
             ))}
-            {console.log("teamFilter", teamFilter)}
+
             {userData.rol_id === 8 &&
               teamFilter
                 .filter(

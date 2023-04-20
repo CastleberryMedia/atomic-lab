@@ -12,8 +12,6 @@ function Index() {
 
   let { id_project } = useParams();
 
-  console.log(id_project);
-
   const [name, setName] = useState(null);
   const [lastName, setLastName] = useState(null);
   const [email, setEmail] = useState(null);

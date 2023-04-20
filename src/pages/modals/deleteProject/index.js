@@ -9,8 +9,6 @@ function Index({ modals, data, setModals }) {
   const { setAllProjects } = useContext(DataContext);
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
-  console.log(data);
-
   const onSubmit = () => {
     setLoading(true);
     putDeleteProject(data.id)

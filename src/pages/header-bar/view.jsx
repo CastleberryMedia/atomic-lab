@@ -164,7 +164,7 @@ function View({
           Descuentos
         </button>
       )}
-      {/* {userData?.rol_id === 1 && (
+      {userData?.rol_id === 1 && (
         <div className="credits flex">
           <div className="icon-credit flex">
             {Icons("credits")} ${userData?.credits ? userData.credits : 0}
@@ -179,7 +179,7 @@ function View({
             Comprar
           </div>
         </div>
-      )} */}
+      )}
       <div className="account flex admin-cuenta option">
         {brands?.filter((brand) => brand.predeterminate === 1)[0]
           ?.url_image && (
