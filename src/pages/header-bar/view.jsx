@@ -33,6 +33,7 @@ function View({
   brands,
   search,
   setSearch,
+  coins,
 }) {
   const path = location.pathname.replaceAll(
     "/",
@@ -167,7 +168,7 @@ function View({
       {userData?.rol_id === 1 && (
         <div className="credits flex">
           <div className="icon-credit flex">
-            {Icons("credits")} ${userData?.credits ? userData.credits : 0}
+            {Icons("credits")} $ {coins}
           </div>
           <div
             className="credits-buy flex"

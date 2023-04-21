@@ -4,8 +4,6 @@ import ReactTooltip from "react-tooltip";
 
 export const URL_IMG = "https://api.atomiclabco.com";
 
-const remember = JSON.parse(sessionStorage?.getItem("remember"));
-
 export const TEAM_ROL = [
   {
     id: 5,
@@ -618,7 +616,7 @@ export const FORM_INPUTS_PROFILE = [
 export const FORM_INPUTS = {
   name: {
     type: "text",
-    label: "¿Qué nombre le quieres dar al proyecto?",
+    label: "Dar nombre al proyecto y especificaciones",
     placeholder:
       "Tip: Incluye el tipo de diseño en el nombre (logo, post, etc.)",
     required: true,
@@ -651,7 +649,7 @@ export const FORM_INPUTS = {
   },
   idea: {
     type: "text",
-    label: "¿Cuál es la idea que quieres desarrollar?",
+    label: "¿Cuál es la idea que quieres desarrollar e impacto esperado?",
     placeholder: "",
     required: true,
     className: "input-texarea",
@@ -1120,11 +1118,12 @@ export const SERVICES_DATA = [
     title: "Redes sociales",
     title_id: "redes-sociales",
     description: "Contenido compartido en las redes sociales",
+    base_price: 600,
     price: {
       basic: [
         {
           name: "Costo base del proyecto",
-          price: 100,
+          price: 109,
         },
         {
           name: "Tiempo de entrega",
@@ -1222,7 +1221,7 @@ export const SERVICES_DATA = [
         { name: "Pinterest", status: "active" },
         { name: "Twitch", status: "active" },
         { name: "Tumblr", status: "active" },
-        { name: "Otra ¿Cuál?", status: "inactive" },
+        { name: "Otra ¿Cuál?", status: "active" },
       ],
     },
   },
@@ -1316,7 +1315,7 @@ export const SERVICES_DATA = [
     specs: [
       {
         id: "1",
-        title: "¿Cuál marca vas a utilizar?",
+        title: "¿Cuál proyecto vas a utilizar?",
         options: ["SELECT DE BRAND."],
       },
       {

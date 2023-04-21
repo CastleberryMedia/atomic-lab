@@ -40,6 +40,7 @@ function View({
   getTotalProject,
   setFCustom,
   setTCustom,
+  userData,
 }) {
   return (
     <div className="summary-page page">
@@ -367,19 +368,21 @@ function View({
 
       <section className="footer">
         <section className="section-buttons flex">
-          <div className="button" onClick={() => setStep(step - 1)}>
+          <button className="button" onClick={() => setStep(step - 1)}>
             Atrás
-          </div>
-          <div
+          </button>
+          <button
             className="button"
             onClick={() =>
-              /* getTotalProject() > userData.credits
+              getTotalProject() > userData?.credits
                 ? setModalBuyCredit(!modalBuyCredits)
-                : */ setModalMessageStart(true)
+                : setModalMessageStart(true)
             }
           >
-            Iniciar proyecto
-          </div>
+            {getTotalProject() > userData?.credits
+              ? "Monedas insuficientes"
+              : "Iniciar proyecto"}
+          </button>
         </section>
       </section>
 

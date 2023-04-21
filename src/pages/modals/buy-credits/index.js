@@ -56,7 +56,7 @@ function Index({ close, data }) {
       last_name: userData?.last_name,
       email: userData?.email,
       dni: userData?.cedula,
-      external_reference: `coins-${total}`,
+      external_reference: `coins-${coinsQ}`,
     };
 
     postBilling(data)

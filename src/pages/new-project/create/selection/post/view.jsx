@@ -65,6 +65,7 @@ function View({
             <div className="title flex">
               {FORM_INPUTS.image_include.label}
               {Icons("help_circle")}
+              <div className="required">*</div>
             </div>
 
             {postCount >= 2 && (
@@ -86,7 +87,7 @@ function View({
             {data.img_array &&
             data?.img_array?.filter((item) => item.id === id)[0]?.name
               ? data?.img_array?.filter((item) => item.id === id)[0]?.name
-              : "Adjuntar"}
+              : "Adjuntar *"}
           </label>
 
           <input
@@ -138,6 +139,7 @@ function View({
             <div className="title flex">
               {FORM_INPUTS.text_include.label}
               {Icons("help_circle")}
+              <div className="required">*</div>
             </div>
           </label>
           <section className="section-buttons flex">

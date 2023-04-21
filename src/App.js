@@ -57,6 +57,7 @@ function App() {
   const [onboarding, setOnboarding] = useState(undefined);
   const [tourActive, setTourActive] = useState(false);
   const [search, setSearch] = useState(null);
+  const [coins, setCoins] = useState(null);
 
   const user_id = JSON.parse(
     sessionStorage?.getItem("atomiclab-user")
@@ -67,9 +68,10 @@ function App() {
 
     user_id &&
       getDataUser(user_id).then(({ data }) => {
-        setUserData(data.user[0]);
-        setTourActive(data.user[0].tour === 1 ? true : false);
-        setOnboarding(data.user[0].onboarding === 1 ? true : false);
+        setCoins(parseInt(data?.user[0]?.credits));
+        setUserData(data?.user[0]);
+        setTourActive(data?.user[0]?.tour === 1 ? true : false);
+        setOnboarding(data?.user[0]?.onboarding === 1 ? true : false);
       });
   }, [user_id]);
 
@@ -97,6 +99,8 @@ function App() {
           setLoadingAllProjects,
           search,
           setSearch,
+          coins,
+          setCoins,
         }}
       >
         <HashRouter>

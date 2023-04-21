@@ -125,7 +125,7 @@ function View({
         </div>
       </section>
 
-      <section className="section-publication-type">
+      {/* <section className="section-publication-type">
         <h3>2. {serviceData?.publication_type?.title}</h3>
 
         <div className="type-check flex">
@@ -185,10 +185,10 @@ function View({
             </div>
           </>
         )}
-      </section>
+      </section> */}
 
       <section className="section-social-network">
-        <h3>3. {serviceData?.social_network?.title}</h3>
+        <h3>2. {serviceData?.social_network?.title}</h3>
 
         <div className="social-network-check flex">
           {serviceData?.social_network?.options.map((option, index) => (
@@ -215,24 +215,38 @@ function View({
               </div>
             </label>
           ))}
+          {socialNetwork === "Otra ¿Cuál?" && (
+            <div className="other-design">
+              <label htmlFor="other-design" className="label">
+                ¿Cuál?
+              </label>
+              <input
+                type="text"
+                name="other-design"
+                id="other-design"
+                className="input-txt"
+              />
+            </div>
+          )}
         </div>
       </section>
 
       <section className="section-buttons flex">
-        <div className="button" onClick={() => redirectToHome()}>
+        <button className="button" onClick={() => redirectToHome()}>
           Atrás
-        </div>
+        </button>
 
-        {
-          /* !data.brand_select || */
-          !data.type_publication || !data.type_post || !data.social_network ? (
-            <div className="button-gray">Continuar</div>
-          ) : (
-            <div className="button" onClick={() => redirectToForm()}>
-              Continuar
-            </div>
-          )
-        }
+        <button
+          disabled={
+            !data.brand_select ||
+            /*   !data.type_publication || !data.type_post || */
+            !data.social_network
+          }
+          className={"button"}
+          onClick={() => redirectToForm()}
+        >
+          Continuar
+        </button>
       </section>
 
       {modalMessage && (
@@ -246,37 +260,3 @@ function View({
 }
 
 export default View;
-
-const x = {
-  user_id: "1",
-  designer_freedom: "high",
-  social_network: "Facebook",
-  brand_select: "Pepsi",
-  type_publication: "post",
-  type_post: "post",
-  name_project: "Mi nuevo proyecto",
-  public_goal: "mi público objetivo",
-  palete_colors: "mi paleta de colores",
-  references: [
-    {
-      id: 0,
-      text: "mi referencia 1",
-      content: {},
-    },
-  ],
-  idea_post: "Mi idea a desarrollar",
-  post: [
-    {
-      id: 1,
-      objetive: "mi objetivo imagen 1",
-      text: "Mi texto a incluir",
-      file_img: {},
-    },
-    {
-      id: 2,
-      text: "texto imagen 2",
-      objetive: "mi objetivo imagen2",
-      file_img: {},
-    },
-  ],
-};

@@ -45,7 +45,9 @@ function View({
             <div className="column-item">
               <label htmlFor="idea">
                 {FORM_INPUTS.idea.label}{" "}
-                {FORM_INPUTS.idea.required && "(Requerido)"}
+                <div className="required">
+                  {FORM_INPUTS.idea.required && " *"}
+                </div>
               </label>
               <textarea
                 {...FORM_INPUTS.idea}
@@ -97,29 +99,28 @@ function View({
 
       <section className="footer">
         <section className="section-buttons flex">
-          <div className="button" onClick={() => setStep(step - 1)}>
+          <button className="button" onClick={() => setStep(step - 1)}>
             Atrás
-          </div>
+          </button>
 
-          {!formData.idea_post ||
-          !post ||
-          selectedTextArray?.length === 0 ||
-          selectedImgArray?.length === 0 ? (
-            <div className="button-gray">Continuar</div>
-          ) : (
-            <div
-              className="button"
-              onClick={() => {
-                setStep(step + 1);
-                setFormData({
-                  ...formData,
-                  post: post,
-                });
-              }}
-            >
-              Continuar
-            </div>
-          )}
+          <button
+            disabled={
+              !formData.idea_post ||
+              !post ||
+              /*     selectedTextArray?.length === 0 || */
+              selectedImgArray?.length === 0
+            }
+            onClick={() => {
+              setStep(step + 1);
+              setFormData({
+                ...formData,
+                post: post,
+              });
+            }}
+            className="button"
+          >
+            Continuar
+          </button>
         </section>
       </section>
     </div>

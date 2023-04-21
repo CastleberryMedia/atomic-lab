@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user"))?.user_id;
+
 const headers = {
   Accept: "application/json",
   "Content-Type": "multipart/form-data; boundary=something",
@@ -165,3 +167,6 @@ export const getPercentageDiscount = async (code) =>
 
 export const postBilling = async (data) =>
   axios.post(`${base_url}/billings`, data);
+
+export const postUpdateCredits = async (data) =>
+  axios.put(`${base_url}/load_credits/${user_id}`, data);

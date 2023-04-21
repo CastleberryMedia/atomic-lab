@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import DataContext from "../../../../data-context";
 import {
   postCreateProject,
-  updateCreditsUser,
   getDataUser,
   getAllProjects,
+  postUpdateCredits,
 } from "../../../../services";
-import { SUMMARY_OPTIONS } from "../../../constats";
+import { SUMMARY_OPTIONS, SERVICES_DATA } from "../../../constats";
 
 import View from "./view";
 
@@ -17,7 +17,8 @@ function Index({ setStep, step }) {
   const [formData, setFormData] = useContext(CreateFormContext);
   const navigate = useNavigate();
 
-  const { userData, setUserData, setAllProjects } = useContext(DataContext);
+  const { userData, setUserData, setAllProjects, coins, setCoins } =
+    useContext(DataContext);
 
   const [modalMessageStart, setModalMessageStart] = useState(false);
   const [modalMessageStartStatus, setModalMessageStartStatus] = useState(false);
@@ -47,9 +48,15 @@ function Index({ setStep, step }) {
     text: SUMMARY_OPTIONS["editables"].options[0].text,
   });
 
+  console.log("formData", formData);
+
   const getTotalProject = () => {
+    const base_price = SERVICES_DATA.find(
+      (s) => s?.title === formData?.project_type
+    ).base_price;
+
     return (
-      parseInt(formData.project_price) +
+      parseInt(base_price) +
       parseInt(timePrice.price) +
       parseInt(formatPrice.price) +
       parseInt(reviewPrice.price) +
@@ -58,7 +65,7 @@ function Index({ setStep, step }) {
     );
   };
 
-  const [libertyLevel, setLibertyLevel] = useState("");
+  const [libertyLevel, setLibertyLevel] = useState("high");
 
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
@@ -114,11 +121,13 @@ function Index({ setStep, step }) {
     };
     formData.append("jsondataRequest", JSON.safeStringify(dataFin));
 
+    console.log("xxx", [...formData]);
+
     postCreateProject(formData)
       .then((res) => {
-        updateCreditsUser({
-          user_id: user_id,
-          value: parseInt(userData.credits) - getTotalProject(),
+        setCoins(coins - getTotalProject());
+        postUpdateCredits({
+          value: coins - getTotalProject(),
         }).then((res) => {
           getDataUser(user_id).then(({ data }) => {
             setUserData(data.user[0]);
@@ -178,6 +187,7 @@ function Index({ setStep, step }) {
     getTotalProject,
     setFCustom,
     setTCustom,
+    userData,
   };
 
   return <View {...properties} />;

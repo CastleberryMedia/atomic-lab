@@ -191,4 +191,12 @@
       background-color: #6b72fd23;
     }
   }
+
+  .other-design {
+    display: flex;
+    flex-direction: column;
+    .label {
+      font-size: 14px;
+    }
+  }
 }

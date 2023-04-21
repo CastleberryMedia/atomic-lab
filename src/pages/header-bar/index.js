@@ -26,6 +26,7 @@ function Index({ setIsAuthenticated }) {
     setLoadingAllProjects,
     search,
     setSearch,
+    coins,
   } = useContext(DataContext);
 
   const navigate = useNavigate();
@@ -101,6 +102,7 @@ function Index({ setIsAuthenticated }) {
     brands,
     search,
     setSearch,
+    coins,
   };
 
   return <View {...properties} />;
