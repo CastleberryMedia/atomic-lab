@@ -22,12 +22,15 @@ function View({ redirectTo, setEmail, sendMailRecovery }) {
               />
 
               <div className="buttons">
-                <div className="button" onClick={() => redirectTo("/")}>
+                <button className="button" onClick={() => redirectTo("/")}>
                   Atrás
-                </div>
-                <div className="button-blue" onClick={() => sendMailRecovery()}>
+                </button>
+                <button
+                  className="button-blue"
+                  onClick={() => sendMailRecovery()}
+                >
                   Recuperar
-                </div>
+                </button>
               </div>
             </div>
           </div>

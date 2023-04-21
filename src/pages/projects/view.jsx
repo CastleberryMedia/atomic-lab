@@ -73,9 +73,9 @@ function View({
             typeFin === "active" ? "activos" : "terminados"
           }`}</h3>
           {userData?.rol_id !== 3 && (
-            <div className="button" onClick={() => navigate("/new-project")}>
+            <button className="button" onClick={() => navigate("/new-project")}>
               Empezar proyecto
-            </div>
+            </button>
           )}
         </div>
       ) : (

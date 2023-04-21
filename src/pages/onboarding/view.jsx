@@ -110,9 +110,12 @@ function View({
                   className="input-txt-onboarding"
                   onChange={(e) => setUrlOrganization(e.target.value)}
                 />
-                <div className="button-blue" onClick={() => setStep(step + 1)}>
+                <button
+                  className="button-blue"
+                  onClick={() => setStep(step + 1)}
+                >
                   Continuar
-                </div>
+                </button>
               </>
             )}
             {step === 3 && (
@@ -156,7 +159,7 @@ function View({
               <p>Step {step} of 3</p>
 
               <div className="buttons">
-                <div
+                <button
                   className="button-gray"
                   onClick={() => {
                     setOnboarding(false);
@@ -164,10 +167,13 @@ function View({
                   }}
                 >
                   Configurar déspues
-                </div>
-                <div className="button-blue" onClick={() => setStep(step - 1)}>
+                </button>
+                <button
+                  className="button-blue"
+                  onClick={() => setStep(step - 1)}
+                >
                   Atrás
-                </div>
+                </button>
               </div>
             </div>
           )}

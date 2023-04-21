@@ -28,9 +28,9 @@ function View({
         )}
         <section className="zoom-footer">
           <section className="section-buttons flex">
-            <div className="button" onClick={() => closeModal()}>
+            <button className="button" onClick={() => closeModal()}>
               Cancelar
-            </div>
+            </button>
             {countAnnotations.length !== 0 && (
               <div className="button-reactive">
                 <ReactiveButton

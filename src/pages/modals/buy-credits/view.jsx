@@ -99,9 +99,9 @@ function View({
 
         <section className="footer">
           <section className="section-buttons flex">
-            <div className="button" onClick={() => close(false)}>
+            <button className="button" onClick={() => close(false)}>
               Cancelar
-            </div>
+            </button>
 
             <div className="mp-button">
               {total > 0 && idWallet && (

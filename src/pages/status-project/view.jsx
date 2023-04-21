@@ -164,7 +164,7 @@ function View({ projectData, rate, redirectTo, designers }) {
                 cols="50"
               ></textarea>
               <section className="section-buttons flex">
-                <div className="button">Enviar</div>
+                <button className="button">Enviar</button>
               </section>
             </div>
           </>
@@ -172,9 +172,12 @@ function View({ projectData, rate, redirectTo, designers }) {
       )}
 
       <section className="section-buttons flex back">
-        <div className="button" onClick={() => redirectTo("/projects-active")}>
+        <button
+          className="button"
+          onClick={() => redirectTo("/projects-active")}
+        >
           Atrás
-        </div>
+        </button>
       </section>
     </div>
   );

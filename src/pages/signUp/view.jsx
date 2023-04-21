@@ -81,9 +81,9 @@ function View({
             )}
 
             <div className="buttons">
-              <div className="button" onClick={() => redirectTo("/")}>
+              <button className="button" onClick={() => redirectTo("/")}>
                 Atrás
-              </div>
+              </button>
               <div className="button-reactive">
                 <ReactiveButton
                   className={

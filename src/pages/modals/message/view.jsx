@@ -31,9 +31,9 @@ function View({ next, cancel, message, subMessage, cancelVisible, next_type }) {
           }`}
         >
           {cancelVisible && (
-            <div className="button" onClick={() => cancel()}>
+            <button className="button" onClick={() => cancel()}>
               Cancelar
-            </div>
+            </button>
           )}
 
           {next &&

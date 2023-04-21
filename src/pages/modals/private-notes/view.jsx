@@ -29,9 +29,9 @@ function View({ close, notes, setNotes, state, onClickHandler }) {
         </div>
 
         <section className="section-buttons flex">
-          <div className="button" onClick={() => close(false)}>
+          <button className="button" onClick={() => close(false)}>
             Cancelar
-          </div>
+          </button>
           <div className="button-reactive">
             <ReactiveButton
               className="button"

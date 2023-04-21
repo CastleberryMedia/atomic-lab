@@ -97,9 +97,12 @@ function View({
       </div>
 
       <section className="section-buttons flex">
-        <div className="button" onClick={() => navigate(-1, { replace: true })}>
+        <button
+          className="button"
+          onClick={() => navigate(-1, { replace: true })}
+        >
           Atrás
-        </div>
+        </button>
       </section>
     </div>
   );

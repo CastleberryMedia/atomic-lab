@@ -358,9 +358,9 @@ function View({
           </p>
         )}
         <div className="buttons flex">
-          <div className="button" onClick={() => redirectTo("/")}>
+          <button className="button" onClick={() => redirectTo("/")}>
             Atrás
-          </div>
+          </button>
 
           {userData?.rol_id !== 3 &&
           versionSelect === reviews?.review_data?.length ? (

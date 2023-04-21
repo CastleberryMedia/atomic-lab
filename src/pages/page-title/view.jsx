@@ -62,9 +62,9 @@ function View({
           )}
 
           {page === "team-page" && (
-            <div className="button-blue" onClick={() => func(true)}>
+            <button className="button-blue" onClick={() => func(true)}>
               Invitar personas
-            </div>
+            </button>
           )}
 
           {page !== "home" && (help || help === undefined) && (

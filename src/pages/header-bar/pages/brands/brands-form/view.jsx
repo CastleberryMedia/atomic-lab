@@ -217,9 +217,9 @@ function View({
         </section>
         <section className="footer">
           <section className="section-buttons flex">
-            <div className="button" onClick={() => redirectTo("/brands")}>
+            <button className="button" onClick={() => redirectTo("/brands")}>
               Atrás
-            </div>
+            </button>
             {rol !== 3 && (
               <input
                 className="button"

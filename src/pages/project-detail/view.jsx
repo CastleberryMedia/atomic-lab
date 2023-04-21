@@ -22,9 +22,12 @@ function View({
       <div className="project-detail-content flex">{options}</div>
       <div className="project-detail-content flex">{options_post}</div>
       <section className="section-buttons flex">
-        <div className="button" onClick={() => navigate(-1, { replace: true })}>
+        <button
+          className="button"
+          onClick={() => navigate(-1, { replace: true })}
+        >
           Atrás
-        </div>
+        </button>
       </section>
 
       {modalZoomImg && (

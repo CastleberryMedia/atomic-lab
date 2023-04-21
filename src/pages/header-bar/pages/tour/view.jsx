@@ -42,15 +42,21 @@ function View({
               Cancelar tour
             </div>
           ) : (
-            <div className="button" onClick={() => setTourStep(tourStep - 1)}>
+            <button
+              className="button"
+              onClick={() => setTourStep(tourStep - 1)}
+            >
               Atrás
-            </div>
+            </button>
           )}
 
           {tourStep <= 3 && (
-            <div className="button" onClick={() => setTourStep(tourStep + 1)}>
+            <button
+              className="button"
+              onClick={() => setTourStep(tourStep + 1)}
+            >
               Siguiente
-            </div>
+            </button>
           )}
           {tourStep === 4 && (
             <div

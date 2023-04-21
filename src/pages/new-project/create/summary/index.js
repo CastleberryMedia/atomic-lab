@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import CreateFormContext from "../../../../create-form-context";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../../../../data-context";
@@ -48,12 +48,10 @@ function Index({ setStep, step }) {
     text: SUMMARY_OPTIONS["editables"].options[0].text,
   });
 
-  console.log("formData", formData);
-
   const getTotalProject = () => {
     const base_price = SERVICES_DATA.find(
       (s) => s?.title === formData?.project_type
-    ).base_price;
+    )?.base_price;
 
     return (
       parseInt(base_price) +
@@ -121,8 +119,6 @@ function Index({ setStep, step }) {
     };
     formData.append("jsondataRequest", JSON.safeStringify(dataFin));
 
-    console.log("xxx", [...formData]);
-
     postCreateProject(formData)
       .then((res) => {
         setCoins(coins - getTotalProject());
@@ -154,6 +150,10 @@ function Index({ setStep, step }) {
         });
       });
   };
+
+  useEffect(() => {
+    !formData?.project_type && navigate("/new-project");
+  }, []);
 
   const properties = {
     modalMessageStart,

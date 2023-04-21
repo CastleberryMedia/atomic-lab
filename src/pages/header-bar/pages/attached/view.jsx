@@ -43,7 +43,7 @@ function View({ attached }) {
       </div>
       <section className="footer">
         <section className="section-buttons flex">
-          <div className="button">Guardar cambios</div>
+          <button className="button">Guardar cambios</button>
         </section>
       </section>
     </div>

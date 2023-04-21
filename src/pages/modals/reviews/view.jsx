@@ -19,9 +19,9 @@ function View({ close, data }) {
         <div className="buy"></div>
 
         <section className="section-buttons flex">
-          <div className="button-blue" onClick={() => close(false)}>
+          <button className="button-blue" onClick={() => close(false)}>
             Aceptar
-          </div>
+          </button>
         </section>
       </div>
     </div>

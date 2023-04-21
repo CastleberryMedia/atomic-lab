@@ -20,9 +20,9 @@ function View({ redirectTo }) {
               </p>
 
               <div className="buttons-email">
-                <div className="button-blue" onClick={() => redirectTo("/")}>
+                <button className="button-blue" onClick={() => redirectTo("/")}>
                   Aceptar
-                </div>
+                </button>
               </div>
             </div>
           </div>

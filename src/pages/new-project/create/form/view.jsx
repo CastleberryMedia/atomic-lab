@@ -126,14 +126,14 @@ function View({ redirectToService, setStep, step }) {
       </section>
 
       <section className="section-buttons flex">
-        <div className="button" onClick={() => redirectToService()}>
+        <button className="button" onClick={() => redirectToService()}>
           Atrás
-        </div>
+        </button>
 
         {!formData.name_project ? (
-          <div className="button-gray">Continuar</div>
+          <button className="button-gray">Continuar</button>
         ) : (
-          <div
+          <button
             className="button"
             onClick={() => {
               setStep(step + 1);
@@ -141,7 +141,7 @@ function View({ redirectToService, setStep, step }) {
             }}
           >
             Continuar
-          </div>
+          </button>
         )}
       </section>
     </div>

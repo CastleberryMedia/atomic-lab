@@ -70,9 +70,9 @@ function View({
 
         <section className="footer">
           <section className="section-buttons flex">
-            <div className="button" onClick={() => close(false)}>
+            <button className="button" onClick={() => close(false)}>
               Cerrar
-            </div>
+            </button>
           </section>
         </section>
       </div>

@@ -38,13 +38,16 @@ function View({
               )}
 
               <div className="buttons">
-                <div className="button" onClick={() => redirectTo("/")}>
+                <button className="button" onClick={() => redirectTo("/")}>
                   Atrás
-                </div>
+                </button>
                 {password1 === password2 && password1 && password2 && (
-                  <div className="button-blue" onClick={() => exeNewPassword()}>
+                  <button
+                    className="button-blue"
+                    onClick={() => exeNewPassword()}
+                  >
                     Actualizar
-                  </div>
+                  </button>
                 )}
               </div>
             </div>

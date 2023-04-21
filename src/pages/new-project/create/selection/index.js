@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import CreateFormContext from "../../../../create-form-context";
+import { useNavigate } from "react-router-dom";
 import View from "./view";
 
 function Index({ setStep, step }) {
+  const navigate = useNavigate();
   const data = useContext(CreateFormContext)[0];
   const [formData, setFormData] = useContext(CreateFormContext);
 
@@ -89,6 +91,10 @@ function Index({ setStep, step }) {
     setIdSelect(id);
     setSelectedText(e.target.files[0]);
   };
+
+  useEffect(() => {
+    !formData?.project_type && navigate("/new-project");
+  }, []);
 
   const properties = {
     selectedImg,

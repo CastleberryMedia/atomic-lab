@@ -130,9 +130,9 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
             </div>
 
             <div className="buttons">
-              <div className="button" onClick={() => close()}>
+              <button className="button" onClick={() => close()}>
                 Cancelar
-              </div>
+              </button>
 
               <div className="button-reactive">
                 <ReactiveButton

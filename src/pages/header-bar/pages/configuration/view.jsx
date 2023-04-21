@@ -135,17 +135,17 @@ function View({
 
         <div className="delete-account flex">
           <p>Eliminar cuenta</p>
-          <div className="button-blue" onClick={() => setModalMessage(true)}>
+          <button className="button-blue" onClick={() => setModalMessage(true)}>
             Eliminar
-          </div>
+          </button>
         </div>
       </section>
 
       <section className="footer">
         <section className="section-buttons flex">
-          <div className="button" onClick={() => updateDataConfigurations()}>
+          <button className="button" onClick={() => updateDataConfigurations()}>
             Guardar cambios
-          </div>
+          </button>
         </section>
       </section>
 

@@ -75,12 +75,12 @@ function View({
 
         <section className="footer">
           <section className="section-buttons flex">
-            <div className="button" onClick={() => close(false)}>
+            <button className="button" onClick={() => close(false)}>
               Cancelar
-            </div>
+            </button>
 
             {!name || !email || !rol ? (
-              <div className="button-gray">Invitar</div>
+              <button className="button-gray">Invitar</button>
             ) : (
               <div className="button-reactive">
                 <ReactiveButton
