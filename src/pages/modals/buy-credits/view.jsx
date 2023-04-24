@@ -8,7 +8,7 @@ import { GiTicket } from "react-icons/gi";
 
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
-initMercadoPago("APP_USR-e8a48daa-7fed-436e-b174-09e25d95c073", {
+initMercadoPago("APP_USR-9b0c6ab6-4363-43db-9e54-2ac153b479d0", {
   locale: "es-CO",
 });
 

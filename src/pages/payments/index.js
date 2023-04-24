@@ -1,24 +1,38 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { postUpdateCredits } from "../../services";
 import PageTitle from "../page-title";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import DataContext from "../../data-context";
 import "./styles.scss";
 
 function Index({ type }) {
   const [queryParameters] = useSearchParams();
+  const navigate = useNavigate();
 
   const { coins, setCoins } = useContext(DataContext);
 
   const coinsNew = parseInt(
-    queryParameters.get("external_reference").split("-")[1]
+    queryParameters?.get("external_reference")?.split("-")[1]
   );
 
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
-    postUpdateCredits({ value: coinsNew })
-      .then((res) => setCoins(res.data.response))
-      .catch((error) => {});
+    type === "success" &&
+      coinsNew &&
+      postUpdateCredits({ value: coinsNew })
+        .then((res) => setCoins(res.data.response))
+        .catch((error) => {});
+    navigate("/payment-success", { replace: true });
   }, [coinsNew]);
+
+  useEffect(() => {
+    progress === 120 && navigate("/");
+  }, [progress]);
+
+  setTimeout(function () {
+    setProgress(progress + 20);
+  }, 1000);
 
   const types = {
     success: {
@@ -47,6 +61,13 @@ function Index({ type }) {
         <div>
           <h3>{types[type].sub}</h3>
           <h3>{types[type]?.sub1}</h3>
+        </div>
+
+        <div className="load">
+          <div
+            className="load-progress"
+            style={{ width: `${progress}%` }}
+          ></div>
         </div>
       </div>
     </div>
