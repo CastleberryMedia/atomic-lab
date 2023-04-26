@@ -22,6 +22,8 @@ function View({
   loadingDiscount,
   setCodeInput,
   discountTotal,
+  excBuy,
+  loadingExcBuy,
 }) {
   const customization = {
     checkout: {
@@ -102,9 +104,17 @@ function View({
             <button className="button" onClick={() => close(false)}>
               Cancelar
             </button>
-
+            {!idWallet && (
+              <button
+                disabled={total === 0}
+                className="button-purple"
+                onClick={() => excBuy()}
+              >
+                {loadingExcBuy ? "Procesando..." : "Procesar pago"}
+              </button>
+            )}
             <div className="mp-button">
-              {total > 0 && idWallet && (
+              {idWallet && (
                 <>
                   <div id={idWallet}></div>
                   <Wallet

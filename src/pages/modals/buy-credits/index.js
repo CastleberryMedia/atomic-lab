@@ -44,10 +44,14 @@ function Index({ close, data }) {
   }
 
   useEffect(() => {
-    total > 0 && excBuy();
+    setIdWallet();
   }, [total]);
 
-  const excBuy = () => {
+  const [loadingExcBuy, setLoadingExcBuy] = useState();
+
+  console.log("loadingExcBuy", loadingExcBuy);
+
+  async function excBuy() {
     const data = {
       description: "Creditos Atomic Lab",
       unit_price: total,
@@ -59,12 +63,15 @@ function Index({ close, data }) {
       external_reference: `coins-${coinsQ}`,
     };
 
-    postBilling(data)
+    setLoadingExcBuy(true);
+    await postBilling(data)
       .then((res) => {
         setIdWallet(res.data.id);
       })
       .catch((error) => {});
-  };
+
+    setLoadingExcBuy(false);
+  }
 
   const properties = {
     close,
@@ -76,6 +83,8 @@ function Index({ close, data }) {
     loadingDiscount,
     setCodeInput,
     discountTotal,
+    excBuy,
+    loadingExcBuy,
   };
   return <View {...properties} />;
 }

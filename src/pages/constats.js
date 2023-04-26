@@ -1118,7 +1118,7 @@ export const SERVICES_DATA = [
     title: "Redes sociales",
     title_id: "redes-sociales",
     description: "Contenido compartido en las redes sociales",
-    base_price: 600,
+    base_price: 109,
     price: {
       basic: [
         {
