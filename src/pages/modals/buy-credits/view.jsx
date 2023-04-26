@@ -24,6 +24,7 @@ function View({
   discountTotal,
   excBuy,
   loadingExcBuy,
+  addCredits,
 }) {
   const customization = {
     checkout: {
@@ -92,19 +93,24 @@ function View({
         </div>
 
         <div className="totals">
-          <div className="total">Subtotal: $ {coinsQ * 1000}</div>
+          <div className="total">Subtotal: $ {coinsQ * 100}</div>
           <div className="total">
-            Descuento: $ {(coinsQ * 1000 * discountTotal) / 100}
+            Descuento: $ {(coinsQ * 100 * discountTotal) / 100}
           </div>
           <div className="total">Total: $ {total}</div>
         </div>
 
-        <section className="footer">
-          <section className="section-buttons flex">
-            <button className="button" onClick={() => close(false)}>
-              Cancelar
+        <section className="buttons-pay">
+          <button className="button" onClick={() => close(false)}>
+            Cancelar
+          </button>
+
+          {discountTotal === 100 ? (
+            <button className="button-purple" onClick={() => addCredits()}>
+              Agregar creditos
             </button>
-            {!idWallet && (
+          ) : (
+            !idWallet && (
               <button
                 disabled={total === 0}
                 className="button-purple"
@@ -112,23 +118,22 @@ function View({
               >
                 {loadingExcBuy ? "Procesando..." : "Procesar pago"}
               </button>
-            )}
+            )
+          )}
+
+          {idWallet && (
             <div className="mp-button">
-              {idWallet && (
-                <>
-                  <div id={idWallet}></div>
-                  <Wallet
-                    initialization={{
-                      preferenceId: idWallet,
-                      redirectMode: "modal",
-                    }}
-                    customization={customization}
-                    onSubmit={() => close(false)}
-                  />
-                </>
-              )}
+              <div id={idWallet}></div>
+              <Wallet
+                initialization={{
+                  preferenceId: idWallet,
+                  redirectMode: "modal",
+                }}
+                customization={customization}
+                onSubmit={() => close(false)}
+              />
             </div>
-          </section>
+          )}
         </section>
       </div>
     </div>

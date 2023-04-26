@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { postBilling, getPercentageDiscount } from "../../../services";
+import {
+  postBilling,
+  getPercentageDiscount,
+  postUpdateCredits,
+} from "../../../services";
 import DataContext from "../../../data-context";
 import View from "./view";
 
@@ -7,7 +11,7 @@ function Index({ close, data }) {
   const [coinsQ, setCoinsQ] = useState(0);
   const [total, setTotal] = useState(0);
   const [idWallet, setIdWallet] = useState();
-  const { userData } = useContext(DataContext);
+  const { userData, setCoins } = useContext(DataContext);
   const [loadingDiscount, setLoadingDiscount] = useState(false);
   const [discountValidate, setDiscountValidate] = useState(null);
   const [codeInput, setCodeInput] = useState(null);
@@ -37,10 +41,12 @@ function Index({ close, data }) {
     return percentage;
   }
 
+  console.log("discountTotal", discountTotal);
+
   function proccessTotal() {
     discountTotal === null
-      ? setTotal(coinsQ * 1000)
-      : setTotal(coinsQ * 1000 - (coinsQ * 1000 * discountTotal) / 100);
+      ? setTotal(coinsQ * 100)
+      : setTotal(coinsQ * 100 - (coinsQ * 100 * discountTotal) / 100);
   }
 
   useEffect(() => {
@@ -59,9 +65,11 @@ function Index({ close, data }) {
       first_name: userData?.name,
       last_name: userData?.last_name,
       email: userData?.email,
-      dni: userData?.cedula,
+      dni: userData?.cedula || 0,
       external_reference: `coins-${coinsQ}`,
     };
+
+    //KOA324HK2V
 
     setLoadingExcBuy(true);
     await postBilling(data)
@@ -71,6 +79,15 @@ function Index({ close, data }) {
       .catch((error) => {});
 
     setLoadingExcBuy(false);
+  }
+
+  async function addCredits() {
+    await postUpdateCredits({ value: coinsQ })
+      .then((res) => {
+        setCoins(res.data.response);
+        close(false);
+      })
+      .catch((error) => {});
   }
 
   const properties = {
@@ -85,6 +102,7 @@ function Index({ close, data }) {
     discountTotal,
     excBuy,
     loadingExcBuy,
+    addCredits,
   };
   return <View {...properties} />;
 }
