@@ -41,8 +41,6 @@ function Index({ close, data }) {
     return percentage;
   }
 
-  console.log("discountTotal", discountTotal);
-
   function proccessTotal() {
     discountTotal === null
       ? setTotal(coinsQ * 100)
@@ -54,8 +52,6 @@ function Index({ close, data }) {
   }, [total]);
 
   const [loadingExcBuy, setLoadingExcBuy] = useState();
-
-  console.log("loadingExcBuy", loadingExcBuy);
 
   async function excBuy() {
     const data = {

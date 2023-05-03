@@ -92,71 +92,54 @@ function Index({ type_home, page, data }) {
 
     setOrderSelect(type);
 
+    let newFilter = [];
+
     switch (type) {
       case "Nombre del proyecto":
-        setProjectsFilter(
-          paginate(
-            asc
-              ? oldOrder.sort((a, b) =>
-                  a.name_project.localeCompare(b.name_project)
-                )
-              : oldOrder.sort((a, b) =>
-                  b.name_project.localeCompare(a.name_project)
-                ),
-            paginationPage === 1 ? 0 : paginationPage - 1,
-            5
-          )
-        );
+        newFilter = asc
+          ? oldOrder.sort((a, b) =>
+              a.name_project.localeCompare(b.name_project)
+            )
+          : oldOrder.sort((a, b) =>
+              b.name_project.localeCompare(a.name_project)
+            );
 
         break;
 
       case "Fecha estimada próx. revisión":
-        setProjectsFilter(
-          paginate(
-            asc
-              ? oldOrder.sort(
-                  (a, b) => new Date(a.review_date) - new Date(b.review_date)
-                )
-              : oldOrder.sort(
-                  (a, b) => new Date(b.review_date) - new Date(a.review_date)
-                ),
-            paginationPage === 1 ? 0 : paginationPage - 1,
-            5
-          )
-        );
+        newFilter = asc
+          ? oldOrder.sort(
+              (a, b) => new Date(a.review_date) - new Date(b.review_date)
+            )
+          : oldOrder.sort(
+              (a, b) => new Date(b.review_date) - new Date(a.review_date)
+            );
+
         break;
       case "Estado":
-        setProjectsFilter(
-          paginate(
-            asc
-              ? oldOrder.sort((a, b) => a.flow_active - b.flow_active)
-              : oldOrder.sort((a, b) => b.flow_active - a.flow_active),
-            paginationPage === 1 ? 0 : paginationPage - 1,
-            5
-          )
-        );
+        newFilter = asc
+          ? oldOrder.sort((a, b) => a.flow_active - b.flow_active)
+          : oldOrder.sort((a, b) => b.flow_active - a.flow_active);
+
         break;
       case "Creacion":
-        setProjectsFilter(
-          paginate(
-            asc
-              ? oldOrder.sort(
-                  (a, b) =>
-                    new Date(b.created_format) - new Date(a.created_format)
-                )
-              : oldOrder.sort(
-                  (a, b) =>
-                    new Date(a.created_format) - new Date(b.created_format)
-                ),
-            paginationPage === 1 ? 0 : paginationPage - 1,
-            5
-          )
-        );
+        newFilter = asc
+          ? oldOrder.sort(
+              (a, b) => new Date(a.created_format) - new Date(b.created_format)
+            )
+          : oldOrder.sort(
+              (a, b) => new Date(b.created_format) - new Date(a.created_format)
+            );
+
         break;
 
       default:
         break;
     }
+
+    setProjectsFilter(
+      paginate(newFilter, paginationPage === 1 ? 0 : paginationPage - 1, 6)
+    );
     setAsc(!asc);
   };
 
@@ -173,7 +156,7 @@ function Index({ type_home, page, data }) {
       paginate(
         projectsFilterOriginal,
         paginationPage === 1 ? 0 : paginationPage - 1,
-        5
+        6
       )
     );
   }, [paginationPage, projectsFilterOriginal]);

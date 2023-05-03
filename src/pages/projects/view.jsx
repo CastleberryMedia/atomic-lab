@@ -89,7 +89,6 @@ function View({
                   type: typeFin,
                   filter: filter,
                   setFilter: setFilter,
-                  /*  applyFilter: applyFilter, */
                 }).map((item, index) => (
                   <th key={index}>
                     <div className="th-flex flex">
@@ -115,9 +114,7 @@ function View({
 
             <tbody>
               {projectsFilter
-                ?.filter((item, idx) =>
-                  page === "home" ? idx < 5 : idx < 1000
-                )
+                ?.slice(0, page === "home" ? 6 : 1000)
                 ?.filter((item, idx) => item.flow_parse[3].status !== typeFin)
                 .map((project, index) => {
                   return (
