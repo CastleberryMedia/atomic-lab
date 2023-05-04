@@ -98,9 +98,12 @@ function Index({ setStep, step }) {
       data.img_array.map((image) =>
         formData.append(image.name, image.formData)
       );
+
     data.references &&
-      data.references.map((reference) =>
-        formData.append(reference.name_file, reference.file)
+      data.references.map(
+        (reference) =>
+          reference.name_file &&
+          formData.append(reference.name_file, reference.file)
       );
     data.text_array &&
       data.text_array.map((text) => formData.append(text.name, text.formData));

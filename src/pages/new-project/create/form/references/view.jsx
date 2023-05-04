@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Icons } from "../../../../icons";
 import { FORM_INPUTS } from "../../../../constats";
 import "./styles.scss";
@@ -9,8 +9,6 @@ function View({
   setReferences,
   referenceFile,
   setReferenceFile,
-  referenceDescription,
-  setReferenceDescription,
 }) {
   return (
     <div className="upload-file">
@@ -31,16 +29,6 @@ function View({
         id={`reference-${data?.id}`}
         onChange={(e) => {
           setReferenceFile(e.target.files[0]);
-          setReferences(references.filter((ref) => ref.id !== data.id));
-          setReferences((references) => [
-            ...references,
-            {
-              id: data.id,
-              text: referenceDescription,
-              name_file: referenceFile?.name,
-              file: referenceFile,
-            },
-          ]);
         }}
       />
 
