@@ -151,7 +151,7 @@ function View({
               {data.text_array &&
               data?.text_array?.filter((item) => item.id === id)[0]?.name
                 ? data?.text_array?.filter((item) => item.id === id)[0]?.name
-                : "Adjuntar"}
+                : "Adjuntar imagen"}
             </label>
             <input
               {...FORM_INPUTS.reference_add}

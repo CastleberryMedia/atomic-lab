@@ -191,6 +191,7 @@ function Index({ setStep, step }) {
     setFCustom,
     setTCustom,
     userData,
+    coins,
   };
 
   return <View {...properties} />;

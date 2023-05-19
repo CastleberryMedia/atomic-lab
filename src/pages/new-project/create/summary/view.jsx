@@ -41,6 +41,7 @@ function View({
   setFCustom,
   setTCustom,
   userData,
+  coins,
 }) {
   return (
     <div className="summary-page page">
@@ -357,7 +358,7 @@ function View({
                     setDataModals();
                   }}
                 >
-                  Comprar
+                  Recargar monedas
                 </div>
               </td>
               <td></td>
@@ -365,6 +366,8 @@ function View({
           </tbody>
         </table>
       </section>
+
+      {console.log("conins", coins)}
 
       <section className="footer">
         <section className="section-buttons flex">
@@ -374,12 +377,12 @@ function View({
           <button
             className="button"
             onClick={() =>
-              getTotalProject() > userData?.credits
+              getTotalProject() > coins
                 ? setModalBuyCredit(!modalBuyCredits)
                 : setModalMessageStart(true)
             }
           >
-            {getTotalProject() > userData?.credits
+            {getTotalProject() > coins
               ? "Monedas insuficientes"
               : "Iniciar proyecto"}
           </button>

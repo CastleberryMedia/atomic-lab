@@ -36,27 +36,12 @@ function View({
         price={serviceData?.price?.basic}
         modalPriceTotal={modalPriceTotal}
       />
-
       <section className="section-image">
         {Icons(`header_${serviceData?.title.replace(" ", "_").toLowerCase()}`)}
       </section>
       <section className="section-description">
         {parse(serviceData?.description_page)}
       </section>
-
-      <section className="section-specs">
-        {serviceData?.specs?.map((spec, index) => (
-          <div key={index} className="section-specs-spec">
-            <h3>{spec.title}</h3>
-            <ul>
-              {spec.options.map((option, index) => (
-                <li key={index}>{option}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </section>
-
       {serviceData?.types_manuals && (
         <section className="section-cards-manuals flex">
           {serviceData?.types_manuals?.map((type, index) => (
@@ -92,7 +77,6 @@ function View({
           ))}
         </section>
       )}
-
       <section className="section-brand">
         <h3>1. ¿Cuál marca vas a utilizar?</h3>
 
@@ -124,7 +108,6 @@ function View({
           </div>
         </div>
       </section>
-
       {/* <section className="section-publication-type">
         <h3>2. {serviceData?.publication_type?.title}</h3>
 
@@ -186,7 +169,6 @@ function View({
           </>
         )}
       </section> */}
-
       <section className="section-social-network">
         <h3>2. {serviceData?.social_network?.title}</h3>
 
@@ -230,7 +212,18 @@ function View({
           )}
         </div>
       </section>
-
+      <section className="section-specs">
+        {serviceData?.specs?.map((spec, index) => (
+          <div key={index} className="section-specs-spec">
+            <h3>{spec.title}</h3>
+            <ul>
+              {spec.options.map((option, index) => (
+                <li key={index}>{option}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
       <section className="section-buttons flex">
         <button className="button" onClick={() => redirectToHome()}>
           Atrás
@@ -248,7 +241,6 @@ function View({
           Continuar
         </button>
       </section>
-
       {modalMessage && (
         <ModalMessage
           next={setModalMessage}

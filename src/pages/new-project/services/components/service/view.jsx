@@ -25,7 +25,7 @@ function View({ service, redirectToServicePage }) {
         <div className="card-footer flex">
           <div className="title">{service.title}</div>
           <div className="icon-credit flex">
-            {Icons("credits")} ${service.price.basic[0].price} COP
+            {Icons("credits")} ${service.price.basic[0].price}
           </div>
         </div>
       </>
