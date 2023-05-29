@@ -3,6 +3,7 @@ import {
   postBilling,
   getPercentageDiscount,
   postUpdateCredits,
+  getPercentageAvailable,
 } from "../../../services";
 import DataContext from "../../../data-context";
 import View from "./view";
@@ -14,6 +15,8 @@ function Index({ close, data }) {
   const { userData, setCoins } = useContext(DataContext);
   const [loadingDiscount, setLoadingDiscount] = useState(false);
   const [discountValidate, setDiscountValidate] = useState(null);
+  const [discountValidateAvailable, setDiscountValidateAvailable] =
+    useState(null);
   const [codeInput, setCodeInput] = useState(null);
   const [discountTotal, setDiscountTotal] = useState(null);
 
@@ -27,15 +30,29 @@ function Index({ close, data }) {
 
   function getPercentajeCode(code) {
     setLoadingDiscount(true);
-    let percentage = getPercentageDiscount(code)
+
+    let percentage = 0;
+
+    getPercentageAvailable({
+      user_id: userData?.id,
+      coupon_code: code,
+    })
       .then((res) => {
-        setLoadingDiscount(false);
-        setDiscountValidate(true);
-        setDiscountTotal(parseInt(res.data.percentage));
+        percentage = getPercentageDiscount(code)
+          .then((res) => {
+            setLoadingDiscount(false);
+            setDiscountValidate(true);
+            setDiscountTotal(parseInt(res.data.percentage));
+            setDiscountValidateAvailable(null);
+          })
+          .catch((error) => {
+            setLoadingDiscount(false);
+            setDiscountValidate(false);
+          });
       })
       .catch((error) => {
         setLoadingDiscount(false);
-        setDiscountValidate(false);
+        setDiscountValidateAvailable(false);
       });
 
     return percentage;
@@ -78,7 +95,7 @@ function Index({ close, data }) {
   }
 
   async function addCredits() {
-    await postUpdateCredits({ value: coinsQ })
+    await postUpdateCredits({ value: coinsQ, coupon_code: codeInput })
       .then((res) => {
         setCoins(res.data.response);
         close(false);
@@ -99,6 +116,7 @@ function Index({ close, data }) {
     excBuy,
     loadingExcBuy,
     addCredits,
+    discountValidateAvailable,
   };
   return <View {...properties} />;
 }

@@ -163,6 +163,11 @@ export const deleteDiscount = async ({ code }) =>
 export const getPercentageDiscount = async (code) =>
   axios.get(`${base_url}/get_percentage/${code}`);
 
+export const getPercentageAvailable = async (data) =>
+  axios.get(
+    `${base_url}/coupon_available/${data.user_id}?coupon_code=${data.coupon_code}`
+  );
+
 //BUY CREDITS
 
 export const postBilling = async (data) =>

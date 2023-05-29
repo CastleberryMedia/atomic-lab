@@ -25,6 +25,7 @@ function View({
   excBuy,
   loadingExcBuy,
   addCredits,
+  discountValidateAvailable,
 }) {
   const customization = {
     checkout: {
@@ -83,6 +84,12 @@ function View({
                 }
               />
 
+              {discountValidateAvailable !== null &&
+                !discountValidateAvailable && (
+                  <div className="discount-not-exists">
+                    Ya se utilizo este código de descuento
+                  </div>
+                )}
               {discountValidate !== null && !discountValidate && (
                 <div className="discount-not-exists">
                   Código de descuento no existe

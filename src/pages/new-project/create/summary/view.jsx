@@ -367,8 +367,6 @@ function View({
         </table>
       </section>
 
-      {console.log("conins", coins)}
-
       <section className="footer">
         <section className="section-buttons flex">
           <button className="button" onClick={() => setStep(step - 1)}>
