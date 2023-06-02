@@ -62,9 +62,15 @@ function Index() {
 
   function generateCode() {
     setPercent("");
-    let r = (Math.random() + 1).toString(36).substring(2);
+    let code = "";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const charactersLength = characters.length;
 
-    setCode(r.toUpperCase());
+    for (let i = 0; i < 10; i++) {
+      code += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    setCode(code);
   }
 
   const props = {

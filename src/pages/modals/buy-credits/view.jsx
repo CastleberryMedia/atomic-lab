@@ -79,9 +79,7 @@ function View({
                     ? "error"
                     : "ok"
                 } `}
-                onChange={(e) =>
-                  e.target.value.length === 10 && setCodeInput(e.target.value)
-                }
+                onChange={(e) => setCodeInput(e.target.value)}
               />
 
               {discountValidateAvailable !== null &&

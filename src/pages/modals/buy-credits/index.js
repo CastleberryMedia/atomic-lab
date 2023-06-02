@@ -82,8 +82,6 @@ function Index({ close, data }) {
       external_reference: `coins-${coinsQ}`,
     };
 
-    //KOA324HK2V
-
     setLoadingExcBuy(true);
     await postBilling(data)
       .then((res) => {
