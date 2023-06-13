@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
 import { FORM_INPUTS } from "../../../constats";
-import CreateFormContext from "../../../../create-form-context";
 import Post from "./post";
 import "../styles.scss";
 import "./styles.scss";
@@ -14,18 +13,13 @@ function View({
   step,
   onSelectText,
   selectedImgArray,
-  selectedTextArray,
+  setFormData,
+  formData,
+  post,
+  setPost,
+  setPostCount,
+  postCount,
 }) {
-  const data = useContext(CreateFormContext);
-  const [formData, setFormData] = useContext(CreateFormContext);
-
-  const [post, setPost] = useState(
-    data[0].post ? data[0].post : [{ id: 1, objetive: "", text: "" }]
-  );
-  const [postCount, setPostCount] = useState(
-    data[0].post ? data[0].post[data[0].post.length - 1].id : 1
-  );
-
   return (
     <div className="selection-page page">
       <div className="step flex">{Icons("step_selection")}</div>
@@ -56,7 +50,7 @@ function View({
                   setFormData({ ...formData, idea_post: e.target.value });
                 }}
               >
-                {data[0].idea_post ? data[0].idea_post : ""}
+                {formData.idea_post ? formData.idea_post : ""}
               </textarea>
             </div>
           </div>
@@ -112,10 +106,6 @@ function View({
             }
             onClick={() => {
               setStep(step + 1);
-              setFormData({
-                ...formData,
-                post: post,
-              });
             }}
             className="button"
           >

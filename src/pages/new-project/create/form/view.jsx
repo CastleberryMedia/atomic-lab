@@ -1,29 +1,28 @@
-import React, { useContext, useState } from "react";
-import CreateFormContext from "../../../../create-form-context";
+import React from "react";
+
 import { FORM_INPUTS } from "../../../constats";
 import PageTitle from "../../../page-title";
 import { Icons } from "../../../icons";
 import References from "./references";
+
 import "./styles.scss";
 
-function View({ redirectToService, setStep, step }) {
-  const data = useContext(CreateFormContext)[0];
-  const [formData, setFormData] = useContext(CreateFormContext);
-
-  const [references, setReferences] = useState(
-    data.references ? data.references : [{ id: 0 }]
-  );
-  const [referencesCount, setReferencesCount] = useState(1);
-
+function View({
+  redirectToService,
+  setStep,
+  step,
+  formData,
+  setFormData,
+  references,
+  setReferences,
+  referencesCount,
+  setReferencesCount,
+}) {
   return (
     <div className="form-page page">
       <div className="step flex">{Icons("step_form")}</div>
 
-      <PageTitle
-        title={"Formulario"}
-        /* price={serviceData?.price?.basic}
-        modalPriceTotal={modalPriceTotal} */
-      />
+      <PageTitle title={"Formulario"} />
 
       <section className="subtitle">
         <p>
@@ -57,10 +56,10 @@ function View({ redirectToService, setStep, step }) {
               <input
                 {...FORM_INPUTS.name}
                 id="name"
-                onChange={(e) =>
-                  setFormData({ ...formData, name_project: e.target.value })
-                }
-                value={formData.name_project ? formData.name_project : ""}
+                onChange={(e) => {
+                  setFormData({ ...formData, name_project: e.target.value });
+                }}
+                value={formData?.name_project}
               />
             </div>
           </div>
@@ -73,10 +72,10 @@ function View({ redirectToService, setStep, step }) {
               <textarea
                 {...FORM_INPUTS.public}
                 id="public"
-                onChange={(e) =>
-                  setFormData({ ...formData, public_goal: e.target.value })
-                }
-                value={formData.public_goal ? formData.public_goal : ""}
+                onChange={(e) => {
+                  setFormData({ ...formData, public_goal: e.target.value });
+                }}
+                value={formData?.public_goal}
               />
             </div>
           </div>
@@ -86,10 +85,10 @@ function View({ redirectToService, setStep, step }) {
               <textarea
                 {...FORM_INPUTS.palete_colors}
                 id="colors"
-                onChange={(e) =>
-                  setFormData({ ...formData, palete_colors: e.target.value })
-                }
-                value={formData.palete_colors ? formData.palete_colors : ""}
+                onChange={(e) => {
+                  setFormData({ ...formData, palete_colors: e.target.value });
+                }}
+                value={formData?.palete_colors}
               />
             </div>
           </div>
@@ -130,19 +129,15 @@ function View({ redirectToService, setStep, step }) {
           Atrás
         </button>
 
-        {!formData.name_project ? (
-          <button className="button-gray">Continuar</button>
-        ) : (
-          <button
-            className="button"
-            onClick={() => {
-              setStep(step + 1);
-              setFormData({ ...formData, references: references });
-            }}
-          >
-            Continuar
-          </button>
-        )}
+        <button
+          disabled={!formData.name_project}
+          className="button"
+          onClick={() => {
+            setStep(step + 1);
+          }}
+        >
+          Continuar
+        </button>
       </section>
     </div>
   );

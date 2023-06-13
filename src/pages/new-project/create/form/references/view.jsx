@@ -5,10 +5,10 @@ import "./styles.scss";
 
 function View({
   data,
-  references,
-  setReferences,
   referenceFile,
   setReferenceFile,
+  handleFileChange,
+  handleAddTextReference,
 }) {
   return (
     <div className="upload-file">
@@ -29,6 +29,7 @@ function View({
         id={`reference-${data?.id}`}
         onChange={(e) => {
           setReferenceFile(e.target.files[0]);
+          handleFileChange(e);
         }}
       />
 
@@ -39,18 +40,7 @@ function View({
             <textarea
               {...FORM_INPUTS.reference}
               id="reference"
-              onChange={(e) => {
-                setReferences(references.filter((ref) => ref.id !== data.id));
-                setReferences((references) => [
-                  ...references,
-                  {
-                    id: data.id,
-                    text: e.target.value,
-                    name_file: referenceFile?.name,
-                    file: referenceFile,
-                  },
-                ]);
-              }}
+              onChange={(e) => handleAddTextReference(data.id, e.target.value)}
             >
               {data?.text}
             </textarea>

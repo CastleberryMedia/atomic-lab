@@ -28,9 +28,9 @@ function View({
 
         <div className="inputs-main">
           <div className="inputs">
-            <p className="text-purple">
+            <div className="text-purple">
               <h2>Inicia sesión</h2>
-            </p>
+            </div>
             <input
               type="email"
               placeholder="Email"
@@ -109,15 +109,15 @@ function View({
             >
               Iniciar sesión
             </div> */}
-            <p className="not-account">
-              ¿No tienes una cuenta?
-              <div
-                className="text-purple"
+            <div className="not-account">
+              <div>¿No tienes una cuenta?</div>
+              <button
+                className="button-text-purple"
                 onClick={() => redirectTo("sing-up")}
               >
                 Crea una cuenta
-              </div>
-            </p>
+              </button>
+            </div>
           </div>
         </div>
       </div>

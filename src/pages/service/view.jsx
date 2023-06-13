@@ -1,6 +1,5 @@
 import React from "react";
 
-import { TYPE_PUBLICATION_DATA } from "../constats";
 import PageTitle from "../page-title";
 import parse from "html-react-parser";
 import ModalMessage from "../modals/message";
@@ -10,24 +9,20 @@ import "./styles.scss";
 
 function View({
   serviceData,
-  typePublication,
-  setTypePublication,
   typeManual,
   setTypeManual,
   redirectToHome,
   modalPriceTotal,
   redirectToForm,
-  selectType,
-  setSelectType,
   modalMessage,
   setModalMessage,
   socialNetwork,
   setSocialNetwork,
   brands,
-  data,
   formData,
   setFormData,
   navigate,
+  /*   dataLocal, */
 }) {
   return (
     <div className="page service-page">
@@ -85,15 +80,22 @@ function View({
             name="brand_select"
             id="brand_select"
             className="select"
-            onChange={(e) =>
-              setFormData({ ...formData, brand_select: e.target.value })
-            }
+            onChange={({ target }) => {
+              setFormData({ ...formData, brand_select: target.value });
+            }}
+            defaultValue={formData?.brand_select}
           >
             <option disabled selected>
               Selecciona una opción
             </option>
-            {brands?.map((brand, index) => (
-              <option key={index} defaultValue={brand.name}>
+            {[
+              ...new Map(brands?.map((item) => [item["name"], item])).values(),
+            ]?.map((brand, index) => (
+              <option
+                key={index}
+                value={brand?.name}
+                selected={formData?.brand_select === brand?.name}
+              >
                 {brand?.name}
               </option>
             ))}
@@ -108,67 +110,7 @@ function View({
           </div>
         </div>
       </section>
-      {/* <section className="section-publication-type">
-        <h3>2. {serviceData?.publication_type?.title}</h3>
 
-        <div className="type-check flex">
-          {serviceData?.publication_type?.options.map((option, index) => (
-            <label key={index} className="flex">
-              <div className="circle-check">
-                <input
-                  checked={typePublication === option}
-                  key={index}
-                  type="checkbox"
-                  id="p_type"
-                  value={option}
-                  onClick={() => {
-                    setTypePublication(option);
-                    setFormData({
-                      ...formData,
-                      type_publication: option
-                        .replaceAll(" ", "-")
-                        .toLowerCase(),
-                    });
-                  }}
-                />
-              </div>
-              {option}
-            </label>
-          ))}
-        </div>
-
-        {typePublication !== "" && (
-          <>
-            <p className="type-check-desc">
-              Selecciona el tipo de {typePublication.toLowerCase()} que
-              nesecitas
-            </p>
-            <div className="type-cards flex">
-              {TYPE_PUBLICATION_DATA[typePublication].options.map(
-                (option, index) => (
-                  <div
-                    key={index}
-                    className={`type-card flex ${
-                      selectType === option && "active"
-                    }`}
-                    onClick={() => {
-                      setSelectType(selectType === option ? "" : option);
-                      setFormData({
-                        ...formData,
-                        type_post: option.replaceAll(" ", "-").toLowerCase(),
-                      });
-                    }}
-                  >
-                    {option}
-
-                    {Icons("img_circle")}
-                  </div>
-                )
-              )}
-            </div>
-          </>
-        )}
-      </section> */}
       <section className="section-social-network">
         <h3>2. {serviceData?.social_network?.title}</h3>
 
@@ -177,7 +119,10 @@ function View({
             <label className="flex" key={index}>
               <div className="circle-check">
                 <input
-                  checked={socialNetwork === option.name}
+                  checked={
+                    socialNetwork === option.name ||
+                    option.name === formData?.social_network
+                  }
                   disabled={option.status === "inactive"}
                   type="checkbox"
                   id="s_net"
@@ -230,11 +175,7 @@ function View({
         </button>
 
         <button
-          disabled={
-            !data.brand_select ||
-            /*   !data.type_publication || !data.type_post || */
-            !data.social_network
-          }
+          disabled={!formData?.brand_select || !formData?.social_network}
           className={"button"}
           onClick={() => redirectToForm()}
         >

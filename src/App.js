@@ -39,10 +39,13 @@ import Projects from "./pages/projects";
 import Create from "./pages/new-project/create";
 
 import "./app.scss";
+import { SAVE_LOCAL } from "./pages/utils";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(
+    JSON.parse(localStorage.getItem("formProject")) ?? {}
+  );
 
   function toggleAuthenticated() {
     setIsAuthenticated((isAuthenticated) => !isAuthenticated);
@@ -58,6 +61,47 @@ function App() {
   const [tourActive, setTourActive] = useState(false);
   const [search, setSearch] = useState(null);
   const [coins, setCoins] = useState(null);
+
+  console.log("formData", formData);
+  formData?.img_array && console.log("IMG", formData?.img_array[0].formData);
+
+  useEffect(() => {
+    if (Object.keys(formData).length) {
+      // Recorrer img_array dentro de formData
+      formData?.img_array &&
+        formData?.img_array.forEach((img) => {
+          const base64Data = img?.base64img?.substring(
+            img.base64img.indexOf(",") + 1
+          );
+          const binaryString = atob(base64Data);
+
+          // Convertir binaryString a Blob
+          const bytes = new Uint8Array(binaryString.length);
+          for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+          }
+          const blob = new Blob([bytes], { type: "image/png" });
+
+          // Crear el objeto 'object'
+          const objectURL = URL.createObjectURL(blob);
+          img.object = objectURL;
+
+          // Crear el objeto 'formData'
+          const file = new File([blob], "image.png", { type: "image/png" });
+          const imgFormData = new FormData();
+          imgFormData.append("image", file);
+
+          console.log("imgFormData", imgFormData);
+
+          img.formData = imgFormData;
+        });
+
+      formData &&
+        Object.entries(formData).map(([key, value]) =>
+          SAVE_LOCAL([key], value)
+        );
+    }
+  }, [formData]);
 
   const user_id = JSON.parse(
     sessionStorage?.getItem("atomiclab-user")
