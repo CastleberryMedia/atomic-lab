@@ -13,12 +13,9 @@ function View({
   setModalMessageStart,
   modalMessageStartStatus,
   setModalMessageStartStatus,
-  libertyLevel,
-  setLibertyLevel,
   setStep,
   step,
   handleStartProject,
-  data,
   formData,
   setFormData,
   modalMessageStartData,
@@ -38,9 +35,6 @@ function View({
   editPrice,
   setEditPrice,
   getTotalProject,
-  setFCustom,
-  setTCustom,
-  userData,
   coins,
 }) {
   return (
@@ -62,15 +56,15 @@ function View({
         <div className="info">
           <div className="row">
             <div className="title">Marca</div>
-            <div className="value">{data.brand_select}</div>
+            <div className="value">{formData.brand_select}</div>
           </div>
           <div className="row">
             <div className="title">Post</div>
-            <div className="value">{data.type_post}</div>
+            <div className="value">{formData.type_post}</div>
           </div>
           <div className="row">
             <div className="title">Redes Sociales</div>
-            <div className="value">{data.social_network}</div>
+            <div className="value">{formData.social_network}</div>
           </div>
           <div className="row">
             <div className="title">Formulario {Icons("edit")}</div>
@@ -100,10 +94,9 @@ function View({
               <div className="section">
                 <div
                   className={`circle none ${
-                    libertyLevel === "none" && "active"
+                    formData.designer_freedom === "ninguna" && "active"
                   }`}
                   onClick={() => {
-                    setLibertyLevel("none");
                     setFormData({ ...formData, designer_freedom: "ninguna" });
                   }}
                 ></div>
@@ -111,9 +104,10 @@ function View({
               </div>
               <div className="section">
                 <div
-                  className={`circle ${libertyLevel === "medium" && "active"}`}
+                  className={`circle ${
+                    formData.designer_freedom === "media" && "active"
+                  }`}
                   onClick={() => {
-                    setLibertyLevel("medium");
                     setFormData({ ...formData, designer_freedom: "media" });
                   }}
                 ></div>
@@ -121,9 +115,10 @@ function View({
               </div>
               <div className="section">
                 <div
-                  className={`circle ${libertyLevel === "high" && "active"}`}
+                  className={`circle ${
+                    formData.designer_freedom === "mucha" && "active"
+                  }`}
                   onClick={() => {
-                    setLibertyLevel("high");
                     setFormData({ ...formData, designer_freedom: "mucha" });
                   }}
                 ></div>
@@ -176,10 +171,18 @@ function View({
                       )[0]?.price,
                       text: e.target.value,
                     });
+                    setFormData({
+                      ...formData,
+                      tiempo_entrega: e.target.value,
+                    });
                   }}
                 >
                   {SUMMARY_OPTIONS["tiempo"].options.map((option, index) => (
-                    <option key={index} value={option.text}>
+                    <option
+                      key={index}
+                      value={option.text}
+                      selected={formData?.tiempo_entrega === option.text}
+                    >
                       {option.text} {option?.extra_text}
                     </option>
                   ))}
@@ -197,7 +200,7 @@ function View({
               <td>
                 <div className="flex price">
                   <div>$</div>
-                  <div>{formatPrice.price}</div>
+                  <div>{formatPrice?.price}</div>
                 </div>
               </td>
               <td>
@@ -209,27 +212,41 @@ function View({
                     onChange={(e) => {
                       setFormatPrice({
                         price: SUMMARY_OPTIONS["formato"]?.options.filter(
-                          (option) => option.text === e.target.value
+                          (option) => option?.text === e.target.value
                         )[0]?.price,
                         text: e.target.value,
                       });
-                      setFCustom(null);
+
+                      setFormData({
+                        ...formData,
+                        formato_entrega: e.target.value,
+                      });
                     }}
                   >
                     {SUMMARY_OPTIONS["formato"].options.map((option, index) => (
-                      <option key={index} value={option.text}>
-                        {option.text}
+                      <option
+                        key={index}
+                        value={option?.text}
+                        selected={formData?.formato_entrega === option?.text}
+                      >
+                        {option?.text}
                       </option>
                     ))}
                   </select>
 
-                  {formatPrice.text === "Personalizado" && (
+                  {formatPrice?.text === "Personalizado" && (
                     <input
+                      placeholder="Ingrese formato deseado"
                       className="input-txt-2"
                       type="text"
                       name=""
                       id=""
-                      onChange={(e) => setFCustom(e.target.value)}
+                      onChange={(e) => {
+                        setFormData({
+                          ...formData,
+                          f_custom: e.target.value,
+                        });
+                      }}
                     />
                   )}
                 </div>
@@ -241,7 +258,7 @@ function View({
               <td>
                 <div className="flex price">
                   <div>$</div>
-                  <div>{reviewPrice.price}</div>
+                  <div>{reviewPrice?.price}</div>
                 </div>
               </td>
               <td>
@@ -256,11 +273,19 @@ function View({
                       )[0]?.price,
                       text: e.target.value,
                     });
+                    setFormData({
+                      ...formData,
+                      revisiones: e.target.value,
+                    });
                   }}
                 >
                   {SUMMARY_OPTIONS["revisiones"].options.map(
                     (option, index) => (
-                      <option key={index} value={option.text}>
+                      <option
+                        key={index}
+                        value={option.text}
+                        selected={formData?.revisiones === option?.text}
+                      >
                         {option.text}
                       </option>
                     )
@@ -274,7 +299,7 @@ function View({
               <td>
                 <div className="flex price">
                   <div>$</div>
-                  <div>{sizePrice.price}</div>
+                  <div>{sizePrice?.price}</div>
                 </div>
               </td>
               <td>
@@ -290,22 +315,35 @@ function View({
                         )[0]?.price,
                         text: e.target.value,
                       });
-                      setTCustom(null);
+                      setFormData({
+                        ...formData,
+                        tamaño: e.target.value,
+                      });
                     }}
                   >
                     {SUMMARY_OPTIONS["tamaño"].options.map((option, index) => (
-                      <option key={index} value={option.text}>
-                        {option.text}
+                      <option
+                        key={index}
+                        value={option?.text}
+                        selected={formData?.tamaño === option?.text}
+                      >
+                        {option?.text}
                       </option>
                     ))}
                   </select>
-                  {sizePrice.text === "Personalizado" && (
+                  {sizePrice?.text === "Personalizado" && (
                     <input
+                      placeholder="Ingrese tamaño deseado"
                       className="input-txt-2"
                       type="text"
                       name=""
                       id=""
-                      onChange={(e) => setTCustom(e.target.value)}
+                      onChange={(e) => {
+                        setFormData({
+                          ...formData,
+                          t_custom: e.target.value,
+                        });
+                      }}
                     />
                   )}
                 </div>
@@ -317,7 +355,7 @@ function View({
               <td>
                 <div className="flex price">
                   <div>$</div>
-                  <div>{editPrice.price}</div>
+                  <div>{editPrice?.price}</div>
                 </div>
               </td>
               <td>
@@ -332,10 +370,18 @@ function View({
                       )[0]?.price,
                       text: e.target.value,
                     });
+                    setFormData({
+                      ...formData,
+                      archivos_editables: e.target.value,
+                    });
                   }}
                 >
                   {SUMMARY_OPTIONS["editables"].options.map((option, index) => (
-                    <option key={index} value={option.text}>
+                    <option
+                      key={index}
+                      value={option.text}
+                      selected={formData?.archivos_editables === option?.text}
+                    >
                       {option.text}
                     </option>
                   ))}
