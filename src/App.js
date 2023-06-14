@@ -71,7 +71,8 @@ function App() {
         setCoins(parseInt(data?.user[0]?.credits || 0));
         setUserData(data?.user[0]);
         setTourActive(data?.user[0]?.tour === 1 ? true : false);
-        setOnboarding(data?.user[0]?.onboarding === 1 ? true : false);
+        setOnboarding(true);
+        /* setOnboarding(data?.user[0]?.onboarding === 1 ? true : false); */
       });
   }, [user_id]);
 

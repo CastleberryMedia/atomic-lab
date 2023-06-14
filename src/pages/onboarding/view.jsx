@@ -54,21 +54,21 @@ function View({
                 </div>
 
                 <div className="buttons">
-                  <div
-                    className="button-gray"
+                  <button
+                    className="button-blue"
                     onClick={() => {
                       setOnboarding(false);
                       redirectTo("/");
                     }}
                   >
                     Configurar déspues
-                  </div>
-                  <div
+                  </button>
+                  <button
                     className="button-blue"
                     onClick={() => setStep(step + 1)}
                   >
                     Continuar
-                  </div>
+                  </button>
                 </div>
               </>
             )}
@@ -87,12 +87,12 @@ function View({
                 />
 
                 {nameOrganization && (
-                  <div
+                  <button
                     className="button-blue"
                     onClick={() => setStep(step + 1)}
                   >
                     Continuar
-                  </div>
+                  </button>
                 )}
               </>
             )}
@@ -143,12 +143,12 @@ function View({
                 />
                 {/*  <p>Pulsa Shift + Enter para añadir otro párrafo</p> */}
                 {movil && (
-                  <div
+                  <button
                     className="button-blue"
                     onClick={() => updateDataOnboarding()}
                   >
                     Aceptar
-                  </div>
+                  </button>
                 )}
               </>
             )}
@@ -160,7 +160,7 @@ function View({
 
               <div className="buttons">
                 <button
-                  className="button-gray"
+                  className="button-blue"
                   onClick={() => {
                     setOnboarding(false);
                     redirectTo("/");

@@ -54,6 +54,9 @@ function Index() {
         redirectTo("/");
       })
       .catch((error) => {});
+    setOnboarding(false);
+
+    redirectTo("/");
   };
 
   const redirectTo = (item) => {
