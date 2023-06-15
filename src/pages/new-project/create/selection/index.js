@@ -5,15 +5,43 @@ import View from "./view";
 
 function Index({ setStep, step }) {
   const navigate = useNavigate();
-  const data = useContext(CreateFormContext)[0];
   const [formData, setFormData] = useContext(CreateFormContext);
+
+  const [post, setPost] = useState(
+    formData?.post ? formData?.post : [{ id: 1, objetive: "", text: "" }]
+  );
+  const [postCount, setPostCount] = useState(
+    formData?.post ? formData?.post[formData.post.length - 1].id : 1
+  );
 
   const [selectedImg, setSelectedImg] = useState();
   const [selectedImgArray, setSelectedImgArray] = useState(
-    data.img_array ? data.img_array : []
+    formData?.img_array ? formData.img_array : []
   );
 
   const [idSelect, setIdSelect] = useState("");
+
+  console.log("post", post);
+
+  const getBase64Img = (file) => {
+    return new Promise((resolve, reject) => {
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const fileData = event.target.result;
+          resolve(fileData);
+        };
+        reader.onerror = function (event) {
+          reject(event.target.error);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        reject(new Error("No se ha seleccionado ningún archivo"));
+      }
+    });
+  };
+
+  // ...
 
   useEffect(() => {
     if (!selectedImg) {
@@ -25,16 +53,41 @@ function Index({ setStep, step }) {
       selectedImgArray.filter((item) => item.id !== idSelect)
     );
 
-    setSelectedImgArray((selectedImgArray) => [
-      ...selectedImgArray,
-      {
-        id: idSelect,
-        object: objectUrl,
-        name: selectedImg.name,
-        formData: selectedImg,
-      },
-    ]);
+    const processSelectedImg = async () => {
+      try {
+        const imgBase64 = await getBase64Img(selectedImg);
+
+        setSelectedImgArray((selectedImgArray) => [
+          ...selectedImgArray,
+          {
+            id: idSelect,
+            object: objectUrl,
+            name: selectedImg.name,
+            formData: selectedImg,
+            base64img: imgBase64,
+          },
+        ]);
+      } catch (error) {
+        console.error("Error al obtener la imagen en base64:", error);
+      }
+    };
+
+    processSelectedImg();
+
+    setFormData({
+      ...formData,
+      post: post,
+    });
+
+    // ...
   }, [selectedImg, idSelect]);
+
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      post: post,
+    });
+  }, [post]);
 
   useEffect(() => {
     selectedImgArray.length >= 1 &&
@@ -53,7 +106,7 @@ function Index({ setStep, step }) {
 
   const [selectedText, setSelectedText] = useState();
   const [selectedTextArray, setSelectedTextArray] = useState(
-    data.text_array ? data.text_array : []
+    formData.text_array ? formData.text_array : []
   );
 
   useEffect(() => {
@@ -103,7 +156,12 @@ function Index({ setStep, step }) {
     step,
     onSelectText,
     selectedImgArray,
-    selectedTextArray,
+    setFormData,
+    formData,
+    post,
+    setPost,
+    setPostCount,
+    postCount,
   };
 
   return <View {...properties} />;

@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import { Icons } from "../../../../icons";
 import { FORM_INPUTS } from "../../../../constats";
-import CreateFormContext from "../../../../../create-form-context";
+
 import ReactTooltip from "react-tooltip";
 import "./styles.scss";
 
@@ -9,23 +9,16 @@ function View({
   id,
   post,
   setPost,
-  selectedImg,
   onSelectFile,
   onSelectText,
   setPostCount,
   postCount,
+  formData,
+  textPreview,
+  objetive,
+  setObjetive,
+  setTextPreview,
 }) {
-  const data = useContext(CreateFormContext)[0];
-
-  const [objetive, setObjetive] = useState(
-    post.filter((item) => item.id === id)[0]?.objetive ||
-      data?.post?.filter((item) => item.id === id)[0]?.objetive
-  );
-  const [textPreview, setTextPreview] = useState(
-    post.filter((item) => item.id === id)[0]?.text ||
-      data?.post?.filter((item) => item.id === id)[0]?.text
-  );
-
   return (
     <div className="columns upload-file">
       <div className="column">
@@ -39,11 +32,13 @@ function View({
           </div>
 
           <div className="post-content">
-            {data?.img_array?.filter((item) => item.id === id)[0]?.object ? (
+            {formData?.img_array?.filter((item) => item.id === id)[0]
+              ?.object ? (
               <img
                 className="img-user"
                 src={
-                  data?.img_array?.filter((item) => item.id === id)[0]?.object
+                  formData?.img_array?.filter((item) => item.id === id)[0]
+                    ?.object
                 }
                 alt="preview"
               />
@@ -84,9 +79,9 @@ function View({
           </label>
           <label htmlFor={`reference-${id}`} className="button-blue flex">
             {Icons("clip_white")}
-            {data.img_array &&
-            data?.img_array?.filter((item) => item.id === id)[0]?.name
-              ? data?.img_array?.filter((item) => item.id === id)[0]?.name
+            {formData.img_array &&
+            formData?.img_array?.filter((item) => item.id === id)[0]?.name
+              ? formData?.img_array?.filter((item) => item.id === id)[0]?.name
               : "Adjuntar *"}
           </label>
 
@@ -103,8 +98,9 @@ function View({
                   text: textPreview,
                   objetive: objetive,
                   name_img:
-                    data.img_array &&
-                    data?.img_array?.filter((item) => item.id === id)[0]?.name,
+                    formData.img_array &&
+                    formData?.img_array?.filter((item) => item.id === id)[0]
+                      ?.name,
                 },
               ]);
             }}
@@ -123,14 +119,15 @@ function View({
                   text: textPreview,
                   objetive: objetive,
                   name_img:
-                    data.img_array &&
-                    data?.img_array?.filter((item) => item.id === id)[0]?.name,
+                    formData.img_array &&
+                    formData?.img_array?.filter((item) => item.id === id)[0]
+                      ?.name,
                 },
               ]);
             }}
           >
-            {data?.post?.filter((item) => item.id === id)[0]?.objetive
-              ? data?.post?.filter((item) => item.id === id)[0].objetive
+            {formData?.post?.filter((item) => item.id === id)[0]?.objetive
+              ? formData?.post?.filter((item) => item.id === id)[0].objetive
               : ""}
           </textarea>
         </div>
@@ -148,9 +145,10 @@ function View({
               className="button-blue flex"
             >
               {Icons("clip_white")}
-              {data.text_array &&
-              data?.text_array?.filter((item) => item.id === id)[0]?.name
-                ? data?.text_array?.filter((item) => item.id === id)[0]?.name
+              {formData.text_array &&
+              formData?.text_array?.filter((item) => item.id === id)[0]?.name
+                ? formData?.text_array?.filter((item) => item.id === id)[0]
+                    ?.name
                 : "Adjuntar imagen"}
             </label>
             <input
@@ -188,14 +186,15 @@ function View({
                   objetive: objetive,
                   text: e.target.value,
                   name_img:
-                    data.img_array &&
-                    data?.img_array?.filter((item) => item.id === id)[0]?.name,
+                    formData.img_array &&
+                    formData?.img_array?.filter((item) => item.id === id)[0]
+                      ?.name,
                 },
               ]);
             }}
           >
-            {data?.post?.filter((item) => item.id === id)[0]?.text
-              ? data?.post?.filter((item) => item.id === id)[0].text
+            {formData?.post?.filter((item) => item.id === id)[0]?.text
+              ? formData?.post?.filter((item) => item.id === id)[0].text
               : ""}
           </textarea>
         </div>

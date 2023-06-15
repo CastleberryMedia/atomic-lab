@@ -30,9 +30,9 @@ function View({
 
         <div className="inputs-main">
           <div className="inputs">
-            <p className="text-purple">
+            <div className="text-purple">
               <h2>Crea una cuenta</h2>
-            </p>
+            </div>
             <input
               type="text"
               className="input-txt"

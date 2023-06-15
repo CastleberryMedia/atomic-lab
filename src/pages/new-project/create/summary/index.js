@@ -13,11 +13,10 @@ import { SUMMARY_OPTIONS, SERVICES_DATA } from "../../../constats";
 import View from "./view";
 
 function Index({ setStep, step }) {
-  const data = useContext(CreateFormContext)[0];
   const [formData, setFormData] = useContext(CreateFormContext);
   const navigate = useNavigate();
 
-  const { userData, setUserData, setAllProjects, coins, setCoins } =
+  const { setUserData, setAllProjects, coins, setCoins } =
     useContext(DataContext);
 
   const [modalMessageStart, setModalMessageStart] = useState(false);
@@ -25,28 +24,34 @@ function Index({ setStep, step }) {
   const [modalMessageStartData, setModalMessageStartData] = useState({});
   const [modalBuyCredits, setModalBuyCredit] = useState(false);
   const [dataModals, setDataModals] = useState([]);
-  const [fCustom, setFCustom] = useState(null);
-  const [tCustom, setTCustom] = useState(null);
-  const [timePrice, setTimePrice] = useState({
-    price: SUMMARY_OPTIONS["tiempo"].options[0].price,
-    text: SUMMARY_OPTIONS["tiempo"].options[0].text,
-  });
-  const [formatPrice, setFormatPrice] = useState({
-    price: SUMMARY_OPTIONS["formato"].options[0].price,
-    text: SUMMARY_OPTIONS["formato"].options[0].text,
-  });
-  const [reviewPrice, setReviewPrice] = useState({
-    price: SUMMARY_OPTIONS["revisiones"].options[0].price,
-    text: SUMMARY_OPTIONS["revisiones"].options[0].text,
-  });
-  const [sizePrice, setSizePrice] = useState({
-    price: SUMMARY_OPTIONS["tamaño"].options[0].price,
-    text: SUMMARY_OPTIONS["tamaño"].options[0].text,
-  });
-  const [editPrice, setEditPrice] = useState({
-    price: SUMMARY_OPTIONS["editables"].options[0].price,
-    text: SUMMARY_OPTIONS["editables"].options[0].text,
-  });
+  const [timePrice, setTimePrice] = useState(
+    formData?.tiempo_entrega &&
+      SUMMARY_OPTIONS["tiempo"].options.find(
+        (t) => t.text === formData?.tiempo_entrega
+      )
+  );
+  const [formatPrice, setFormatPrice] = useState(
+    formData?.formato_entrega &&
+      SUMMARY_OPTIONS["formato"].options.find(
+        (t) => t.text === formData?.formato_entrega
+      )
+  );
+  const [reviewPrice, setReviewPrice] = useState(
+    formData?.revisiones &&
+      SUMMARY_OPTIONS["revisiones"].options.find(
+        (t) => t.text === formData?.revisiones
+      )
+  );
+  const [sizePrice, setSizePrice] = useState(
+    formData?.tamaño &&
+      SUMMARY_OPTIONS["tamaño"].options.find((t) => t.text === formData?.tamaño)
+  );
+  const [editPrice, setEditPrice] = useState(
+    formData?.archivos_editables &&
+      SUMMARY_OPTIONS["editables"].options.find(
+        (t) => t.text === formData?.archivos_editables
+      )
+  );
 
   const getTotalProject = () => {
     const base_price = SERVICES_DATA.find(
@@ -55,15 +60,13 @@ function Index({ setStep, step }) {
 
     return (
       parseInt(base_price) +
-      parseInt(timePrice.price) +
-      parseInt(formatPrice.price) +
-      parseInt(reviewPrice.price) +
-      parseInt(sizePrice.price) +
-      parseInt(editPrice.price)
+      parseInt(timePrice?.price) +
+      parseInt(formatPrice?.price) +
+      parseInt(reviewPrice?.price) +
+      parseInt(sizePrice?.price) +
+      parseInt(editPrice?.price)
     );
   };
-
-  const [libertyLevel, setLibertyLevel] = useState("high");
 
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
@@ -74,6 +77,8 @@ function Index({ setStep, step }) {
       state: { new_project: true },
     });
   };
+
+  console.log("formData1Orginal", formData);
 
   const handleStartProject = () => {
     JSON.safeStringify = (obj, indent = 2) => {
@@ -92,37 +97,54 @@ function Index({ setStep, step }) {
       return retVal;
     };
 
-    const formData = new FormData();
+    const formDataNEW = new FormData();
 
-    data.img_array &&
-      data.img_array.map((image) =>
-        formData.append(image.name, image.formData)
+    if (formData.img_array) {
+      const img_array = formData.img_array;
+
+      img_array.forEach((item) => {
+        delete item.base64img;
+      });
+
+      formData.img_array.map((image) =>
+        formDataNEW.append(image.name, image.formData)
       );
+    }
 
-    data.references &&
-      data.references.map(
+    if (formData.references) {
+      const references_array = formData.references;
+
+      references_array.forEach((item) => {
+        delete item.referenceFile64;
+      });
+
+      references_array.map(
         (reference) =>
           reference.name_file &&
-          formData.append(reference.name_file, reference.file)
+          formDataNEW.append(reference.name_file, reference.file)
       );
-    data.text_array &&
-      data.text_array.map((text) => formData.append(text.name, text.formData));
+    }
+
+    formData.text_array &&
+      formData.text_array.map((text) =>
+        formDataNEW.append(text.name, text.formData)
+      );
 
     const dataFin = {
-      ...data,
+      ...formData,
       user_id: user_id,
       costo_base: getTotalProject(),
-      tiempo_entrega: timePrice.text,
-      formato_entrega: formatPrice.text,
-      revisiones: reviewPrice.text,
-      tamaño: sizePrice.text,
-      archivos_editables: editPrice.text,
-      ...(fCustom && { f_custom: fCustom }),
-      ...(tCustom && { t_custom: tCustom }),
     };
-    formData.append("jsondataRequest", JSON.safeStringify(dataFin));
+    formDataNEW.append("jsondataRequest", JSON.safeStringify(dataFin));
 
-    postCreateProject(formData)
+    console.log("dataFin", dataFin);
+    console.log("formDataFIN", [...formDataNEW]);
+
+    for (let [key, value] of formDataNEW.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    postCreateProject(formDataNEW)
       .then((res) => {
         setCoins(coins - getTotalProject());
         postUpdateCredits({
@@ -143,6 +165,8 @@ function Index({ setStep, step }) {
           message: "¡FELICITACIONES!",
           subMessage: "¡Tu proyecto se ha iniciado exitosamente!",
         });
+
+        localStorage.clear("formProject");
       })
       .catch((error) => {
         setModalMessageStartStatus(true);
@@ -163,12 +187,9 @@ function Index({ setStep, step }) {
     setModalMessageStart,
     modalMessageStartStatus,
     setModalMessageStartStatus,
-    libertyLevel,
-    setLibertyLevel,
     setStep,
     step,
     handleStartProject,
-    data,
     formData,
     setFormData,
     modalMessageStartData,
@@ -188,9 +209,6 @@ function Index({ setStep, step }) {
     editPrice,
     setEditPrice,
     getTotalProject,
-    setFCustom,
-    setTCustom,
-    userData,
     coins,
   };
 

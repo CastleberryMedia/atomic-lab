@@ -93,6 +93,13 @@ button {
 .section-buttons {
   justify-content: space-between;
 }
+.button-text-purple {
+  color: #6f3bff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+}
 .button {
   padding: 10px 30px;
   width: fit-content;
