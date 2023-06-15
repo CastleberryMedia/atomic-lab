@@ -29,7 +29,7 @@ function View({
         id={`reference-${data?.id}`}
         onChange={(e) => {
           setReferenceFile(e.target.files[0]);
-          handleFileChange(e);
+          handleFileChange(e.target.files[0]);
         }}
       />
 

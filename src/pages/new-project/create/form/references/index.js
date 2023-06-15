@@ -8,8 +8,8 @@ function Index({ data, references, setReferences }) {
 
   const [file, setFile] = useState(null);
 
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
+  const handleFileChange = (e) => {
+    const selectedFile = e;
     setFile(selectedFile);
   };
 
@@ -28,6 +28,9 @@ function Index({ data, references, setReferences }) {
   }
 
   useEffect(() => {
+    const formData = new FormData();
+    formData.append("file", referenceFile);
+
     if (file) {
       const reader = new FileReader();
       reader.onload = function (event) {
@@ -39,14 +42,14 @@ function Index({ data, references, setReferences }) {
             id: data.id,
             text: referenceDescription || "-",
             name_file: referenceFile?.name,
-            file: referenceFile,
+            file: formData,
             referenceFile64: fileData,
           },
         ]);
       };
       reader.readAsDataURL(file);
     }
-  }, [file]);
+  }, [file, referenceFile]);
 
   const properties = {
     data,

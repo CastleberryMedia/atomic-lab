@@ -125,6 +125,7 @@ export const MAIN_SUBMENU = (
       text: "Cerrar sesión",
       redirect: "/",
       onClick() {
+        localStorage.clear("formProject");
         sessionStorage.removeItem("atomiclab-user");
         setIsAuthenticated(false);
         redirectTo("/");

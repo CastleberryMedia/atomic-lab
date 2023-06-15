@@ -90,8 +90,6 @@ function App() {
           const imgFormData = new FormData();
           imgFormData.append("image", file);
 
-          console.log("imgFormData", imgFormData);
-
           img.formData = imgFormData;
         });
 

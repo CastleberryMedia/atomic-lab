@@ -21,8 +21,6 @@ function Index({ setStep, step }) {
 
   const [idSelect, setIdSelect] = useState("");
 
-  console.log("post", post);
-
   const getBase64Img = (file) => {
     return new Promise((resolve, reject) => {
       if (file) {
@@ -41,7 +39,7 @@ function Index({ setStep, step }) {
     });
   };
 
-  // ...
+  console.log("selectedImg", selectedImg);
 
   useEffect(() => {
     if (!selectedImg) {
