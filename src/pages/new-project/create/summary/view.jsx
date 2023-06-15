@@ -156,7 +156,7 @@ function View({
               <td>
                 <div className="flex price">
                   <div>$</div>
-                  <div>{timePrice.price}</div>
+                  <div>{timePrice?.price}</div>
                 </div>
               </td>
               <td>
@@ -239,8 +239,9 @@ function View({
                       placeholder="Ingrese formato deseado"
                       className="input-txt-2"
                       type="text"
-                      name=""
-                      id=""
+                      name="f_custom"
+                      id="f_custom"
+                      value={formData.f_custom}
                       onChange={(e) => {
                         setFormData({
                           ...formData,
@@ -336,8 +337,9 @@ function View({
                       placeholder="Ingrese tamaño deseado"
                       className="input-txt-2"
                       type="text"
-                      name=""
-                      id=""
+                      name="t_custom"
+                      id="t_custom"
+                      value={formData.t_custom}
                       onChange={(e) => {
                         setFormData({
                           ...formData,

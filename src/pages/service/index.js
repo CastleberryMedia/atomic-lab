@@ -25,12 +25,27 @@ function Index() {
 
   const [formData, setFormData] = useContext(CreateFormContext);
 
+  console.log("formDataformDataformDataformData", formData);
+
   useEffect(() => {
     setFormData({
       ...formData,
       project_price: serviceData?.price?.basic[0].price,
       project_type: serviceData.title,
+      step: 1,
     });
+
+    if (!Object.keys(formData).length) {
+      setFormData({
+        ...formData,
+        designer_freedom: "mucha",
+        tiempo_entrega: "Estándar",
+        formato_entrega: "Recomendado",
+        revisiones: "Hasta 3",
+        tamaño: "Recomendado",
+        archivos_editables: "No",
+      });
+    }
 
     let sum = 0;
     serviceData?.price?.basic.map((price) => (sum = price.price + sum));

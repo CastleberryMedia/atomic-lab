@@ -22,6 +22,8 @@ function Index({ setStep, step, serviceData }) {
       state: { service: serviceData },
     });
   useEffect(() => {
+    setStep(1);
+
     !formData?.project_type && navigate("/new-project");
   }, []);
 

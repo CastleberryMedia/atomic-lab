@@ -63,7 +63,6 @@ function App() {
   const [coins, setCoins] = useState(null);
 
   console.log("formData", formData);
-  formData?.img_array && console.log("IMG", formData?.img_array[0].formData);
 
   useEffect(() => {
     if (Object.keys(formData).length) {

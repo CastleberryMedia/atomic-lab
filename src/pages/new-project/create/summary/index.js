@@ -16,19 +16,8 @@ function Index({ setStep, step }) {
   const [formData, setFormData] = useContext(CreateFormContext);
   const navigate = useNavigate();
 
-  const { coins } = useContext(DataContext);
-
-  useEffect(() => {
-    setFormData({
-      ...formData,
-      designer_freedom: "high",
-      tiempo_entrega: "Estándar",
-      formato_entrega: "Recomendado",
-      revisiones: "Hasta 3",
-      tamaño: "Recomendado",
-      archivos_editables: "No",
-    });
-  }, []);
+  const { setUserData, setAllProjects, coins, setCoins } =
+    useContext(DataContext);
 
   const [modalMessageStart, setModalMessageStart] = useState(false);
   const [modalMessageStartStatus, setModalMessageStartStatus] = useState(false);
@@ -89,6 +78,8 @@ function Index({ setStep, step }) {
     });
   };
 
+  console.log("formData1Orginal", formData);
+
   const handleStartProject = () => {
     JSON.safeStringify = (obj, indent = 2) => {
       let cache = [];
@@ -106,53 +97,54 @@ function Index({ setStep, step }) {
       return retVal;
     };
 
-    const formData = new FormData();
+    const formDataNEW = new FormData();
 
-    formData.img_array &&
+    if (formData.img_array) {
+      const img_array = formData.img_array;
+
+      img_array.forEach((item) => {
+        delete item.base64img;
+      });
+
       formData.img_array.map((image) =>
-        formData.append(image.name, image.formData)
+        formDataNEW.append(image.name, image.formData)
       );
+    }
 
-    formData.references &&
-      formData.references.map(
+    if (formData.references) {
+      const references_array = formData.references;
+
+      references_array.forEach((item) => {
+        delete item.referenceFile64;
+      });
+
+      references_array.map(
         (reference) =>
           reference.name_file &&
-          formData.append(reference.name_file, reference.file)
+          formDataNEW.append(reference.name_file, reference.file)
       );
+    }
+
     formData.text_array &&
       formData.text_array.map((text) =>
-        formData.append(text.name, text.formData)
+        formDataNEW.append(text.name, text.formData)
       );
-
-    /*      {
-    "user_id": 14,
-    "costo_base": 109,
-    "tiempo_entrega": "Estándar",
-    "formato_entrega": "Recomendado",
-    "revisiones": "Hasta 3",
-    "tamaño": "Recomendado",
-    "archivos_editables": "No"
-} */
-
-    console.log("formData", formData);
 
     const dataFin = {
       ...formData,
       user_id: user_id,
       costo_base: getTotalProject(),
-      tiempo_entrega: formData.tiempo_entrega,
-      formato_entrega: formData.formato_entrega,
-      revisiones: formData.revisiones,
-      tamaño: formData.tamaño,
-      archivos_editables: formData.archivos_editables,
-      ...(formData.f_custom && { f_custom: formData.f_custom }),
-      ...(formData.t_custom && { t_custom: formData.t_custom }),
     };
-    formData.append("jsondataRequest", JSON.safeStringify(dataFin));
+    formDataNEW.append("jsondataRequest", JSON.safeStringify(dataFin));
 
     console.log("dataFin", dataFin);
+    console.log("formDataFIN", [...formDataNEW]);
 
-    /* postCreateProject(formData)
+    for (let [key, value] of formDataNEW.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    postCreateProject(formDataNEW)
       .then((res) => {
         setCoins(coins - getTotalProject());
         postUpdateCredits({
@@ -173,6 +165,8 @@ function Index({ setStep, step }) {
           message: "¡FELICITACIONES!",
           subMessage: "¡Tu proyecto se ha iniciado exitosamente!",
         });
+
+        localStorage.clear("formProject");
       })
       .catch((error) => {
         setModalMessageStartStatus(true);
@@ -181,7 +175,7 @@ function Index({ setStep, step }) {
           message: "¡ERROR!",
           subMessage: "Hubo un error :(, intente de nuevo",
         });
-      }); */
+      });
   };
 
   useEffect(() => {

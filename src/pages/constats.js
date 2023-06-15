@@ -445,13 +445,8 @@ export const DETAIL_PROJECT_DATA_2 = (
         </div>
       ),
     },
-    { id: 5, label: "Tipo de Proyecto", content: projectValues?.type_post },
+    { id: 5, label: "Tipo de Proyecto", content: projectValues?.project_type },
     { id: 6, label: "Red social", content: projectValues?.social_network },
-    {
-      id: 7,
-      label: "Tipo de publicación",
-      content: projectValues?.type_publication,
-    },
     {
       id: 8,
       label: "Paleta de colores",
