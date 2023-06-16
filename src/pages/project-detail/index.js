@@ -19,8 +19,6 @@ function Index() {
 
   const projectValues = filterProject?.values && filterProject?.values[0];
 
-  console.log("projectValues", projectValues);
-
   let options = [];
   let options_post = [];
 

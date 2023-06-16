@@ -26,7 +26,9 @@ function View({
               <td className="title">Diseñador</td>
               <td>
                 {designers.length >= 1
-                  ? designers.map((designer) => <p>{designer.name}</p>)
+                  ? designers.map((designer) => (
+                      <p key={designer?.name}>{designer?.name}</p>
+                    ))
                   : "No asignado"}
               </td>
             </tr>

@@ -18,14 +18,13 @@ function View({ close, notes, setNotes, state, onClickHandler }) {
         <div className="content-notes">
           <textarea
             className="input-texarea"
-            name=""
-            id=""
+            name="notes"
+            id="notes"
             cols="30"
             rows="10"
             onChange={(e) => setNotes(e.target.value)}
-          >
-            {notes}
-          </textarea>
+            defaultValue={notes}
+          />
         </div>
 
         <section className="section-buttons flex">

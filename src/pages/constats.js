@@ -415,7 +415,7 @@ export const DETAIL_PROJECT_DATA_2 = (
       content: designers.length ? (
         <div className="designers-list">
           {designers.map((member) => (
-            <div>{member.name}</div>
+            <div key={member.name}>{member.name}</div>
           ))}
         </div>
       ) : (

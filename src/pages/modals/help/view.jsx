@@ -104,12 +104,12 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
           <p>
             <textarea
               className="input-texarea"
-              name=""
-              id=""
+              name="send"
+              id="send"
               cols="30"
               rows="10"
               onChange={(e) => setTextSend(e.target.value)}
-            ></textarea>
+            />
           </p>
         </div>
 

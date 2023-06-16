@@ -3,13 +3,7 @@ import { Icons } from "../../../../icons";
 import { FORM_INPUTS } from "../../../../constats";
 import "./styles.scss";
 
-function View({
-  data,
-  referenceFile,
-  setReferenceFile,
-  handleFileChange,
-  handleAddTextReference,
-}) {
+function View({ data, formData, handleUpdateReferences }) {
   return (
     <div className="upload-file">
       <label
@@ -17,19 +11,15 @@ function View({
         className="button-blue flex"
       >
         {Icons("clip_white")}
-        {referenceFile?.name
-          ? referenceFile?.name
-          : data.name_file
-          ? data.name_file
-          : "Adjuntar"}
+        {formData?.references?.find((r) => r.id === data.id)?.name_file ??
+          "Adjuntar"}
       </label>
 
       <input
         {...FORM_INPUTS.reference_add}
         id={`reference-${data?.id}`}
         onChange={(e) => {
-          setReferenceFile(e.target.files[0]);
-          handleFileChange(e.target.files[0]);
+          handleUpdateReferences("file", e.target.files[0], data.id);
         }}
       />
 
@@ -40,10 +30,13 @@ function View({
             <textarea
               {...FORM_INPUTS.reference}
               id="reference"
-              onChange={(e) => handleAddTextReference(data.id, e.target.value)}
-            >
-              {data?.text}
-            </textarea>
+              onChange={(e) =>
+                handleUpdateReferences("text", e.target.value, data.id)
+              }
+              defaultValue={
+                formData?.references?.find((r) => r.id === data.id)?.text
+              }
+            />
           </div>
         </div>
         <div className="column"></div>

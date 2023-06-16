@@ -25,15 +25,14 @@ function View({
         <div className="content-notes">
           <textarea
             className="input-texarea"
-            name=""
-            id=""
+            name="comments"
+            id="comments"
             cols="30"
             rows="10"
             onChange={(e) => setCommentsFinals(e.target.value)}
             disabled={data?.comments_finals}
-          >
-            {commentFinals}
-          </textarea>
+            defaultValue={commentFinals}
+          />
         </div>
 
         <section className="section-buttons flex">

@@ -58,7 +58,7 @@ function View({ projectData, rate, redirectTo, designers }) {
                     <div className="p-upload-group">
                       {!isNaN(projectData?.total_reviews) &&
                         [...Array(projectData?.total_reviews)].map((x, i) => (
-                          <div className="p-upload">
+                          <div className="p-upload" key={i}>
                             {Icons(
                               projectData.review >= i + 1
                                 ? "check_blue"
@@ -92,7 +92,7 @@ function View({ projectData, rate, redirectTo, designers }) {
                   {status.id === 2 && (
                     <div className="designers">
                       {designers.map((des) => (
-                        <div>{des.name}</div>
+                        <div key={des.name}>{des.name}</div>
                       ))}
                     </div>
                   )}
@@ -162,7 +162,7 @@ function View({ projectData, rate, redirectTo, designers }) {
                 name="textarea"
                 rows="10"
                 cols="50"
-              ></textarea>
+              />
               <section className="section-buttons flex">
                 <button className="button">Enviar</button>
               </section>

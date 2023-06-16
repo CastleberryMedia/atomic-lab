@@ -1,64 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
+import CreateFormContext from "../../../../../create-form-context";
 import View from "./view";
+import { convertToBase64 } from "../../../../utils";
 
 function Index({ data, references, setReferences }) {
-  const [referenceFile, setReferenceFile] = useState("");
+  const [formData] = useContext(CreateFormContext);
 
-  const [referenceDescription, setReferenceDescription] = useState("");
+  const handleUpdateReferences = (node, data, id) => {
+    let oldArray = references.find((p) => p.id === id);
+    let newArray = references.filter((p) => p.id !== id);
 
-  const [file, setFile] = useState(null);
-
-  const handleFileChange = (e) => {
-    const selectedFile = e;
-    setFile(selectedFile);
-  };
-
-  function handleAddTextReference(id, newText) {
-    setReferences((references) => {
-      return references.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            text: newText,
-          };
-        }
-        return item;
-      });
-    });
-  }
-
-  useEffect(() => {
-    const formData = new FormData();
-    formData.append("file", referenceFile);
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (event) {
-        const fileData = event.target.result;
-        setReferences(references.filter((ref) => ref.id !== data.id));
-        setReferences((references) => [
-          ...references,
-          {
-            id: data.id,
-            text: referenceDescription || "-",
-            name_file: referenceFile?.name,
-            file: formData,
-            referenceFile64: fileData,
-          },
-        ]);
-      };
-      reader.readAsDataURL(file);
+    if (node === "file") {
+      oldArray.name_file = data.name;
+      oldArray.file = data;
+      oldArray.object = URL.createObjectURL(data);
+      convertToBase64(data)
+        .then((base64String) => {
+          oldArray.base64Include = base64String;
+        })
+        .catch((error) => {
+          console.error("Error al convertir el archivo a Base64:", error);
+        });
+    } else {
+      oldArray[node] = data;
     }
-  }, [file, referenceFile]);
+
+    newArray.push(oldArray);
+
+    setReferences(newArray);
+  };
 
   const properties = {
     data,
-    referenceFile,
-    setReferenceFile,
-    referenceDescription,
-    setReferenceDescription,
-    handleFileChange,
-    handleAddTextReference,
+    formData,
+    handleUpdateReferences,
   };
 
   return <View {...properties} />;

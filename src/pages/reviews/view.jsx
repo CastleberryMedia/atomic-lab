@@ -374,7 +374,7 @@ function View({
                     id="add_comment"
                     onChange={(e) => setAditionalComments(e.target.value)}
                     value={aditionalComments}
-                  ></textarea>
+                  />
                 </div>
               </div>
               <div className="buttons-approve flex">

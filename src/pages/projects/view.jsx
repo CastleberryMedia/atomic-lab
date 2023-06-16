@@ -143,8 +143,8 @@ function View({
                         modalFinalComments: modalFinalComments,
                         modals: modals,
                         setModals: setModals,
-                      }).map((project_field) => (
-                        <td>
+                      }).map((project_field, index) => (
+                        <td key={index}>
                           <div>{project_field.render || "-"}</div>
                           <div>{project_field?.subtitle}</div>
                         </td>
@@ -169,6 +169,7 @@ function View({
               {[...Array(Math.round(projectsFilterOriginal.length / 5))].map(
                 (item, index) => (
                   <div
+                    key={index}
                     onClick={() => setPaginationPage(index + 1)}
                     className={`pagination-page ${
                       paginationPage === index + 1 ? "active" : "inactive"

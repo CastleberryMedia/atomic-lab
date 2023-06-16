@@ -25,8 +25,6 @@ function Index() {
 
   const [formData, setFormData] = useContext(CreateFormContext);
 
-  console.log("formDataformDataformDataformData", formData);
-
   useEffect(() => {
     setFormData({
       ...formData,

@@ -7,11 +7,8 @@ import "../styles.scss";
 import "./styles.scss";
 
 function View({
-  selectedImg,
-  onSelectFile,
   setStep,
   step,
-  onSelectText,
   selectedImgArray,
   setFormData,
   formData,
@@ -19,6 +16,7 @@ function View({
   setPost,
   setPostCount,
   postCount,
+  handleUpdatePost,
 }) {
   return (
     <div className="selection-page page">
@@ -49,9 +47,8 @@ function View({
                 onChange={(e) => {
                   setFormData({ ...formData, idea_post: e.target.value });
                 }}
-              >
-                {formData.idea_post ? formData.idea_post : ""}
-              </textarea>
+                defaultValue={formData?.idea_post}
+              />
             </div>
           </div>
           <div className="column"></div>
@@ -67,11 +64,9 @@ function View({
                   id={item.id}
                   post={post}
                   setPost={setPost}
-                  selectedImg={selectedImg}
-                  onSelectFile={onSelectFile}
-                  onSelectText={onSelectText}
                   setPostCount={setPostCount}
                   postCount={postCount}
+                  handleUpdatePost={handleUpdatePost}
                 />
               )
           )}

@@ -9,15 +9,10 @@ function View({
   id,
   post,
   setPost,
-  onSelectFile,
-  onSelectText,
   setPostCount,
   postCount,
   formData,
-  textPreview,
-  objetive,
-  setObjetive,
-  setTextPreview,
+  handleUpdatePost,
 }) {
   return (
     <div className="columns upload-file">
@@ -32,14 +27,12 @@ function View({
           </div>
 
           <div className="post-content">
-            {formData?.img_array?.filter((item) => item.id === id)[0]
-              ?.object ? (
+            {formData?.post?.find((item) => item.id === id)?.base64 ? (
               <img
                 className="img-user"
-                src={
-                  formData?.img_array?.filter((item) => item.id === id)[0]
-                    ?.object
-                }
+                src={`data:image/jpeg;base64,${
+                  formData?.post?.find((item) => item.id === id)?.base64
+                }`}
                 alt="preview"
               />
             ) : (
@@ -79,30 +72,15 @@ function View({
           </label>
           <label htmlFor={`reference-${id}`} className="button-blue flex">
             {Icons("clip_white")}
-            {formData.img_array &&
-            formData?.img_array?.filter((item) => item.id === id)[0]?.name
-              ? formData?.img_array?.filter((item) => item.id === id)[0]?.name
-              : "Adjuntar *"}
+            {formData?.post?.find((item) => item.id === id)?.nameFile ??
+              "Adjuntar *"}
           </label>
 
           <input
             {...FORM_INPUTS.reference_add}
             id={`reference-${id}`}
             onChange={(e) => {
-              onSelectFile(e, id, "image");
-              setPost(post.filter((item) => item.id !== id));
-              setPost((post) => [
-                ...post,
-                {
-                  id: id,
-                  text: textPreview,
-                  objetive: objetive,
-                  name_img:
-                    formData.img_array &&
-                    formData?.img_array?.filter((item) => item.id === id)[0]
-                      ?.name,
-                },
-              ]);
+              handleUpdatePost("file", e.target.files[0], id);
             }}
           />
 
@@ -110,26 +88,12 @@ function View({
             {...FORM_INPUTS.image_include}
             id="image_include"
             onChange={(e) => {
-              setObjetive(e.target.value);
-              setPost(post.filter((item) => item.id !== id));
-              setPost((post) => [
-                ...post,
-                {
-                  id: id,
-                  text: textPreview,
-                  objetive: objetive,
-                  name_img:
-                    formData.img_array &&
-                    formData?.img_array?.filter((item) => item.id === id)[0]
-                      ?.name,
-                },
-              ]);
+              handleUpdatePost("objetive", e.target.value, id);
             }}
-          >
-            {formData?.post?.filter((item) => item.id === id)[0]?.objetive
-              ? formData?.post?.filter((item) => item.id === id)[0].objetive
-              : ""}
-          </textarea>
+            defaultValue={
+              formData?.post?.find((item) => item.id === id)?.objetive
+            }
+          />
         </div>
         <div>
           <label htmlFor="text_include" className="title-include flex">
@@ -145,31 +109,14 @@ function View({
               className="button-blue flex"
             >
               {Icons("clip_white")}
-              {formData.text_array &&
-              formData?.text_array?.filter((item) => item.id === id)[0]?.name
-                ? formData?.text_array?.filter((item) => item.id === id)[0]
-                    ?.name
-                : "Adjuntar imagen"}
+              {formData?.post?.find((item) => item.id === id)
+                ?.nameIncludeFile ?? "Adjuntar imagen"}
             </label>
             <input
               {...FORM_INPUTS.reference_add}
               id={`reference-text-${id}`}
               onChange={(e) => {
-                onSelectText(e, id);
-                /*  setPost(post.filter((item) => item.id !== id));
-                setPost((post) => [
-                  ...post,
-                  {
-                    id: id,
-                    text: textPreview,
-                    objetive: objetive,
-                    name_img:
-                      data.img_array &&
-                      data?.img_array?.filter((item) => item.id === id)[0]
-                        ?.name,
-                        
-                  },
-                ]); */
+                handleUpdatePost("fileInclude", e.target.files[0], id);
               }}
             />
           </section>
@@ -177,26 +124,10 @@ function View({
             {...FORM_INPUTS.text_include}
             id="text_include"
             onChange={(e) => {
-              setTextPreview(e.target.value);
-              setPost(post.filter((item) => item.id !== id));
-              setPost((references) => [
-                ...references,
-                {
-                  id: id,
-                  objetive: objetive,
-                  text: e.target.value,
-                  name_img:
-                    formData.img_array &&
-                    formData?.img_array?.filter((item) => item.id === id)[0]
-                      ?.name,
-                },
-              ]);
+              handleUpdatePost("text", e.target.value, id);
             }}
-          >
-            {formData?.post?.filter((item) => item.id === id)[0]?.text
-              ? formData?.post?.filter((item) => item.id === id)[0].text
-              : ""}
-          </textarea>
+            defaultValue={formData?.post?.find((item) => item.id === id)?.text}
+          />
         </div>
       </div>
       <div className="column"></div>

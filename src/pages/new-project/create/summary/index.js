@@ -78,8 +78,6 @@ function Index({ setStep, step }) {
     });
   };
 
-  console.log("formData1Orginal", formData);
-
   const handleStartProject = () => {
     JSON.safeStringify = (obj, indent = 2) => {
       let cache = [];
@@ -99,36 +97,18 @@ function Index({ setStep, step }) {
 
     const formDataNEW = new FormData();
 
-    if (formData.img_array) {
-      const img_array = formData.img_array;
-
-      img_array.forEach((item) => {
-        delete item.base64img;
+    if (formData.post) {
+      formData.post.forEach((item) => {
+        formDataNEW.append(item.nameFile, item.file);
+        formDataNEW.append(item.nameIncludeFile, item.fileInclude);
       });
-
-      formData.img_array.map((image) =>
-        formDataNEW.append(image.name, image.formData)
-      );
     }
 
     if (formData.references) {
-      const references_array = formData.references;
-
-      references_array.forEach((item) => {
-        delete item.referenceFile64;
+      formData.references.forEach((item) => {
+        item.name_file && formDataNEW.append(item.name_file, item.file);
       });
-
-      references_array.map(
-        (reference) =>
-          reference.name_file &&
-          formDataNEW.append(reference.name_file, reference.file)
-      );
     }
-
-    formData.text_array &&
-      formData.text_array.map((text) =>
-        formDataNEW.append(text.name, text.formData)
-      );
 
     const dataFin = {
       ...formData,

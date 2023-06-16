@@ -62,36 +62,97 @@ function App() {
   const [search, setSearch] = useState(null);
   const [coins, setCoins] = useState(null);
 
-  console.log("formData", formData);
+  console.log("formDatax", formData);
+
+  function convertBase64ToFile(base64, fileName, fileType) {
+    return new Promise((resolve, reject) => {
+      try {
+        const byteCharacters = atob(base64);
+        const byteArrays = [];
+
+        for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+          const slice = byteCharacters.slice(offset, offset + 512);
+          const byteNumbers = new Array(slice.length);
+
+          for (let i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+          }
+
+          const byteArray = new Uint8Array(byteNumbers);
+          byteArrays.push(byteArray);
+        }
+
+        const file = new File(byteArrays, fileName, { type: fileType });
+        resolve(file);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
 
   useEffect(() => {
     if (Object.keys(formData).length) {
-      // Recorrer img_array dentro de formData
-      formData?.img_array &&
-        formData?.img_array.forEach((img) => {
-          const base64Data = img?.base64img?.substring(
-            img.base64img.indexOf(",") + 1
-          );
-          const binaryString = atob(base64Data);
-
-          // Convertir binaryString a Blob
-          const bytes = new Uint8Array(binaryString.length);
-          for (let i = 0; i < binaryString.length; i++) {
-            bytes[i] = binaryString.charCodeAt(i);
+      if (formData.post) {
+        formData.post.forEach((item, index) => {
+          if (item.base64) {
+            convertBase64ToFile(item.base64, item.nameFile, "image/jpeg")
+              .then((file) => {
+                // Guardar el objeto File en el nodo file del elemento
+                item.file = file;
+                // Actualizar el array post con el elemento modificado
+                formData.post[index] = item;
+              })
+              .catch((error) => {
+                console.error(
+                  "Error al convertir el nodo base64 a File:",
+                  error
+                );
+              });
           }
-          const blob = new Blob([bytes], { type: "image/png" });
-
-          // Crear el objeto 'object'
-          const objectURL = URL.createObjectURL(blob);
-          img.object = objectURL;
-
-          // Crear el objeto 'formData'
-          const file = new File([blob], "image.png", { type: "image/png" });
-          const imgFormData = new FormData();
-          imgFormData.append("image", file);
-
-          img.formData = imgFormData;
+          if (item.fileIncludebase64) {
+            convertBase64ToFile(
+              item.fileIncludebase64,
+              item.nameIncludeFile,
+              "image/jpeg"
+            )
+              .then((file) => {
+                // Guardar el objeto File en el nodo file del elemento
+                item.fileInclude = file;
+                // Actualizar el array post con el elemento modificado
+                formData.post[index] = item;
+              })
+              .catch((error) => {
+                console.error(
+                  "Error al convertir el nodo base64 a File:",
+                  error
+                );
+              });
+          }
         });
+      }
+      if (formData.references) {
+        formData.references.forEach((item, index) => {
+          if (item.base64Include) {
+            convertBase64ToFile(
+              item.base64Include,
+              item.name_file,
+              "image/jpeg"
+            )
+              .then((file) => {
+                // Guardar el objeto File en el nodo file del elemento
+                item.file = file;
+                // Actualizar el array post con el elemento modificado
+                formData.references[index] = item;
+              })
+              .catch((error) => {
+                console.error(
+                  "Error al convertir el nodo base64 a File:",
+                  error
+                );
+              });
+          }
+        });
+      }
 
       formData &&
         Object.entries(formData).map(([key, value]) =>
@@ -112,8 +173,7 @@ function App() {
         setCoins(parseInt(data?.user[0]?.credits || 0));
         setUserData(data?.user[0]);
         setTourActive(data?.user[0]?.tour === 1 ? true : false);
-        setOnboarding(true);
-        /* setOnboarding(data?.user[0]?.onboarding === 1 ? true : false); */
+        setOnboarding(data?.user[0]?.onboarding === 1 ? true : false);
       });
   }, [user_id]);
 
@@ -159,7 +219,15 @@ function App() {
               <>
                 <Route path="/" element={<Home />} />
 
-                <Route path="new-project" element={<NewProject />} />
+                <Route
+                  path="new-project"
+                  exact
+                  element={
+                    <CreateFormContext.Provider value={[formData, setFormData]}>
+                      <NewProject />
+                    </CreateFormContext.Provider>
+                  }
+                />
                 <Route path="status-project/:id" element={<StatusProject />} />
 
                 <Route
