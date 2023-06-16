@@ -93,7 +93,14 @@ function Index({ close, data }) {
   }
 
   async function addCredits() {
-    await postUpdateCredits({ value: coinsQ, coupon_code: codeInput })
+    const user_id = JSON.parse(
+      sessionStorage?.getItem("atomiclab-user")
+    )?.user_id;
+    await postUpdateCredits({
+      value: coinsQ,
+      coupon_code: codeInput,
+      user_id: user_id,
+    })
       .then((res) => {
         setCoins(res.data.response);
         close(false);
