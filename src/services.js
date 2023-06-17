@@ -1,9 +1,6 @@
 import axios from "axios";
-import { useEffect } from "react";
 
 const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user"))?.user_id;
-
-console.log("user_id", user_id);
 
 const headers = {
   Accept: "application/json",
@@ -177,4 +174,4 @@ export const postBilling = async (data) =>
   axios.post(`${base_url}/billings`, data);
 
 export const postUpdateCredits = async (data) =>
-  console.log(`${base_url}/load_credits/${data.user_id}`, data);
+  axios.put(`${base_url}/load_credits/${user_id}`, data);
