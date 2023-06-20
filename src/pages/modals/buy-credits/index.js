@@ -92,10 +92,13 @@ function Index({ close, data }) {
     setLoadingExcBuy(false);
   }
 
+  console.log("userData", userData);
+
   async function addCredits() {
-    const user_id = JSON.parse(
-      sessionStorage?.getItem("atomiclab-user")
-    )?.user_id;
+    const user_id =
+      JSON.parse(sessionStorage?.getItem("atomiclab-user"))?.user_id ||
+      userData?.id;
+
     await postUpdateCredits({
       value: coinsQ,
       coupon_code: codeInput,
