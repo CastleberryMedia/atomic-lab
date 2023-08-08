@@ -29,7 +29,7 @@ function View({
         <div className="inputs-main">
           <div className="inputs">
             <div className="text-purple">
-              <h2>Inicia sesión</h2>
+              <h2 className="title-new">Inicia sesión</h2>
             </div>
             <input
               type="email"
