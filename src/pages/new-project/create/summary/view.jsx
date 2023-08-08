@@ -8,6 +8,16 @@ import ModalBuyCredits from "../../../modals/buy-credits";
 import "../styles.scss";
 import "./styles.scss";
 
+const current = new Date();
+var current_days_one = new Date(current.getTime() + 86400000);
+var current_days_two = new Date(current.getTime() + 172800000);
+var current_days_three = new Date(current.getTime() + 345600000);
+const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+const date_one = current_days_one.toLocaleDateString('es-es', options);
+const date_two = current_days_two.toLocaleDateString('es-es', options);
+const date_four = current_days_three.toLocaleDateString('es-es', options);
+let val_date = date_two + '.' + date_four + '.';
+
 function View({
   modalMessageStart,
   setModalMessageStart,
@@ -175,6 +185,11 @@ function View({
                       ...formData,
                       tiempo_entrega: e.target.value,
                     });
+                    if (e.target.value == 'Estándar') {
+                      val_date = date_two + '.' + date_four + '.';
+                    } else {
+                      val_date = date_one + '.' + date_two + '.';
+                    }
                   }}
                 >
                   {SUMMARY_OPTIONS["tiempo"].options.map((option, index) => (
@@ -190,8 +205,7 @@ function View({
               </td>
               <td>
                 <div className="more text-purple-noclick">
-                  Tiempo de entrega estimado (1ra versión): martes, 28 de Sept.
-                  - miércoles 30 de Sept.{Icons("help_circle")}
+                  Tiempo de entrega estimado (1ra versión): {val_date}{Icons("help_circle")}
                 </div>
               </td>
             </tr>
