@@ -26,6 +26,10 @@ function View({
             <div className="icon-menu-h">{Icons("icon_menu_h")}</div>
           </div>
 
+          <div className="sub-header flex">
+            <p>{"Descripción"}</p>
+          </div>
+          
           <div className="post-content">
             {formData?.post?.find((item) => item.id === id)?.base64 ? (
               <img
@@ -40,10 +44,8 @@ function View({
             )}
           </div>
           <div className="post-footer">
-            <div className="footer-top">{Icons("icons_post")}</div>
-            <p>Views</p>
-
-            <p>{"Descripción #hashtags"}</p>
+            <p className="footer-top-parr">Likes</p>
+            <div className="footer-top">{Icons("icons_post_linkedin")}</div>
           </div>
         </div>
       </div>
