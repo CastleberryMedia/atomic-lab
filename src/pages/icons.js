@@ -36,6 +36,7 @@ import step_form from "../icons/step-form.png";
 import icon_menu_h from "../icons/icon_menu_h.png";
 import icon_img_post from "../icons/icon_img_post.png";
 import icons_post from "../icons/icons_post.png";
+import icons_post_linkedin from "../icons/icons_post_linkedin.png";
 import step_selection from "../icons/step_selection.png";
 import step_summary from "../icons/step_summary.png";
 import edit from "../icons/edit.png";
@@ -119,6 +120,7 @@ export const Icons = (icon) => {
     icon_menu_h: icon_menu_h,
     icon_img_post: icon_img_post,
     icons_post: icons_post,
+    icons_post_linkedin: icons_post_linkedin,
     step_selection: step_selection,
     step_summary: step_summary,
     edit: edit,
