@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 import PageTitle from "../page-title";
 import parse from "html-react-parser";
 import ModalMessage from "../modals/message";
+import { FORM_INPUTS } from "../constats";
 
 import { Icons } from "../icons";
 import "./styles.scss";
@@ -24,6 +25,9 @@ function View({
   navigate,
   /*   dataLocal, */
 }) {
+
+  const [isActive, setIsActive] = useState(false);
+  
   return (
     <div className="page service-page">
       <PageTitle
@@ -159,13 +163,17 @@ function View({
       </section>
       <section className="section-specs">
         {serviceData?.specs?.map((spec, index) => (
-          <div key={index} className="section-specs-spec">
-            <h3>{spec.title}</h3>
-            <ul>
+          <div key={index} className="section-specs-spec" onClick={() => setIsActive(!isActive)}>
+            <div>
+              <h3 className="plus-title-left">{spec.title}</h3>
+              <h3 className="plus-title-right">{isActive ? '-' : '+'}</h3>
+            </div>
+            {isActive && 
+            <ul className="content-accordion">
               {spec.options.map((option, index) => (
                 <li key={index}>{option}</li>
               ))}
-            </ul>
+            </ul>}
           </div>
         ))}
       </section>
