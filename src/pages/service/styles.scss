@@ -199,4 +199,23 @@
       font-size: 14px;
     }
   }
+
+  .required {
+    color: red;
+    font-size: 12px;
+  }
+
+  .plus-title-left{
+    float: left;
+  }
+  
+  .plus-title-right{
+    float: right;
+    padding-right: 100px;
+  }
+  .content-accordion{
+    margin-top: 7%;
+    width: 100%;
+  }
+  
 }
