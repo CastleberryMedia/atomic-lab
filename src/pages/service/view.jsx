@@ -77,7 +77,10 @@ function View({
         </section>
       )}
       <section className="section-brand">
-        <h3>1. ¿Cuál marca vas a utilizar?</h3>
+        <h3>1. ¿Cuál marca vas a utilizar?
+        <span className="required">
+          {FORM_INPUTS.name.required && "(Requerido)"}
+        </span></h3>
 
         <div className="o-brands flex">
           <select
@@ -116,7 +119,10 @@ function View({
       </section>
 
       <section className="section-social-network">
-        <h3>2. {serviceData?.social_network?.title}</h3>
+        <h3>2. {serviceData?.social_network?.title}
+        <span className="required">
+          {FORM_INPUTS.name.required && "(Requerido)"}
+        </span></h3>
 
         <div className="social-network-check flex">
           {serviceData?.social_network?.options.map((option, index) => (
