@@ -112,7 +112,7 @@ function View({
             >
               {Icons("clip_white")}
               {formData?.post?.find((item) => item.id === id)
-                ?.nameIncludeFile ?? "Adjuntar imagen"}
+                ?.nameIncludeFile ?? "Adjuntar textos"}
             </label>
             <input
               {...FORM_INPUTS.reference_add}
