@@ -38,7 +38,7 @@ function View({
               <label htmlFor="idea">
                 {FORM_INPUTS.idea.label}{" "}
                 <div className="required">
-                  {FORM_INPUTS.idea.required && " *"}
+                  {FORM_INPUTS.idea.required && "(Requerido)"}
                 </div>
               </label>
               <textarea
