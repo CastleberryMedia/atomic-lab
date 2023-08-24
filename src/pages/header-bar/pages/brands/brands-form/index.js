@@ -39,8 +39,9 @@ function Index() {
   const [selectedImgArray, setSelectedImgArray] = useState([]);
   const [filesBrands, setFilesBrands] = useState([]);
 
-  const onSelectFile = (e, id) => {
+  const onSelectFile = (e) => {
     if (!e.target.files || e.target.files.length === 0) {
+      console.log(e.target.files.length);
       setSelectedImg(undefined);
       return;
     }
@@ -87,11 +88,19 @@ function Index() {
 
     const formData = new FormData();
 
+    let namealt = document.getElementById('namealt').value;
+
     formData.append(selectedImgArray.name, selectedImgArray.formData);
 
     filesBrands.map((file) => formData.append(file.name, file.file));
 
+    formData.append(selectedImg.name, selectedImg.file);
+
+    console.log(selectedImg.name);
+
     formData.append("jsondataRequest", JSON.safeStringify(dataBrand));
+
+    formData.append("namealt", namealt);
 
     id
       ? putUpdateBrand({ data: formData, brand_id: id })
