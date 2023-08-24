@@ -70,7 +70,7 @@
       margin-bottom: 5px;
     }
   }
-  .item-input.input-checkbox,
+  .section-accordion.item-input.input-checkbox,
   .input-checkbox {
     display: flex;
   }
@@ -101,5 +101,13 @@
   }
   .input-icon {
     cursor: pointer;
+  }
+  .section-accordion-head {
+    display: inline-flex;
+    padding: 10px 10px 10px 10px;
+    width: auto;
+  }
+  .plus-title-right {
+    padding-left: 100px;
   }
 }
