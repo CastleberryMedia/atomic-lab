@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import DataContext from "../../../../data-context";
 import { useNavigate } from "react-router-dom";
-import { putPredeterminateBrand, getBrands } from "../../../../services";
+import { putPredeterminateBrand, getBrands, deleteBrand } from "../../../../services";
 
 import View from "./view";
 
@@ -34,8 +34,14 @@ function Index({ brandsFilter }) {
   };
 
   const delete_brand = (id) => {
-    alert("delete" + id);
-    setModalMessage({ visible: true, message: "Se elimino la marca" });
+    deleteBrand(id)
+      .then((res) => {
+        setModalMessage({ visible: true, message: "Se eliminó la marca" });
+        getBrands(userData.id).then(({ data }) => {
+          setBrands(data.brands);
+        });
+      })
+      .catch((error) => {});
   };
 
   const properties = {
