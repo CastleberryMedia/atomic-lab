@@ -92,6 +92,8 @@ export const putPredeterminateBrand = async ({ user_id, brand_id }) =>
   axios.put(`${base_url}/update_predeterminate/${brand_id}`, {
     user_id: user_id,
   });
+export const deleteBrand = async (brand_id) =>
+  axios.delete(`${base_url}/brands/${brand_id}`);
 
 //team
 export const getTeam = async (user_id) =>
