@@ -115,7 +115,6 @@ function View({
                           />
                           Adjuntar
                       </label>
-                      <span class="required">(Requerido)</span>
                       <input id="reference-undefined" onChange={(e) => {
                           onSelectFile(e, id);
                         }} type="file" label="Avatar" class="input-txt" />
@@ -131,6 +130,7 @@ function View({
               <label for="name">Nombre comercial de la empresa</label>
               <div class="flex">
                   <input id="namealt" type="text" label="Nombre comercial de la empresa" required="true" class="input-txt" name="name" />
+                  <span class="required">(Requerido)</span>
                   <img
                       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABHNCSVQICAgIfAhkiAAAALBJREFUKFNjZCAShCYVJTAyMPT/Z2AoXD2vbwFIG5BPGESklDj8//9/P0zlv///E0EGENQM0rhiTs+BsORikOJ4kAFAgz6smtcniFczyKlMjIzzgaoXrJzXlwgzgKDNcI0wt0INgLkEp58xNEINYGRkdAR5AWYehrNxaYQ5FTl4UTSTohHF2aRqhGsmRyNYM7kawZrDk4uBKQ4VYAscbOkQQzOxGjFsJkUj0RkDV9YBABOdfBDwfzKxAAAAAElFTkSuQmCC"
                       alt="edit"
