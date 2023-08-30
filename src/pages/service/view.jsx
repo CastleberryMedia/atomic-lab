@@ -27,6 +27,10 @@ function View({
 }) {
 
   const [isActive, setIsActive] = useState(false);
+
+  const handleToggle = () => {
+    sessionStorage.setItem('terms', JSON.stringify(true));
+  };
   
   return (
     <div className="page service-page">
@@ -110,7 +114,10 @@ function View({
 
           <div
             className="add-brand flex"
-            onClick={() => navigate("/brands/brands-form")}
+            onClick={() => { 
+              handleToggle(); 
+              navigate("/brands/brands-form"); 
+            }}
           >
             {Icons("add_circle")}{" "}
             <span className="text-purple">Agregar nueva marca</span>
