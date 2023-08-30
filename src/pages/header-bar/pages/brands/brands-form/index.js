@@ -120,7 +120,12 @@ function Index() {
             ).then(({ data }) => {
               setBrands(data.brands);
             });
-            redirectTo("/brands");
+            if(sessionStorage.getItem('terms') == 'true'){
+              sessionStorage.setItem('terms', JSON.stringify(false));
+              navigate(-1);
+            }else{
+              redirectTo("/brands");
+            }
           })
           .catch((error) => {});
   };
