@@ -413,15 +413,17 @@ function View({
                 {Icons("credits")} ${getTotalProject()} Monedas
               </td>
               <td>
-                <div
-                  className="button-blue flex"
-                  onClick={() => {
-                    setModalBuyCredit(!modalBuyCredits);
-                    setDataModals();
-                  }}
-                >
-                  Recargar monedas
-                </div>
+                {coins <= getTotalProject() &&  (
+                  <div
+                    className="button-blue flex"
+                    onClick={() => {
+                      setModalBuyCredit(!modalBuyCredits);
+                      setDataModals();
+                    }}
+                  >
+                    Recargar monedas
+                  </div>
+                )}
               </td>
               <td></td>
             </tr>
