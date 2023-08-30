@@ -94,10 +94,10 @@ function Index() {
 
     filesBrands.map((file) => formData.append(file.name, file.file));
 
-    formData.append(selectedImg.name, selectedImg.file);
-
-    console.log(selectedImg.name);
-
+    if(selectedImgArray.name !== undefined){
+      formData.append(selectedImg.name, selectedImg.file);
+    }
+    
     formData.append("jsondataRequest", JSON.safeStringify(dataBrand));
 
     formData.append("namealt", namealt);
