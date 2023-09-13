@@ -1171,8 +1171,8 @@ export const SERVICES_DATA = [
           "Post design.",
           "Photos for free license/commercial use.", "Post image/illustration optimized for networks.",
           "Image/illustration of the post optimized for networks.",
-          "Layout."
-          "Typographic design."
+          "Layout.",
+          "Typographic design.",
         ],
       },
       {
