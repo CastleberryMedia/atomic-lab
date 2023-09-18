@@ -22,12 +22,12 @@ function View({
     <div className="selection-page page">
       <div className="step flex">{Icons("step_selection")}</div>
 
-      <PageTitle title={"Contenido"} />
+      <PageTitle title={"Content"} />
 
       <section className="subtitle">
         <p>
-          Ingresa la información que tengas para cada una de las publicaciones a
-          diseñar
+          Enter the information you have for each of the publications to be designed.
+          design
         </p>
       </section>
 
@@ -38,7 +38,7 @@ function View({
               <label htmlFor="idea">
                 {FORM_INPUTS.idea.label}{" "}
                 <div className="required">
-                  {FORM_INPUTS.idea.required && "(Requerido)"}
+                  {FORM_INPUTS.idea.required && "(Required)"}
                 </div>
               </label>
               <textarea
@@ -82,14 +82,14 @@ function View({
           }}
         >
           {Icons("add_white")}
-          <p>Añade una nueva publicación a ésta solicitud </p>
+          <p>Add a new publication to this request </p>
         </div>
       </section>
 
       <section className="footer">
         <section className="section-buttons flex">
           <button className="button" onClick={() => setStep(step - 1)}>
-            Atrás
+            Back
           </button>
 
           <button
@@ -104,7 +104,7 @@ function View({
             }}
             className="button"
           >
-            Continuar
+            Next
           </button>
         </section>
       </section>
