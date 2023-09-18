@@ -13,9 +13,9 @@ var current_days_one = new Date(current.getTime() + 86400000);
 var current_days_two = new Date(current.getTime() + 172800000);
 var current_days_three = new Date(current.getTime() + 345600000);
 const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
-const date_one = current_days_one.toLocaleDateString('es-es', options);
-const date_two = current_days_two.toLocaleDateString('es-es', options);
-const date_four = current_days_three.toLocaleDateString('es-es', options);
+const date_one = current_days_one.toLocaleDateString('en-en', options);
+const date_two = current_days_two.toLocaleDateString('en-en', options);
+const date_four = current_days_three.toLocaleDateString('en-en', options);
 let val_date = date_two + '.' + date_four + '.';
 
 function View({
