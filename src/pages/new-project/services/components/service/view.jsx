@@ -18,7 +18,7 @@ function View({ service, redirectToServicePage }) {
             .toLowerCase()}`}
         >
           {service.status !== "active" && "coming-soon" && (
-            <div className="status flex ">Próximamente</div>
+            <div className="status flex ">Coming soon</div>
           )}
           <div className="description flex ">{service.description}</div>
         </div>
