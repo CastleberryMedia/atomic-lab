@@ -95,7 +95,7 @@ function View({
           type="text"
           name=""
           id=""
-          placeholder="Buscar..."
+          placeholder="Search..."
           onChange={(e) => setSearch(e.target.value.toLocaleLowerCase())}
         />
       </div>
@@ -105,7 +105,7 @@ function View({
           className="image"
           onClick={() => setNotificationsView(!notificationsView)}
         >
-          <div data-tip="Notificaciones">{Icons("notifications")}</div>
+          <div data-tip="Notifications">{Icons("notifications")}</div>
           {notifications?.length >= 1 && (
             <div className="count">{notifications?.length}</div>
           )}
@@ -142,12 +142,12 @@ function View({
                   {Icons("notification_circle")}
                 </div>
                 <div className="float-notifications-cero-title">
-                  Tus notificaciones se mostrarán aquí
+                  Your notifications will be displayed here
                 </div>
                 <div className="float-notifications-cero-subtitle">
-                  Recibe información importante sobre nuestros productos y
-                  servicios, tu colaboración con otros usuarios y otras
-                  actualizaciones relevantes para ti
+                  Receive important information about our products and 
+                  services, your collaboration with other 
+                  users and other updates relevant to you.
                 </div>
               </div>
             )}
@@ -162,7 +162,7 @@ function View({
             redirectTo("/discounts");
           }}
         >
-          Descuentos
+          Discounts
         </button>
       )}
       {userData?.rol_id === 1 && (
@@ -177,7 +177,7 @@ function View({
               setDataModals(user_id);
             }}
           >
-            Comprar
+            Buy
           </div>
         </div>
       )}
