@@ -8,11 +8,11 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
   return (
     <div id="myModal" className="modal help">
       <div className="modal-content">
-        <h3>Ayuda</h3>
+        <h3>Help</h3>
 
         <p>
-          Si tienes problemas o dudas solicita ayuda por medio de alguna de las
-          siguientes opciones:
+          If you have any problems or doubts, ask for help through any of the following options.
+          following options:
         </p>
 
         <div className="info">
@@ -22,7 +22,7 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
                 <td>
                   <div className="flex">
                     <div className="icon">{Icons("tel")}</div>
-                    <p className="text-blue">Teléfono</p>
+                    <p className="text-blue">Phone</p>
                     <p>+57 321 224 9904</p>
                   </div>
                 </td>
@@ -99,7 +99,7 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
           </table>
 
           <label htmlFor="questions" className="questions">
-            ¿Cuáles son tus dudas?{Icons("help_circle")}
+            What are your doubts?{Icons("help_circle")}
           </label>
           <p>
             <textarea
@@ -131,7 +131,7 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
 
             <div className="buttons">
               <button className="button" onClick={() => close()}>
-                Cancelar
+                Cancel
               </button>
 
               <div className="button-reactive">
@@ -142,11 +142,11 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
                   buttonState={state}
                   onClick={() => textSend && onClickHandler()}
                   shadow={false}
-                  loadingText={"Enviando..."}
+                  loadingText={"Sending..."}
                   outline={false}
                   rounded={false}
                   block={false}
-                  idleText={"Enviar"}
+                  idleText={"Send"}
                 />
               </div>
             </div>
