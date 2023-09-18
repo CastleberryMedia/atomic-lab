@@ -30,6 +30,7 @@ import start_on from "../icons/start-on.png";
 import last_comments from "../icons/last-comments.png";
 import download from "../icons/download.png";
 import header_redes_sociales from "../icons/header-redes-sociales.png";
+import header_social_networks from "../icons/header-redes-sociales.png";
 import clip_white from "../icons/clip-white.png";
 import add_white from "../icons/add-white.png";
 import step_form from "../icons/step-form.png";
@@ -114,6 +115,7 @@ export const Icons = (icon) => {
     last_comments: last_comments,
     download: download,
     header_redes_sociales: header_redes_sociales,
+    header_social_networks: header_social_networks,
     clip_white: clip_white,
     add_white: add_white,
     step_form: step_form,
