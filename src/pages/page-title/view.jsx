@@ -73,7 +73,7 @@ function View({
               onClick={() => setModalHelp(!modalHelp)}
             >
               <div className="icon-help flex">{Icons("help")}</div>
-              <div className="help-text">Ayuda</div>
+              <div className="help-text">Help</div>
             </div>
           )}
         </div>
