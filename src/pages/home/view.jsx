@@ -10,7 +10,7 @@ function View({ redirectTo, userData }) {
   return (
     <div className="page home">
       <div className="home-content">
-        <PageTitle user={true} title="¡Bienvenido!"></PageTitle>
+        <PageTitle user={true} title="Welcome!"></PageTitle>
 
         {userData?.rol_id === 1 && (
           <div
@@ -18,7 +18,7 @@ function View({ redirectTo, userData }) {
             onClick={() => redirectTo("new-project")}
           >
             <div className="add-project-icon">{Icons("add_circle")}</div>
-            <p className="text-purple">Inicia un nuevo proyecto</p>
+            <p className="text-purple">Start a new project</p>
           </div>
         )}
 
