@@ -74,16 +74,16 @@ function View({
 
               <div className="footer-section flex">
                 <div className="icon-credit">X</div>
-                <div className="credit-value">$ {type.price} Monedas</div>
+                <div className="credit-value">$ {type.price} Coins</div>
               </div>
             </div>
           ))}
         </section>
       )}
       <section className="section-brand">
-        <h3>1. ¿Cuál marca vas a utilizar?
+        <h3>1. Which brand are you going to use?  
         <span className="required">
-          {FORM_INPUTS.name.required && "(Requerido)"}
+          {FORM_INPUTS.name.required && "(Required)"}
         </span></h3>
 
         <div className="o-brands flex">
@@ -97,7 +97,7 @@ function View({
             defaultValue={formData?.brand_select}
           >
             <option disabled selected>
-              Selecciona una opción
+              Select an option
             </option>
             {[
               ...new Map(brands?.map((item) => [item["name"], item])).values(),
@@ -120,7 +120,7 @@ function View({
             }}
           >
             {Icons("add_circle")}{" "}
-            <span className="text-purple">Agregar nueva marca</span>
+            <span className="text-purple">Add new brand</span>
           </div>
         </div>
       </section>
@@ -128,7 +128,7 @@ function View({
       <section className="section-social-network">
         <h3>2. {serviceData?.social_network?.title}
         <span className="required">
-          {FORM_INPUTS.name.required && "(Requerido)"}
+          {FORM_INPUTS.name.required && "(Required)"}
         </span></h3>
 
         <div className="social-network-check flex">
@@ -162,7 +162,7 @@ function View({
           {socialNetwork === "Otra ¿Cuál?" && (
             <div className="other-design">
               <label htmlFor="other-design" className="label">
-                ¿Cuál?
+                Which one?
               </label>
               <input
                 type="text"
@@ -192,7 +192,7 @@ function View({
       </section>
       <section className="section-buttons flex">
         <button className="button" onClick={() => redirectToHome()}>
-          Atrás
+          Back
         </button>
 
         <button
@@ -200,7 +200,7 @@ function View({
           className={"button"}
           onClick={() => redirectToForm()}
         >
-          Continuar
+          Next
         </button>
       </section>
       {modalMessage && (
