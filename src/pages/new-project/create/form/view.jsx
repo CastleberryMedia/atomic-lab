@@ -22,24 +22,24 @@ function View({
     <div className="form-page page">
       <div className="step flex">{Icons("step_form")}</div>
 
-      <PageTitle title={"Formulario"} />
+      <PageTitle title={"Form"} />
 
       <section className="subtitle">
         <p>
-          Contesta las siguientes preguntas por medio de
-          <span className="text-purple"> texto</span>,
-          <span className="text-purple"> voz</span>, y/o un
-          <span className="text-purple"> video</span>. También puedes
-          <span className="text-purple"> adjuntar</span> un archivo si lo
-          deseas.
+          Answer the following questions in
+          <span className="text-purple"> text form</span>,
+          <span className="text-purple"> voice</span>, &/or a
+          <span className="text-purple"> video</span>. You can also
+          <span className="text-purple"> attach</span> a file if you wish.
+          if you wish.
         </p>
         <p>
-          Todos los campos son opcionales excepto el
-          <span className="text-purple"> nombre del proyecto</span>.
+          All fields are optional except for the
+          <span className="text-purple"> project name</span>.
         </p>
         <p>
-          Entre más información nos brindes, mejor será todo el proceso de
-          desarrollo de tu requerimiento.
+          The more information you give us, the better the whole process of developing your
+          development of your requirement.
         </p>
       </section>
 
@@ -50,7 +50,7 @@ function View({
               <label htmlFor="name">
                 {FORM_INPUTS.name.label}{" "}
                 <span className="required">
-                  {FORM_INPUTS.name.required && "(Requerido)"}
+                  {FORM_INPUTS.name.required && "(Required)"}
                 </span>
               </label>
               <input
@@ -94,9 +94,8 @@ function View({
           </div>
         </div>
         <p>
-          Adjunta los <span className="text-purple"> archivos</span> y
-          <span className="text-purple"> referencias/ejemplos</span> que creas
-          que nos pueden ayudar a diseñar tu requerimiento.
+          Attach any <span className="text-purple"> files</span> and
+          <span className="text-purple"> references/examples</span> that you think may help us design your requirement.
         </p>
         {references
           .sort((a, b) => (a.id > b.id ? 1 : -1))
@@ -120,13 +119,13 @@ function View({
           }}
         >
           <div className="icon-add flex">{Icons("add_white")}</div>
-          <p>Adjuntar más archivos/referencias/ejemplos/etc.</p>
+          <p>Attach more files/references/examples/etc.</p>
         </div>
       </section>
 
       <section className="section-buttons flex">
         <button className="button" onClick={() => redirectToService()}>
-          Atrás
+          Back
         </button>
 
         <button
@@ -136,7 +135,7 @@ function View({
             setStep(step + 1);
           }}
         >
-          Continuar
+          Next
         </button>
       </section>
     </div>
