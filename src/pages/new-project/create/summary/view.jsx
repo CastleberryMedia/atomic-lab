@@ -51,21 +51,20 @@ function View({
     <div className="summary-page page">
       <div className="step flex">{Icons("step_summary")}</div>
 
-      <PageTitle title={"Revisión del resumen"} />
+      <PageTitle title={"Review of the summary"} />
 
       <section className="description">
-        <p>A continuación te mostramos un resumen de tu requerimiento.</p>
+        <p>Below is a summary of your request.</p>
         <p>
-          Por favor verifica cada punto y cuando estés listo haz click en
-          <span className="text-purple-noclick"> Iniciar proyecto</span>, de lo
-          contrario realiza los ajustes necesarios.
+          Please check each point and when you are ready click on
+          <span className="text-purple-noclick"> Start project</span>, otherwise make the necessary adjustments.
         </p>
       </section>
 
       <section className="content">
         <div className="info">
           <div className="row">
-            <div className="title">Marca</div>
+            <div className="title">Brand</div>
             <div className="value">{formData.brand_select}</div>
           </div>
           <div className="row">
@@ -73,29 +72,28 @@ function View({
             <div className="value">{formData.type_post}</div>
           </div>
           <div className="row">
-            <div className="title">Redes Sociales</div>
+            <div className="title">Social Networks</div>
             <div className="value">{formData.social_network}</div>
           </div>
           <div className="row">
-            <div className="title">Formulario {Icons("edit")}</div>
-            <div className="value">Completo</div>
+            <div className="title">Form {Icons("edit")}</div>
+            <div className="value">Complete</div>
             <div className="more text-purple" onClick={() => setStep(step - 2)}>
-              Ver más...
+              See more...
             </div>
           </div>
           <div className="row">
-            <div className="title">Selección {Icons("edit")}</div>
-            <div className="value">Completo</div>
+            <div className="title">Selection {Icons("edit")}</div>
+            <div className="value">Complete</div>
             <div className="more text-purple" onClick={() => setStep(step - 1)}>
-              Ver más...
+              See more...
             </div>
           </div>
         </div>
 
         <div className="liberty flex">
           <p className="flex">
-            ¿Qué tanta libertad quieres que tenga el diseñador en tu proyecto
-            basado en su experiencia, conocimiento y criterio?
+            How much freedom do you want the designer to have in your project based on their experience, knowledge and judgment?
             {Icons("help_circle")}
           </p>
 
@@ -110,7 +108,7 @@ function View({
                     setFormData({ ...formData, designer_freedom: "ninguna" });
                   }}
                 ></div>
-                <p>Ninguna</p>
+                <p>None</p>
               </div>
               <div className="section">
                 <div
@@ -121,7 +119,7 @@ function View({
                     setFormData({ ...formData, designer_freedom: "media" });
                   }}
                 ></div>
-                <p>Media</p>
+                <p>Half</p>
               </div>
               <div className="section">
                 <div
@@ -132,7 +130,7 @@ function View({
                     setFormData({ ...formData, designer_freedom: "mucha" });
                   }}
                 ></div>
-                <p>Mucha</p>
+                <p>Much</p>
               </div>
             </div>
             <div className="line-back"></div>
@@ -142,7 +140,7 @@ function View({
         <table>
           <tbody>
             <tr>
-              <td>Costo base del proyecto</td>
+              <td>Base project cost</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -162,7 +160,7 @@ function View({
               <td></td>
             </tr>
             <tr>
-              <td>Tiempo de entrega</td>
+              <td>Delivery time</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -205,12 +203,12 @@ function View({
               </td>
               <td>
                 <div className="more text-purple-noclick">
-                  Tiempo de entrega estimado (1ra versión): {val_date}{Icons("help_circle")}
+                  Estimated delivery time (first version): {val_date}{Icons("help_circle")}
                 </div>
               </td>
             </tr>
             <tr>
-              <td>Formato de entrega</td>
+              <td>Delivery format</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -269,7 +267,7 @@ function View({
               <td></td>
             </tr>
             <tr>
-              <td>Revisiones</td>
+              <td>Revisions</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -310,7 +308,7 @@ function View({
               <td></td>
             </tr>
             <tr>
-              <td>Tamaño</td>
+              <td>Size</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -367,7 +365,7 @@ function View({
               <td></td>
             </tr>
             <tr>
-              <td>Archivos editables</td>
+              <td>Editable files</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -410,7 +408,7 @@ function View({
                 <div className="more text-purple-noclick">Total</div>
               </td>
               <td className="credits flex">
-                {Icons("credits")} ${getTotalProject()} Monedas
+                {Icons("credits")} ${getTotalProject()} Coins
               </td>
               <td>
                 {coins <= getTotalProject() &&  (
@@ -421,7 +419,7 @@ function View({
                       setDataModals();
                     }}
                   >
-                    Recargar monedas
+                    Recharge coins
                   </div>
                 )}
               </td>
@@ -434,7 +432,7 @@ function View({
       <section className="footer">
         <section className="section-buttons flex">
           <button className="button" onClick={() => setStep(step - 1)}>
-            Atrás
+            Back
           </button>
           <button
             className="button"
@@ -445,8 +443,8 @@ function View({
             }
           >
             {getTotalProject() > coins
-              ? "Monedas insuficientes"
-              : "Iniciar proyecto"}
+              ? "Insufficient coins"
+              : "Start project"}
           </button>
         </section>
       </section>
@@ -459,9 +457,9 @@ function View({
           }}
           cancel={() => setModalMessageStart(false)}
           cancelVisible={true}
-          message={"¿Estas seguro que quieres iniciar el proyecto?"}
+          message={"Are you sure you want to start the project?"}
           subMessage={
-            "Una vez iniciado no podrás cambiar la información ni los archivos adjuntos. Sin embargo, podrás comprar más revisiones si lo requieres."
+            "Once started you will not be able to change the information or attachments. However, you will be able to purchase more revisions if required."
           }
         />
       )}
