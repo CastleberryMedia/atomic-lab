@@ -142,8 +142,8 @@ function Index({ setStep, step }) {
         setModalMessageStartStatus(true);
         setModalMessageStartData({
           type: "ok",
-          message: "¡FELICITACIONES!",
-          subMessage: "¡Tu proyecto se ha iniciado exitosamente!",
+          message: "CONGRATULATIONS!",
+          subMessage: "Your project has been successfully launched!",
         });
 
         localStorage.clear("formProject");
@@ -153,7 +153,7 @@ function Index({ setStep, step }) {
         setModalMessageStartData({
           type: "error",
           message: "¡ERROR!",
-          subMessage: "Hubo un error :(, intente de nuevo",
+          subMessage: "There was an error :(, try again",
         });
       });
   };
