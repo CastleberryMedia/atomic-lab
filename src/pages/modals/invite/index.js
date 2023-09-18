@@ -36,9 +36,9 @@ function Index({ modals, data, setModals }) {
     <div id="myModal" className="modal modal-invite">
       <div className="modal-content">
         <div className="content">
-          <h3>Invitar personas</h3>
+          <h3>Invite people</h3>
           <div className="text">
-            <div>Ingrese el email de la persona para invitar al proyecto</div>
+            <div>Enter the email of the person to invite to the project</div>
             <div>{data?.name_project}</div>
           </div>
 
@@ -61,14 +61,14 @@ function Index({ modals, data, setModals }) {
               });
             }}
           >
-            Cancelar
+            Cancel
           </button>
           <button
             className="button-purple"
             onClick={() => onSubmit()}
             disabled={loading || !email}
           >
-            {loading ? "Invitando..." : "Invitar"}
+            {loading ? "Inviting..." : "Invite"}
           </button>
         </div>
       </div>
