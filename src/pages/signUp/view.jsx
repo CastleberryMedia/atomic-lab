@@ -31,18 +31,18 @@ function View({
         <div className="inputs-main">
           <div className="inputs">
             <div className="text-purple">
-              <h2>Crea una cuenta</h2>
+              <h2>Create an account</h2>
             </div>
             <input
               type="text"
               className="input-txt"
-              placeholder="Nombre(s)"
+              placeholder="Name(s)"
               onChange={(e) => setName(e.target.value)}
             />
             <input
               type="text"
               className="input-txt"
-              placeholder="Apellido"
+              placeholder="Surname"
               onChange={(e) => setLastName(e.target.value)}
             />
 
@@ -56,33 +56,35 @@ function View({
               }}
             />
 
-            {email && !emailValidate && <p className="error">Email invalido</p>}
+            {email && !emailValidate && <p className="error">Invalid Email</p>}
+
+            <p id="errormail" className="error"></p>
 
             <input
               type="password"
               className="input-txt"
-              placeholder="Contraseña"
+              placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
 
             {password && password.length <= 6 && (
-              <p className="error">Minimo 6 caracteres</p>
+              <p className="error">Minimum 6 characters</p>
             )}
 
             <input
               type="password"
               className="input-txt"
-              placeholder="Confirma tu contraseña"
+              placeholder="Confirm your password"
               onChange={(e) => setPasswordConfirm(e.target.value)}
             />
 
             {passwordConfirm && password !== passwordConfirm && (
-              <p className="error">Contraseña no coincide</p>
+              <p className="error">Password does not match</p>
             )}
 
             <div className="buttons">
               <button className="button" onClick={() => redirectTo("/")}>
-                Atrás
+                Back
               </button>
               <div className="button-reactive">
                 <ReactiveButton
@@ -107,24 +109,24 @@ function View({
                     onClickHandler()
                   }
                   shadow={false}
-                  loadingText={"Registrando..."}
+                  loadingText={"Registering..."}
                   outline={false}
                   rounded={false}
                   block={false}
-                  idleText={"Registrarme"}
+                  idleText={"Register"}
                 />
               </div>
             </div>
 
             <p className="text-purple privacity">
-              Al hacer click en Registrarme estoy aceptando los Términos y
-              Condiciones y la Política de Privacidad.
+              By clicking Register I agree to the Terms and Conditions and Privacy Policy.
+              Conditions and Privacy Policy.
             </p>
 
             <div className="not-account">
-              <p>¿Ya tienes una cuenta? </p>
+              <p>Already have an account? </p>
               <span className="text-purple" onClick={() => redirectTo("/")}>
-                Inicia sesión{" "}
+                Login{" "}
               </span>
             </div>
           </div>

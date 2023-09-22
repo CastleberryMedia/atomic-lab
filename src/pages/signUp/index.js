@@ -38,6 +38,9 @@ function Index() {
         redirectTo("/sing-up/email");
       })
       .catch((error) => {
+        const htmlDiv=document.getElementById("errormail");
+        const htmlPart=error.response.data.error.email.toString()
+        htmlDiv.innerText=htmlPart;
         setState("idle");
       });
   };
