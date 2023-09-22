@@ -83,7 +83,7 @@ function Index({ type_home, page, data }) {
   }, [data]);
 
   const [orderSelect, setOrderSelect] = useState(null);
-  const [asc, setAsc] = useState(true);
+  const [asc, setAsc] = useState(false);//active globals projects
 
   const applySort = (type, data) => {
     const oldOrder = data || projectsFilterOriginal;
@@ -140,7 +140,7 @@ function Index({ type_home, page, data }) {
     setProjectsFilter(
       paginate(newFilter, paginationPage === 1 ? 0 : paginationPage - 1, 6)
     );
-    setAsc(!asc);
+    setAsc(asc);//home projects
   };
 
   function paginate(a, pageIndex, pageSize) {

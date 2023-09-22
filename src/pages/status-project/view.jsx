@@ -176,7 +176,7 @@ function View({ projectData, rate, redirectTo, designers }) {
           className="button"
           onClick={() => redirectTo("/projects-active")}
         >
-          Atrás
+          Back
         </button>
       </section>
     </div>
