@@ -62,7 +62,7 @@ function App() {
   const [search, setSearch] = useState(null);
   const [coins, setCoins] = useState(null);
 
-  console.log("formDatax", formData);
+  //console.log("formDatax", formData);
 
   function convertBase64ToFile(base64, fileName, fileType) {
     return new Promise((resolve, reject) => {
