@@ -54,22 +54,20 @@ function Index({ setStep, step }) {
       )
   );
 
+  const fPrice = parseInt(formatPrice?.price) || 0;
+  const tPrice = parseInt(timePrice?.price) || 0;
+  const rPrice = parseInt(reviewPrice?.price) || 0;
+  const sPrice = parseInt(sizePrice?.price) || 0;
+  const ePrice = parseInt(editPrice?.price) || 0;
+  const sub_total = tPrice + fPrice + rPrice + sPrice + ePrice;
+
   const getTotalProject = () => {
     const base_price = SERVICES_DATA.find(
       (s) => s?.title === formData?.project_type
     )?.base_price;
 
-    return (
-      parseInt(base_price) || 0 +
-      parseInt(timePrice?.price) || 0 +
-      parseInt(formatPrice?.price) || 0 +
-      parseInt(reviewPrice?.price) || 0 +
-      parseInt(sizePrice?.price) || 0 +
-      parseInt(editPrice?.price) || 0
-    );
+    return ( base_price + sub_total );
   };
-
-  console.log(getTotalProject());
 
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
