@@ -39,13 +39,34 @@ import Projects from "./pages/projects";
 import Create from "./pages/new-project/create";
 
 import "./app.scss";
-import { SAVE_LOCAL } from "./pages/utils";
+import { SAVE_LOCAL, OPEN_DB } from "./pages/utils";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const readFormDataFromDB = async () => {
+    try {
+      const db = await OPEN_DB();
+      const transaction = db.transaction("formData", "readonly");
+      const store = transaction.objectStore("formData");
+  
+      const request = store.get("formProject");
+      request.onsuccess = () => {
+        const formData = request.result || {};
+        return formData;
+      };
+    } catch (error) {
+      console.error("Error reading from IndexedDB:", error);
+    }
+  };
+
   const [formData, setFormData] = useState(
-    JSON.parse(localStorage.getItem("formProject")) ?? {}
+    readFormDataFromDB() ?? []
   );
+  
+  // const [formData, setFormData] = useState(
+  //   JSON.parse(localStorage.getItem("formProject")) ?? {}
+  // );
 
   function toggleAuthenticated() {
     setIsAuthenticated((isAuthenticated) => !isAuthenticated);
