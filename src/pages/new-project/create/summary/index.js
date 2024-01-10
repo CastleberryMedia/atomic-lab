@@ -9,6 +9,7 @@ import {
   postUpdateCredits,
 } from "../../../../services";
 import { SUMMARY_OPTIONS, SERVICES_DATA } from "../../../constats";
+import { CLEAR_DB } from "../../../utils";
 
 import View from "./view";
 
@@ -59,14 +60,16 @@ function Index({ setStep, step }) {
     )?.base_price;
 
     return (
-      parseInt(base_price) +
-      parseInt(timePrice?.price) +
-      parseInt(formatPrice?.price) +
-      parseInt(reviewPrice?.price) +
-      parseInt(sizePrice?.price) +
-      parseInt(editPrice?.price)
+      parseInt(base_price) || 0 +
+      parseInt(timePrice?.price) || 0 +
+      parseInt(formatPrice?.price) || 0 +
+      parseInt(reviewPrice?.price) || 0 +
+      parseInt(sizePrice?.price) || 0 +
+      parseInt(editPrice?.price) || 0
     );
   };
+
+  console.log(getTotalProject());
 
   const user_id = JSON.parse(sessionStorage?.getItem("atomiclab-user")).user_id;
 
@@ -146,7 +149,9 @@ function Index({ setStep, step }) {
           subMessage: "Your project has been successfully launched!",
         });
 
-        localStorage.clear("formProject");
+        //vaciar tabla indexedDb
+        const clean_table = CLEAR_DB();
+        // localStorage.clear("formProject");
       })
       .catch((error) => {
         setModalMessageStartStatus(true);
