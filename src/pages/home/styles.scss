@@ -14,6 +14,11 @@
     margin-bottom: 20px;
     cursor: pointer;
     width: fit-content;
+    float: right;
+    background-color: white;
+    border: 1px solid #6F3BFF;
+    border-radius: 30px;
+    padding: 5px 15px 5px 15px;
 
     &-icon {
       width: 23px;
