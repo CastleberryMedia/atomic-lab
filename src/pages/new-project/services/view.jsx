@@ -7,7 +7,7 @@ import "./styles.scss";
 function View() {
   return (
     <div className="page services">
-      <PageTitle title="What do you want to do today?" />
+      <PageTitle title="¿Qué quieres hacer hoy?" />
 
       <div className="service flex">
         {SERVICES_DATA.map((service, index) => (
