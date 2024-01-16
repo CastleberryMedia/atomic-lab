@@ -80,7 +80,7 @@ function View({
         </div>
       ) : (
         <div className="table-data">
-          <table>
+          <table id="customers">
             <thead>
               <tr>
                 {PROJECTS_2({
