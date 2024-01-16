@@ -56,7 +56,7 @@ function View({
       )}
       {tourActive && <div className="back-white"></div>}
 
-      <div className="icon-logo">{Icons("logo")}</div>
+      <a href="/#/"><div className="icon-logo">{Icons("logo")}</div></a>
 
       {MAIN_MENU(userData?.rol_id).map((item, index) => (
         <>
@@ -84,12 +84,13 @@ function View({
                 ? `${item.id_text}_purple`
                 : item.id_text
             )}
+            <p>&nbsp;{item.tour_title}</p>            
           </div>
           <ReactTooltip type={"light"} place={"bottom"} data-for={1} />
         </>
       ))}
 
-      <div className="search flex">
+      {/* <div className="search flex">
         <div className="icon-search flex"> {Icons("search")}</div>
         <input
           type="text"
@@ -98,7 +99,7 @@ function View({
           placeholder="Search..."
           onChange={(e) => setSearch(e.target.value.toLocaleLowerCase())}
         />
-      </div>
+      </div> */}
       {notificationsView}
       <div className="icon-notifications option notificaciones">
         <div
