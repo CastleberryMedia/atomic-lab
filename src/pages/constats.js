@@ -138,29 +138,29 @@ export const MAIN_SUBMENU = (
 
 export const MAIN_MENU = (rol) => {
   const listContent = [
-    {
-      view: true,
-      id: 1,
-      id_text: "home",
-      redirect: "/",
-      active: ["*"],
-      tour_title: "Start",
-      tour_text:
-        "Here you can see your dashboard or an overview of your active projects, your drafts and your finished projects with the most important aspects.",
-    },
+    // {
+    //   view: true,
+    //   id: 1,
+    //   id_text: "home",
+    //   redirect: "/",
+    //   active: ["*"],
+    //   tour_title: "Home",
+    //   tour_text:
+    //     "Here you can see your dashboard or an overview of your active projects, your drafts and your finished projects with the most important aspects.",
+    // },
     {
       view: rol === 1 ? true : false,
-      id: 2,
+      id: 1,
       id_text: "add",
       redirect: "/new-project",
       active: ["new-project", "service"],
-      tour_title: "Start a project",
+      tour_title: "Iniciar un Proyecto",
       tour_text:
         "Here you will be able to see the different products and request the one that best suits your requirements.",
     },
     {
       view: true,
-      id: 3,
+      id: 2,
       id_text: "active",
       redirect: "/projects-active",
       active: [
@@ -170,17 +170,27 @@ export const MAIN_MENU = (rol) => {
         "more-info",
         "project-detail",
       ],
-      tour_title: "Active projects",
+      tour_title: "Proyectos Activos",
       tour_text:
         "Here you can view your active projects; see the status and track them, view the latest version, make annotations and much more.",
     },
     {
       view: true,
-      id: 4,
+      id: 3,
       id_text: "finish",
       redirect: "/projects-inactive",
       active: ["projects-inactive"],
-      tour_title: "Completed projects",
+      tour_title: "Proyectos Completados",
+      tour_text:
+        "Here you can view your completed projects. View, share and download your projects.",
+    },
+    {
+      view: true,
+      id: 4,
+      id_text: "active",
+      redirect: "/brands",
+      active: ["brands"],
+      tour_title: "Marcas",
       tour_text:
         "Here you can view your completed projects. View, share and download your projects.",
     },
