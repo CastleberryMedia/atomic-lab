@@ -138,7 +138,106 @@ function View({
               </div>
           </div>
 
-        <div className="section-accordion">
+          <div>
+            {list}
+          </div>
+
+          <div>
+              <table className="table">
+                <tbody>
+                  {FROM_BRAND_TABLES.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.title}</td>
+                      <td>
+                        <label
+                          htmlFor={`filebrands-${item.id}`}
+                          className="flex input-icon"
+                        >
+                          {Icons("upload_circle")}
+                          Cargar
+                        </label>
+
+                        <input
+                          className="input-file"
+                          type="file"
+                          id={`filebrands-${item.id}`}
+                          onChange={(e) => {
+                            setFilesBrands(
+                              filesBrands.filter((file) => file.id !== item.id)
+                            );
+                            setFilesBrands((oldArray) => [
+                              ...oldArray,
+                              {
+                                id: item.id,
+                                name: item.title.replaceAll(" ", "").toLowerCase(),
+                                file: e.target.files[0],
+                              },
+                            ]);
+                          }}
+                          disabled={rol === 3}
+                        />
+                      </td>
+                      <td>
+                        {dataBrand?.materiales ? (
+                          <a
+                            rel="noreferrer"
+                            target={"_blank"}
+                            href={
+                              dataBrand.materiales.filter(
+                                (material) =>
+                                  material.type ===
+                                  item.title.replaceAll(" ", "").toLowerCase()
+                              )[0]?.url_image
+                            }
+                          >
+                            <div className="flex">
+                              {Icons("download_circle")} Descargar
+                            </div>
+                          </a>
+                        ) : (
+                          <div className="flex">
+                            {Icons("download_circle")} Descargar
+                          </div>
+                        )}
+                      </td>
+                      <td>
+                        <div className="flex input-manuals">
+                          {dataBrand?.materiales ? (
+                            <input
+                              type="text"
+                              className="input-txt"
+                              value={
+                                dataBrand.materiales.filter(
+                                  (material) =>
+                                    material.type ===
+                                    item.title.replaceAll(" ", "").toLowerCase()
+                                )[0]?.type
+                              }
+                              disabled={rol === 3}
+                            />
+                          ) : (
+                            <input
+                              type="text"
+                              className="input-txt"
+                              value={
+                                filesBrands.filter((file) => file.id === item.id)[0]
+                                  ?.file.name || ""
+                              }
+                              disabled={rol === 3}
+                            />
+                          )}
+                        </div>
+                      </td>
+                      <td>
+                        <div className="flex">{Icons("delete_circle")}</div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+        {/* <div className="section-accordion">
           <div className="section-accordion-head" onClick={() => setIsActive(!isActive)}>
             <h3 className="plus-title-left">Ver más campos</h3>
             <h3 className="plus-title-right">{isActive ? '-' : '+'}</h3>
@@ -244,7 +343,7 @@ function View({
               </table>
             </div>
           }
-        </div>
+        </div> */}
 
         </section>
         <section className="footer">
