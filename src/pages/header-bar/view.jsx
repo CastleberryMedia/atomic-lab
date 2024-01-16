@@ -178,7 +178,7 @@ function View({
               setDataModals(user_id);
             }}
           >
-            Buy
+            Comprar
           </div>
         </div>
       )}
