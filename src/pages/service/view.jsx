@@ -174,7 +174,7 @@ function View({
           )}
         </div>
       </section>
-      <section className="section-specs">
+{/*       <section className="section-specs">
         {serviceData?.specs?.map((spec, index) => (
           <div key={index} className="section-specs-spec" onClick={() => setIsActive(!isActive)}>
             <div>
@@ -189,7 +189,7 @@ function View({
             </ul>}
           </div>
         ))}
-      </section>
+      </section> */}
       <section className="section-buttons flex">
         <button className="button" onClick={() => redirectToHome()}>
           Back
