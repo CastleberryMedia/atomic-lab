@@ -16,7 +16,7 @@ function View({
     <div className="page project-detail">
       <PageTitle user={true} title={projectValues?.name_project} />
       <p>
-        The following is the information you provided about the project.
+        A continuación te presentamos la información que nos suministraste sobre el proyecto.
       </p>
       <div className="project-detail-content flex">{options}</div>
       <div className="project-detail-content flex">{options_post}</div>
@@ -25,7 +25,7 @@ function View({
           className="button"
           onClick={() => navigate(-1, { replace: true })}
         >
-          Back
+          Atrás
         </button>
       </section>
 
