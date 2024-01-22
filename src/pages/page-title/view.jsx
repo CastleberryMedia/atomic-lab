@@ -19,7 +19,7 @@ function View({
     <>
       {page !== "home" && user && (
         <p>
-          Hello{" "}
+          Hola{" "}
           {userData?.name && userData?.last_name
             ? userData?.name.charAt(0) + userData?.last_name
             : userData?.name}
@@ -38,7 +38,7 @@ function View({
           {price && (
             <div className="section-header-credit flex">
               <div className="icon-credit flex">{Icons("credits")}</div>
-              <div className="credit-value">$ {price[0]?.price} coins</div>
+              <div className="credit-value">$ {price[0]?.price} monedas</div>
 
               <div className="section-header-credit-modal">
                 {price.map((price, index) => (
@@ -53,7 +53,7 @@ function View({
                   <div className="total-icon flex">
                     <div className="icon-credit">x</div>
                     <div className="credit-total">
-                      $ {modalPriceTotal} Coins
+                      $ {modalPriceTotal} Monedas
                     </div>
                   </div>
                 </div>
@@ -63,7 +63,7 @@ function View({
 
           {page === "team-page" && (
             <button className="button-blue" onClick={() => func(true)}>
-              Invite people
+              Invitar personas
             </button>
           )}
 
@@ -73,7 +73,7 @@ function View({
               onClick={() => setModalHelp(!modalHelp)}
             >
               <div className="icon-help flex">{Icons("help")}</div>
-              <div className="help-text">Help</div>
+              <div className="help-text">Ayuda</div>
             </div>
           )}
         </div>
