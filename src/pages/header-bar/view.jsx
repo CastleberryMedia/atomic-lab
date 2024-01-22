@@ -84,7 +84,7 @@ function View({
                 ? `${item.id_text}_purple`
                 : item.id_text
             )}
-            <p>&nbsp;{item.tour_title}</p>            
+            <p>&nbsp;{item.tour_title}</p>
           </div>
           <ReactTooltip type={"light"} place={"bottom"} data-for={1} />
         </>
@@ -96,7 +96,7 @@ function View({
           type="text"
           name=""
           id=""
-          placeholder="Search..."
+          placeholder="Buscar..."
           onChange={(e) => setSearch(e.target.value.toLocaleLowerCase())}
         />
       </div> */}
@@ -143,12 +143,12 @@ function View({
                   {Icons("notification_circle")}
                 </div>
                 <div className="float-notifications-cero-title">
-                  Your notifications will be displayed here
+                  Tus notificaciones se mostrarán aquí
                 </div>
                 <div className="float-notifications-cero-subtitle">
-                  Receive important information about our products and 
-                  services, your collaboration with other 
-                  users and other updates relevant to you.
+                  Recibe información importante sobre nuestros productos y
+                  servicios, tu colaboración con otros usuarios y otras
+                  actualizaciones relevantes para ti.
                 </div>
               </div>
             )}
