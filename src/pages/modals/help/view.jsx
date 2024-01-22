@@ -142,11 +142,11 @@ function View({ close, textSend, setTextSend, onClickHandler, state }) {
                   buttonState={state}
                   onClick={() => textSend && onClickHandler()}
                   shadow={false}
-                  loadingText={"Sending..."}
+                  loadingText={"Enviando..."}
                   outline={false}
                   rounded={false}
                   block={false}
-                  idleText={"Send"}
+                  idleText={"Enviar"}
                 />
               </div>
             </div>
