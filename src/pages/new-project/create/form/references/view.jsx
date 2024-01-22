@@ -12,7 +12,7 @@ function View({ data, formData, handleUpdateReferences }) {
       >
         {Icons("clip_white")}
         {formData?.references?.find((r) => r.id === data.id)?.name_file ??
-          "Attach"}
+          "Adjuntar"}
       </label>
 
       <input
