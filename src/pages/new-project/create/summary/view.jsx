@@ -13,9 +13,9 @@ var current_days_one = new Date(current.getTime() + 86400000);
 var current_days_two = new Date(current.getTime() + 172800000);
 var current_days_three = new Date(current.getTime() + 345600000);
 const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
-const date_one = current_days_one.toLocaleDateString('en-en', options);
-const date_two = current_days_two.toLocaleDateString('en-en', options);
-const date_four = current_days_three.toLocaleDateString('en-en', options);
+const date_one = current_days_one.toLocaleDateString('es-es', options);
+const date_two = current_days_two.toLocaleDateString('es-es', options);
+const date_four = current_days_three.toLocaleDateString('es-es', options);
 let val_date = date_two + '.' + date_four + '.';
 
 function View({
@@ -51,20 +51,21 @@ function View({
     <div className="summary-page page">
       <div className="step flex">{Icons("step_summary")}</div>
 
-      <PageTitle title={"Review of the summary"} />
+      <PageTitle title={"Revisión del resumen"} />
 
       <section className="description">
-        <p>Below is a summary of your request.</p>
+        <p>A continuación te mostramos un resumen de tu requerimiento.</p>
         <p>
-          Please check each point and when you are ready click on
-          <span className="text-purple-noclick"> Start project</span>, otherwise make the necessary adjustments.
+          Por favor verifica cada punto y cuando estés listo haz click en
+          <span className="text-purple-noclick"> Iniciar proyecto</span>, de lo
+          contrario realiza los ajustes necesarios.
         </p>
       </section>
 
       <section className="content">
         <div className="info">
           <div className="row">
-            <div className="title">Brand</div>
+            <div className="title">Marca</div>
             <div className="value">{formData.brand_select}</div>
           </div>
           <div className="row">
@@ -72,28 +73,29 @@ function View({
             <div className="value">{formData.type_post}</div>
           </div>
           <div className="row">
-            <div className="title">Social Networks</div>
+            <div className="title">Redes Sociales</div>
             <div className="value">{formData.social_network}</div>
           </div>
           <div className="row">
-            <div className="title">Form {Icons("edit")}</div>
-            <div className="value">Complete</div>
+            <div className="title">Formulario {Icons("edit")}</div>
+            <div className="value">Completo</div>
             <div className="more text-purple" onClick={() => setStep(step - 2)}>
-              See more...
+              Ver más...
             </div>
           </div>
           <div className="row">
-            <div className="title">Selection {Icons("edit")}</div>
-            <div className="value">Complete</div>
+            <div className="title">Selección {Icons("edit")}</div>
+            <div className="value">Completo</div>
             <div className="more text-purple" onClick={() => setStep(step - 1)}>
-              See more...
+              Ver más...
             </div>
           </div>
         </div>
 
         <div className="liberty flex">
           <p className="flex">
-            How much freedom do you want the designer to have in your project based on their experience, knowledge and judgment?
+            ¿Qué tanta libertad quieres que tenga el diseñador en tu proyecto
+            basado en su experiencia, conocimiento y criterio?
             {Icons("help_circle")}
           </p>
 
@@ -108,7 +110,7 @@ function View({
                     setFormData({ ...formData, designer_freedom: "ninguna" });
                   }}
                 ></div>
-                <p>None</p>
+                <p>Ninguna</p>
               </div>
               <div className="section">
                 <div
@@ -119,7 +121,7 @@ function View({
                     setFormData({ ...formData, designer_freedom: "media" });
                   }}
                 ></div>
-                <p>Half</p>
+                <p>Media</p>
               </div>
               <div className="section">
                 <div
@@ -130,7 +132,7 @@ function View({
                     setFormData({ ...formData, designer_freedom: "mucha" });
                   }}
                 ></div>
-                <p>Much</p>
+                <p>Mucha</p>
               </div>
             </div>
             <div className="line-back"></div>
@@ -140,7 +142,7 @@ function View({
         <table>
           <tbody>
             <tr>
-              <td>Base project cost</td>
+              <td>Costo base del proyecto</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -160,7 +162,7 @@ function View({
               <td></td>
             </tr>
             <tr>
-              <td>Delivery time</td>
+              <td>Tiempo de entrega</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -203,12 +205,12 @@ function View({
               </td>
               <td>
                 <div className="more text-purple-noclick">
-                  Estimated delivery time (first version): {val_date}{Icons("help_circle")}
+                  Tiempo de entrega estimado (1ra versión): {val_date}{Icons("help_circle")}
                 </div>
               </td>
             </tr>
             <tr>
-              <td>Delivery format</td>
+              <td>Formato de entrega</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -267,7 +269,7 @@ function View({
               <td></td>
             </tr>
             <tr>
-              <td>Revisions</td>
+              <td>Revisiones</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -308,7 +310,7 @@ function View({
               <td></td>
             </tr>
             <tr>
-              <td>Size</td>
+              <td>Tamaño</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -365,7 +367,7 @@ function View({
               <td></td>
             </tr>
             <tr>
-              <td>Editable files</td>
+              <td>Archivos editables</td>
               <td>
                 <div className="flex price">
                   <div>$</div>
@@ -408,7 +410,7 @@ function View({
                 <div className="more text-purple-noclick">Total</div>
               </td>
               <td className="credits flex">
-                {Icons("credits")} ${getTotalProject()} Coins
+                {Icons("credits")} ${getTotalProject()} Monedas
               </td>
               <td>
                 {coins <= getTotalProject() &&  (
@@ -419,7 +421,7 @@ function View({
                       setDataModals();
                     }}
                   >
-                    Recharge coins
+                    Recargar monedas
                   </div>
                 )}
               </td>
@@ -432,7 +434,7 @@ function View({
       <section className="footer">
         <section className="section-buttons flex">
           <button className="button" onClick={() => setStep(step - 1)}>
-            Back
+            Atrás
           </button>
           <button
             className="button"
@@ -443,8 +445,8 @@ function View({
             }
           >
             {getTotalProject() > coins
-              ? "Insufficient coins"
-              : "Start project"}
+              ? "Monedas insuficientes"
+              : "Iniciar proyecto"}
           </button>
         </section>
       </section>
@@ -457,9 +459,9 @@ function View({
           }}
           cancel={() => setModalMessageStart(false)}
           cancelVisible={true}
-          message={"Are you sure you want to start the project?"}
+          message={"¿Estas seguro que quieres iniciar el proyecto?"}
           subMessage={
-            "Once started you will not be able to change the information or attachments. However, you will be able to purchase more revisions if required."
+            "Una vez iniciado no podrás cambiar la información ni los archivos adjuntos. Sin embargo, podrás comprar más revisiones si lo requieres."
           }
         />
       )}
