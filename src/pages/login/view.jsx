@@ -29,7 +29,7 @@ function View({
         <div className="inputs-main">
           <div className="inputs">
             <div className="text-purple">
-              <h2>Login</h2>
+              <h2>Inicia sesión</h2>
             </div>
             <input
               type="email"
@@ -39,13 +39,13 @@ function View({
               onKeyPress={(e) => handleKeyPress(e)}
             />
             {passwordValidation && (
-              <p className="text-error">* Invalid email</p>
+              <p className="text-error">* Email inválido</p>
             )}
             <div className="pass flex">
               <input
                 type={viewPassword ? "text" : "password"}
                 className="input-txt"
-                placeholder="Password"
+                placeholder="Contraseña"
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyPress={(e) => handleKeyPress(e)}
               />
@@ -59,7 +59,7 @@ function View({
 
             {messageValidation && (
               <div className="user-invalid">
-                <p className="text-error">Invalid user</p>
+                <p className="text-error">Usuario inválido</p>
               </div>
             )}
 
@@ -67,7 +67,7 @@ function View({
               className="text-purple recovery"
               onClick={() => redirectTo("recover-password")}
             >
-              ¿Forgot your password?
+              ¿Olvidaste tu contraseña?
             </div>
 
             <div className="remember">
@@ -78,7 +78,7 @@ function View({
                 id="remember"
                 onChange={() => setRemember(!remember)}
               />
-              Recovery password
+              Recordar contraseña
             </div>
 
             <div className="button-reactive">
@@ -91,11 +91,11 @@ function View({
                 buttonState={state}
                 onClick={() => (password || email) && onClickHandler()}
                 shadow={false}
-                loadingText={"Logging in..."}
+                loadingText={"Iniciando sesión..."}
                 outline={false}
                 rounded={false}
                 block={false}
-                idleText={"Login"}
+                idleText={"Inicia sesión"}
               />
             </div>
 
@@ -110,12 +110,12 @@ function View({
               Iniciar sesión
             </div> */}
             <div className="not-account">
-              <div>¿Don't have an account??</div>
+              <div>¿No tienes una cuenta?</div>
               <button
                 className="button-text-purple"
                 onClick={() => redirectTo("sing-up")}
               >
-                Register account
+                Crea una cuenta
               </button>
             </div>
           </div>
