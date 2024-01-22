@@ -74,16 +74,16 @@ function View({
 
               <div className="footer-section flex">
                 <div className="icon-credit">X</div>
-                <div className="credit-value">$ {type.price} Coins</div>
+                <div className="credit-value">$ {type.price} Monedas</div>
               </div>
             </div>
           ))}
         </section>
       )}
       <section className="section-brand">
-        <h3>1. Which brand are you going to use?  
+        <h3>1. ¿Cuál marca vas a utilizar?  
         <span className="required">
-          {FORM_INPUTS.name.required && "(Required)"}
+          {FORM_INPUTS.name.required && "(Requerido)"}
         </span></h3>
 
         <div className="o-brands flex">
@@ -97,7 +97,7 @@ function View({
             defaultValue={formData?.brand_select}
           >
             <option disabled selected>
-              Select an option
+              Selecciona una opción
             </option>
             {[
               ...new Map(brands?.map((item) => [item["name"], item])).values(),
@@ -120,7 +120,7 @@ function View({
             }}
           >
             {Icons("add_circle")}{" "}
-            <span className="text-purple">Add new brand</span>
+            <span className="text-purple">Agregar nueva marca</span>
           </div>
         </div>
       </section>
@@ -128,7 +128,7 @@ function View({
       <section className="section-social-network">
         <h3>2. {serviceData?.social_network?.title}
         <span className="required">
-          {FORM_INPUTS.name.required && "(Required)"}
+          {FORM_INPUTS.name.required && "(Requerido)"}
         </span></h3>
 
         <div className="social-network-check flex">
@@ -162,7 +162,7 @@ function View({
           {socialNetwork === "Otra ¿Cuál?" && (
             <div className="other-design">
               <label htmlFor="other-design" className="label">
-                Which one?
+                ¿Cuál?
               </label>
               <input
                 type="text"
@@ -174,7 +174,7 @@ function View({
           )}
         </div>
       </section>
-{/*       <section className="section-specs">
+      {/* <section className="section-specs">
         {serviceData?.specs?.map((spec, index) => (
           <div key={index} className="section-specs-spec" onClick={() => setIsActive(!isActive)}>
             <div>
@@ -192,7 +192,7 @@ function View({
       </section> */}
       <section className="section-buttons flex">
         <button className="button" onClick={() => redirectToHome()}>
-          Back
+          Atrás
         </button>
 
         <button
@@ -200,7 +200,7 @@ function View({
           className={"button"}
           onClick={() => redirectToForm()}
         >
-          Next
+          Continuar
         </button>
       </section>
       {modalMessage && (
