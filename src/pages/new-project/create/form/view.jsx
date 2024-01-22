@@ -22,24 +22,24 @@ function View({
     <div className="form-page page">
       <div className="step flex">{Icons("step_form")}</div>
 
-      <PageTitle title={"Form"} />
+      <PageTitle title={"Formulario"} />
 
       <section className="subtitle">
         <p>
-          Answer the following questions in
-          <span className="text-purple"> text form</span>,
-          <span className="text-purple"> voice</span>, &/or a
-          <span className="text-purple"> video</span>. You can also
-          <span className="text-purple"> attach</span> a file if you wish.
-          if you wish.
+          Contesta las siguientes preguntas por medio de
+          <span className="text-purple"> texto</span>,
+          <span className="text-purple"> voz</span>, y/o un
+          <span className="text-purple"> video</span>. También puedes
+          <span className="text-purple"> adjuntar</span> un archivo si lo
+          deseas.
         </p>
         <p>
-          All fields are optional except for the
-          <span className="text-purple"> project name</span>.
+          Todos los campos son opcionales excepto el
+          <span className="text-purple"> nombre del proyecto</span>.
         </p>
         <p>
-          The more information you give us, the better the whole process of developing your
-          development of your requirement.
+          Entre más información nos brindes, mejor será todo el proceso de
+          desarrollo de tu requerimiento.
         </p>
       </section>
 
@@ -50,7 +50,7 @@ function View({
               <label htmlFor="name">
                 {FORM_INPUTS.name.label}{" "}
                 <span className="required">
-                  {FORM_INPUTS.name.required && "(Required)"}
+                  {FORM_INPUTS.name.required && "(Requerido)"}
                 </span>
               </label>
               <input
@@ -72,6 +72,7 @@ function View({
               <textarea
                 {...FORM_INPUTS.public}
                 id="public"
+                name="public"
                 onChange={(e) => {
                   setFormData({ ...formData, public_goal: e.target.value });
                 }}
@@ -94,8 +95,9 @@ function View({
           </div>
         </div>
         <p>
-          Attach any <span className="text-purple"> files</span> and
-          <span className="text-purple"> references/examples</span> that you think may help us design your requirement.
+          Adjunta los <span className="text-purple"> archivos</span> y
+          <span className="text-purple"> referencias/ejemplos</span> que creas
+          que nos pueden ayudar a diseñar tu requerimiento.
         </p>
         {references
           .sort((a, b) => (a.id > b.id ? 1 : -1))
@@ -119,13 +121,13 @@ function View({
           }}
         >
           <div className="icon-add flex">{Icons("add_white")}</div>
-          <p>Attach more files/references/examples/etc.</p>
+          <p>Adjuntar más archivos/referencias/ejemplos/etc.</p>
         </div>
       </section>
 
       <section className="section-buttons flex">
         <button className="button" onClick={() => redirectToService()}>
-          Back
+          Atrás
         </button>
 
         <button
@@ -135,7 +137,7 @@ function View({
             setStep(step + 1);
           }}
         >
-          Next
+          Continuar
         </button>
       </section>
     </div>
