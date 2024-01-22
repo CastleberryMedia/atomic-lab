@@ -61,7 +61,7 @@ function View({
       <PageTitle
         page={page}
         user={true}
-        title={`${typeFin === "active" ? "Active" : "Finished"} projects`}
+        title={`Proyectos ${typeFin === "active" ? "activos" : "terminados"}`}
       />
       {loadingAllProjects ? (
         <div className="loading">
@@ -69,12 +69,12 @@ function View({
         </div>
       ) : projectsFilter && projectsFilter.length <= 0 ? (
         <div className="message">
-          <h3 className="text-purple">{`Has no projects ${
-            typeFin === "active" ? "activos" : "Finished"
+          <h3 className="text-purple">{`No tienes proyectos ${
+            typeFin === "active" ? "activos" : "terminados"
           }`}</h3>
           {userData?.rol_id !== 3 && (
             <button className="button" onClick={() => navigate("/new-project")}>
-              Start project
+              Empezar proyecto
             </button>
           )}
         </div>
@@ -245,28 +245,28 @@ function View({
           )}
           {modalMessage && (
             <ModalMessage
-              next_type="next"
+              next_type="continuar"
               next={() => {
                 setModalMessage(false);
               }}
-              message={"Now wait for your project to be assigned"}
+              message={"Ahora espera a que tu proyecto sea asignado"}
               subMessage={
                 <>
-                  <p>Here in Proyectos Activos you will be able to:</p>
+                  <p>Aquí en Proyectos Activos vas a poder:</p>
                   <ul>
                     <li>
-                      {Icons("check_circle")} View status (and track
-                      tracking).
+                      {Icons("check_circle")} Ver el estado (y hacerle
+                      seguimiento).
                     </li>
-                    <li>{Icons("check_circle")} See the information.</li>
+                    <li>{Icons("check_circle")} Ver la información.</li>
                     <li>
-                      {Icons("check_circle")} Invite your team and share it.
+                      {Icons("check_circle")} Invitar a tu equipo y compartirlo.
                     </li>
                     <li>
-                      {Icons("check_circle")} Make design annotations when the designer
-                      when the designer uploads the different versions.
+                      {Icons("check_circle")} Realizar las anotaciones del
+                      diseño cuando el diseñador suba las diferentes versiones.
                     </li>
-                    <li>{Icons("check_circle")} And much more ...</li>
+                    <li>{Icons("check_circle")} Y mucho más …</li>
                   </ul>
                 </>
               }
@@ -274,31 +274,31 @@ function View({
           )}
           {modalMessageFinish && (
             <ModalMessage
-              next_type="next"
+              next_type="continuar"
               next={() => {
                 setModalMessageFinish(false);
               }}
-              message={"Now wait for your designer to upload the files."}
+              message={"Ahora espera a que tu diseñador suba los archivos"}
               subMessage={
                 <>
                   <p>
-                    In the meantime, here in finished projects you will be able to:
+                    Mientras tanto, aquí en proyectos terminados vas a poder:
                   </p>
                   <ul>
                     <li>
-                      {Icons("check_circle")} View status (and track
-                      tracking).
+                      {Icons("check_circle")} Ver el estado (y hacerle
+                      seguimiento).
                     </li>
-                    <li>{Icons("check_circle")} See the information.</li>
-                    <li>{Icons("check_circle")} Share it.</li>
+                    <li>{Icons("check_circle")} Ver la información.</li>
+                    <li>{Icons("check_circle")} Compartirlo.</li>
                     <li>
-                      {Icons("check_circle")} Make your own private notes
-                      private
+                      {Icons("check_circle")} Realizar tus propias notas
+                      privadas
                     </li>
-                    <li>{Icons("check_circle")} View it</li>
+                    <li>{Icons("check_circle")} Visualizarlo</li>
                     <li>
-                      {Icons("check_circle")} Qualify the final design and your
-                      overall experience
+                      {Icons("check_circle")} Calificar el diseño final y tu
+                      experiencia en general
                     </li>
                     <br />
                   </ul>
