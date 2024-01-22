@@ -7,15 +7,15 @@ export const URL_IMG = "https://api.atomiclabco.com";
 export const TEAM_ROL = [
   {
     id: 5,
-    text: "You can see",
+    text: "Puede ver",
   },
   {
     id: 6,
-    text: "Can edit",
+    text: "Puede editar",
   },
   {
     id: 7,
-    text: "You can comment",
+    text: "Puede comentar",
   },
   {
     id: 8,
@@ -27,7 +27,7 @@ export const TEAM_ROL = [
   },
   {
     id: 3,
-    text: "Designer",
+    text: "Diseñador",
   },
 ];
 
@@ -35,27 +35,26 @@ export const NOTIFICATION_TEXT = (notification) => {
   let noti = "";
   switch (notification.type) {
     case "creation":
-      noti = `The <span> ${notification.name_project} </span> project has been <span> created </span>`;
+      noti = `Se ha <span> creado </span> el proyecto <span> ${notification.name_project} </span>`;
       break;
     case "assign_designer":
-      noti = `A designer has been <span> assigned  </span> to the <span> ${notification.name_project} </span> project`;
+      noti = `Se ha <span> asignado </span> un diseñador al proyecto <span> ${notification.name_project} </span>`;
       break;
     case "finish-revision":
-      noti = `A review <span> has been made </span> to the <span> ${notification.name_project} </span> project`;
+      noti = `Se ha <span> realizado una revisión </span> al proyecto <span> ${notification.name_project} </span>`;
       break;
     case "upload_last_files":
-      noti = `Final files <span> have been uploaded </span> to the <span> ${notification.name_project} </span> project`;
+      noti = `Se han <span> subido archivos finales </span> al proyecto <span> ${notification.name_project} </span>`;
       break;
 
     default:
       break;
   }
-
   return noti;
 };
 
 export const METHOD_SELECT = [
-  "Credit/debit card",
+  "Tarjeta de crédito/débito",
   "PSE",
   "Paypal",
   "Mercadopago",
@@ -71,7 +70,7 @@ export const MAIN_SUBMENU = (
   const listContent = [
     {
       view: true,
-      text: "My profile",
+      text: "Mi perfil",
       redirect: "profile",
       onClick() {
         redirectTo("profile");
@@ -79,21 +78,21 @@ export const MAIN_SUBMENU = (
     },
     {
       view: true,
-      text: "My brands",
+      text: "Mis marcas",
       onClick() {
         redirectTo("brands");
       },
     },
     {
       view: true,
-      text: "My attachments",
+      text: "Mis adjuntos",
       onClick() {
         redirectTo("attached");
       },
     },
     {
       view: rol !== 3 ? true : false,
-      text: "My team",
+      text: "Mi equipo",
       onClick() {
         redirectTo("team");
       },
@@ -104,14 +103,14 @@ export const MAIN_SUBMENU = (
     },
     {
       view: true,
-      text: "My configuration",
+      text: "Mi configuración",
       onClick() {
         redirectTo("configuration");
       },
     },
     {
       view: true,
-      text: "Help and support",
+      text: "Ayuda y soporte",
       onClick() {
         setModalHelp(!modalHelp);
       },
@@ -122,7 +121,7 @@ export const MAIN_SUBMENU = (
     },
     {
       view: true,
-      text: "Log out",
+      text: "Cerrar sesión",
       redirect: "/",
       onClick() {
         localStorage.clear("formProject");
@@ -132,7 +131,6 @@ export const MAIN_SUBMENU = (
       },
     },
   ];
-
   return listContent.filter((item) => item.view === true);
 };
 
@@ -156,7 +154,7 @@ export const MAIN_MENU = (rol) => {
       active: ["new-project", "service"],
       tour_title: "Iniciar un Proyecto",
       tour_text:
-        "Here you will be able to see the different products and request the one that best suits your requirements.",
+        "Aquí podrás ver los diferentes productos y solicitar el que más se ajuste a tu requerimiento.",
     },
     {
       view: true,
@@ -172,7 +170,7 @@ export const MAIN_MENU = (rol) => {
       ],
       tour_title: "Proyectos Activos",
       tour_text:
-        "Here you can view your active projects; see the status and track them, view the latest version, make annotations and much more.",
+        "Aquí podrás ver tus proyectos que se encuentran activos; ver el estado y hacerle seguimiento, ver la última versión, realizar las anotaciones y mucho más.",
     },
     {
       view: true,
@@ -182,7 +180,7 @@ export const MAIN_MENU = (rol) => {
       active: ["projects-inactive"],
       tour_title: "Proyectos Completados",
       tour_text:
-        "Here you can view your completed projects. View, share and download your projects.",
+        "Aquí podrás ver tus proyectos que han finalizado. Visualiza, comparte y descarga tus proyectos.",
     },
     {
       view: true,
@@ -192,7 +190,7 @@ export const MAIN_MENU = (rol) => {
       active: ["brands"],
       tour_title: "Marcas",
       tour_text:
-        "Here you can view your completed projects. View, share and download your projects.",
+        "Aquí podrás ver tus marcas creadas. Visualiza, comparte y descarga tus proyectos.",
     },
   ];
 
@@ -228,7 +226,7 @@ export const FORM_INPUTS_BRANDS = [
   {
     id: "brand",
     type: "text",
-    label: "Brand",
+    label: "Marca",
     required: false,
     className: "input-txt",
   },
@@ -249,19 +247,19 @@ export const FORM_INPUTS_BRANDS = [
   {
     id: "industry",
     type: "text",
-    label: "Industry",
+    label: "Industria",
     required: false,
     className: "input-txt",
   },
   {
     id: "web_page",
     type: "text",
-    label: "Web page (URL)",
+    label: "Página web (URL)",
     required: false,
     className: "input-txt",
   },
   {
-    label: "Social networks",
+    label: "Redes sociales",
     className: "sub",
     options: [
       {
@@ -307,7 +305,7 @@ export const FORM_INPUTS_BRANDS = [
       {
         id: "otros",
         type: "text",
-        label: "Others",
+        label: "Otros",
         required: false,
         className: "input-txt",
       },
@@ -316,33 +314,33 @@ export const FORM_INPUTS_BRANDS = [
   {
     id: "employees",
     type: "number",
-    label: "Number of employees",
+    label: "Número de empleados",
     required: false,
     className: "input-txt",
   },
   {
     id: "offers",
-    label: "What does it offer?",
+    label: "¿Qué ofrece?",
     className: "input-checkbox",
     options: [
       {
         id: "services",
         type: "checkbox",
-        label: "Services",
+        label: "Servicios",
         required: false,
         className: "checkbox-txt",
       },
       {
         id: "products",
         type: "checkbox",
-        label: "Products",
+        label: "Productos",
         required: false,
         className: "checkbox-txt",
       },
       {
         id: "two",
         type: "checkbox",
-        label: "Both",
+        label: "Ambos",
         required: false,
         className: "checkbox-txt",
       },
@@ -351,7 +349,7 @@ export const FORM_INPUTS_BRANDS = [
   {
     id: "product_services",
     type: "textarea",
-    label: "Products/Services",
+    label: "Productos/Servicios",
     required: false,
     className: "input-texarea",
   },
@@ -365,7 +363,7 @@ export const FORM_INPUTS_BRANDS = [
   {
     id: "keywords_brands",
     type: "textarea",
-    label: "Keywords related to the brand",
+    label: "Palabras clave relacionadas con la marca",
     required: false,
     className: "input-texarea",
   },
@@ -400,14 +398,14 @@ export const FORM_INPUTS_BRANDS = [
 ];
 
 export const DESIGNER_LEVEL = {
-  none: "None",
-  medium: "Medium",
-  high: "High",
+  none: "Ninguna",
+  medium: "Media",
+  high: "Mucha",
 };
 
 export const DELIVERY_TIME = {
-  Express: "Express (1-2 business days)",
-  Estandar: "Standard (2-4 business days)",
+  Express: "Express (1-2 días hábiles)",
+  Estandar: "Estándar (2-4 días hábiles)",
 };
 
 export const DETAIL_PROJECT_DATA_2 = (
@@ -418,10 +416,10 @@ export const DETAIL_PROJECT_DATA_2 = (
   redirectToBrandForm
 ) => {
   return [
-    { id: 1, label: "Project owner", content: filterProject?.name_user },
+    { id: 1, label: "Dueño del proyecto", content: filterProject?.name_user },
     {
       id: 2,
-      label: "Designer",
+      label: "Diseñador",
       content: designers.length ? (
         <div className="designers-list">
           {designers.map((member) => (
@@ -429,12 +427,12 @@ export const DETAIL_PROJECT_DATA_2 = (
           ))}
         </div>
       ) : (
-        "Not assigned"
+        "No asignado"
       ),
     },
     {
       id: 3,
-      label: "Start date",
+      label: "Fecha de inicio",
       content: (
         <div>
           {moment
@@ -446,7 +444,7 @@ export const DETAIL_PROJECT_DATA_2 = (
     },
     {
       id: 4,
-      label: "Brand",
+      label: "Marca",
       content: (
         <div
           className="brand-pointer text-purple"
@@ -456,18 +454,18 @@ export const DETAIL_PROJECT_DATA_2 = (
         </div>
       ),
     },
-    { id: 5, label: "Type of Project", content: projectValues?.project_type },
-    { id: 6, label: "Social network", content: projectValues?.social_network },
+    { id: 5, label: "Tipo de Proyecto", content: projectValues?.project_type },
+    { id: 6, label: "Red social", content: projectValues?.social_network },
     {
       id: 8,
-      label: "Color palette",
+      label: "Paleta de colores",
       content: projectValues?.palete_colors,
     },
-    { id: 9, label: "Target Audience", content: projectValues?.public_goal },
-    { id: 10, label: "Idea to develop", content: projectValues?.idea_post },
+    { id: 9, label: "Publico objetivo", content: projectValues?.public_goal },
+    { id: 10, label: "Idea a desarollar", content: projectValues?.idea_post },
     {
       id: 11,
-      label: "References",
+      label: "Referencias",
       content: projectValues?.references.length
         ? projectValues?.references.map((arr) => (
             <div className="with-icons">
@@ -477,12 +475,12 @@ export const DETAIL_PROJECT_DATA_2 = (
               {arr.text}
             </div>
           ))
-        : "No references",
+        : "Sin referencias",
     },
 
     {
       id: 12,
-      label: "Delivery format",
+      label: "Formato de entrega",
       content: (
         <div>
           <p>{projectValues?.formato_entrega}</p>
@@ -492,14 +490,14 @@ export const DETAIL_PROJECT_DATA_2 = (
     },
     {
       id: 13,
-      label: "Designer's freedom",
+      label: "Libertad del diseñador",
       content: DESIGNER_LEVEL[projectValues?.designer_freedom]
         ? DESIGNER_LEVEL[projectValues?.designer_freedom]
         : projectValues?.designer_freedom,
     },
     {
       id: 14,
-      label: "Size",
+      label: "Tamaño",
       content: (
         <div>
           <p>{projectValues?.tamaño || "-"}</p>
@@ -510,35 +508,35 @@ export const DETAIL_PROJECT_DATA_2 = (
 
     {
       id: 15,
-      label: "Delivery time",
+      label: "Tiempo de entrega",
       content: DELIVERY_TIME[projectValues?.tiempo_entrega],
     },
     {
       id: 16,
-      label: "Editable files",
+      label: "Archivos editables",
       content: projectValues?.archivos_editables,
     },
     {
       id: 17,
-      label: "Revisions",
+      label: "Revisiones",
       content: (
         <div>
           {filterProject?.review} de{" "}
-          {projectValues?.revisiones?.replace("To ", "")}
+          {projectValues?.revisiones?.replace("Hasta ", "")}
         </div>
       ),
     },
     {
       id: 18,
-      label: "Next review date",
-      content: filterProject?.review_date || "Not programmed",
+      label: "Fecha próx. revisión",
+      content: filterProject?.review_date || "No programada",
     },
     {
       id: 19,
-      label: "Base project cost",
+      label: "Costo base del proyecto",
       content: projectValues?.costo_base,
     },
-    { id: 20, label: "Total cost", content: projectValues?.costo_base },
+    { id: 20, label: "Costo total", content: projectValues?.costo_base },
   ];
 };
 
@@ -546,7 +544,7 @@ export const FORM_INPUTS_PROFILE = [
   {
     id: "name",
     type: "text",
-    label: "Name(s)",
+    label: "Nombre(s)",
     placeholder: "",
     required: false,
     className: "input-txt",
@@ -554,7 +552,7 @@ export const FORM_INPUTS_PROFILE = [
   {
     id: "last_name",
     type: "text",
-    label: "Last name",
+    label: "Apellido",
     placeholder: "",
     required: false,
     className: "input-txt",
@@ -570,7 +568,7 @@ export const FORM_INPUTS_PROFILE = [
   {
     id: "email_corporate",
     type: "text",
-    label: "Corporate email",
+    label: "Email corporativo",
     placeholder: "",
     required: false,
     className: "input-txt",
@@ -578,7 +576,7 @@ export const FORM_INPUTS_PROFILE = [
   {
     id: "cell_phone",
     type: "text",
-    label: "Cellphone",
+    label: "Celular",
     placeholder: "",
     required: false,
     className: "input-txt",
@@ -586,7 +584,7 @@ export const FORM_INPUTS_PROFILE = [
   {
     id: "cell_phone_corporate",
     type: "text",
-    label: "Corporate Phone",
+    label: "Teléfono corporativo",
     placeholder: "",
     required: false,
     className: "input-txt",
@@ -594,7 +592,7 @@ export const FORM_INPUTS_PROFILE = [
   {
     id: "cedula",
     type: "text",
-    label: "NIT/ID CARD",
+    label: "Cédula",
     placeholder: "",
     required: false,
     className: "input-txt",
@@ -602,8 +600,8 @@ export const FORM_INPUTS_PROFILE = [
   {
     id: "passwordNew",
     type: "password",
-    label: "New password",
-    placeholder: "Enter new password",
+    label: "Nueva contraseña",
+    placeholder: "Ingrese nueva contraseña",
     required: false,
     className: "input-txt",
     autocomplete: "new-password",
@@ -611,8 +609,8 @@ export const FORM_INPUTS_PROFILE = [
   {
     id: "passwordNew_confirm",
     type: "password",
-    label: "Confirm password",
-    placeholder: "Enter new password",
+    label: "Confirmar contraseña",
+    placeholder: "Ingrese nueva contraseña",
     required: false,
     className: "input-txt",
     autocomplete: "new-password",
@@ -622,40 +620,40 @@ export const FORM_INPUTS_PROFILE = [
 export const FORM_INPUTS = {
   name: {
     type: "text",
-    label: "Project name and specifications",
+    label: "Dar nombre al proyecto y especificaciones",
     placeholder:
-      "Tip: Include the type of design in the name (logo, post, etc.)",
+      "Tip: Incluye el tipo de diseño en el nombre (logo, post, etc.)",
     required: true,
     className: "input-txt",
   },
   public: {
     type: "text",
-    label: "What is your target audience?",
+    label: "¿Cual es tu público objetivo?",
     placeholder:
-      "Example. Age (adults, millennials, etc.), gender, occupation, industry/sector, etc., etc.",
+      "Ej. Edad (adultos, millenials, etc.), género, ocupación, industria/sector, etc.",
     required: false,
     className: "input-texarea",
   },
   palete_colors: {
     type: "text",
-    label: "Do you have a color preference or a color palette?",
+    label: "¿Tienes preferencia de colores o una paleta de colores?",
     placeholder:
-      "Add more details about your preferred colors, styles and fonts",
+      "Agrega más detalles sobre tus colores, estilos y fuentes preferidas",
     required: false,
     className: "input-texarea",
   },
   reference: {
     type: "text",
-    label: "From this example/reference, what did you like and why?",
+    label: "De éste ejemplo/referencia, ¿Qué fue lo que te gustó y por qué?",
     placeholder:
-      "Attach style preferences, samples, references, examples, sketches/drafts, web pages, URLs, etc.",
+      "Adjunta preferencias de estilos, muestras, referencias, ejemplos, bosquejos/borradores, páginas web, URLs, etc.",
     required: false,
     className: "input-texarea",
     maxLength: 280,
   },
   idea: {
     type: "text",
-    label: "What is the idea you want to develop and expected impact?",
+    label: "¿Cuál es la idea que quieres desarrollar e impacto esperado?",
     placeholder: "",
     required: true,
     className: "input-texarea",
@@ -663,86 +661,85 @@ export const FORM_INPUTS = {
   },
   image_include: {
     type: "text",
-    label: "Image to include",
+    label: "Imagen a incluir",
     placeholder:
-      "Do you have any comments about the image you want to include?",
+      "¿Tienes algún comentario sobre la imagen que quieres incluir?",
     required: false,
     className: "input-texarea",
     maxLength: 280,
   },
   text_include: {
     type: "text",
-    label: "Text to include",
+    label: "Texto a incluir",
     placeholder:
-      "Write the text as you want it. If you have it in a file, attach it.",
-    required: false,
+      "Escribe el texto tal cual como lo quieres. En caso que lo tengas en un archivo, adjúntalo",
     className: "input-texarea",
     maxLength: 280,
   },
 
   reference_add: {
     type: "file",
-    label: "Text to include",
+    label: "Texto a incluir",
     required: false,
     className: "input-texarea",
   },
 };
 
 export const FROM_BRAND_TABLES = [
-  { id: 1, title: "Brand manual" },
-  { id: 2, title: "Logo (in editable format)" },
-  { id: 3, title: "Color palette" },
-  { id: 4, title: "Typography" },
-  { id: 5, title: "Brandboard (style guide)" },
-  { id: 6, title: "Other" },
+  { id: 1, title: "Manual de marca" },
+  { id: 2, title: "Logo (en formato editable)" },
+  { id: 3, title: "Paleta de colores" },
+  { id: 4, title: "Tipografía" },
+  { id: 5, title: "Brandboard (guía de estilo)" },
+  { id: 6, title: "Otros" },
 ];
 
 export const STATUS_TABLES = (page) => {
   const listContent = [
-    { title: "Status", isActive: true },
-    { title: "Date and Time", isActive: true },
-    { title: "Designer assigned", isActive: true },
-    { title: "See project", isActive: true },
+    { title: "Estado", isActive: true },
+    { title: "Fecha y Hora", isActive: true },
+    { title: "Diseñador asignado", isActive: true },
+    { title: "Ver proyecto", isActive: true },
   ];
   return listContent.filter((item) => item.isActive === true);
 };
 
 export const STATUS_TABLES_FLOW = [
-  { id: 1, text: "Project Started" },
-  { id: 2, text: "Project Assigned" },
-  { id: 3, text: "Project Loaded" },
-  { id: 4, text: "Proyecto Completed" },
+  { id: 1, text: "Proyecto Iniciado" },
+  { id: 2, text: "Proyecto Asignado" },
+  { id: 3, text: "Proyecto Cargado" },
+  { id: 4, text: "Proyecto Finalizado" },
 ];
 
 export const SUMMARY_OPTIONS = {
   tiempo: {
     options: [
-      { text: "Standard", extra_text: "(2-4 working days)", price: 0 },
-      { text: "Express", extra_text: "(1-2 working days)", price: 15 },
+      { text: "Estándar", extra_text: "(2-4 días hábiles)", price: 0 },
+      { text: "Express", extra_text: "(1-2 días hábiles)", price: 15 },
     ],
   },
   formato: {
     options: [
-      { text: "Recommended", price: 0 },
-      { text: "Personalized", price: 0 },
+      { text: "Recomendado", price: 0 },
+      { text: "Personalizado", price: 0 },
     ],
   },
   revisiones: {
     options: [
-      { text: "Up to 3", price: 0 },
-      { text: "Unlimited", price: 25 },
+      { text: "Hasta 3", price: 0 },
+      { text: "Ilimitado", price: 25 },
     ],
   },
   tamaño: {
     options: [
-      { text: "Recommended", price: 0 },
-      { text: "Personalized", price: 0 },
+      { text: "Recomendado", price: 0 },
+      { text: "Personalizado", price: 0 },
     ],
   },
   editables: {
     options: [
       { text: "No", price: 0 },
-      { text: "Yes", price: 0 },
+      { text: "Si", price: 0 },
     ],
   },
 };
@@ -774,20 +771,20 @@ export const PROJECTS_2 = ({
 }) => {
   const listContent = [
     {
-      title: "Project name",
+      title: "Nombre del proyecto",
       isActive: true,
       render: project?.name_project,
       sortable: true,
     },
 
     {
-      title: "Start Date",
+      title: "Fecha Inicio",
       isActive: page === "home" && type === "inactive" ? true : false,
       render: project?.created_at,
     },
 
     {
-      title: "Status",
+      title: "Estado",
       isActive: page === "home" ? (type === "active" ? true : false) : true,
       sortable: true,
       subtitle: (
@@ -799,7 +796,7 @@ export const PROJECTS_2 = ({
             })
           }
         >
-          See more...
+          Ver más...
         </div>
       ),
       render: (
@@ -820,12 +817,12 @@ export const PROJECTS_2 = ({
       ),
     },
     {
-      title: "Completion Date",
+      title: "Fecha Finalización",
       isActive: type === "inactive" ? true : false,
       render: project?.finish_at,
     },
     {
-      title: "Estimated date of next revision",
+      title: "Fecha estimada próx. revisión",
       isActive: type === "active" ? true : false,
       field: "review_date",
       icon: null,
@@ -851,7 +848,7 @@ export const PROJECTS_2 = ({
         ),
     },
     {
-      title: "Feedback reviews",
+      title: "Retroalimentación revisiones",
       isActive: type === "active" ? true : false,
       render: (
         <div
@@ -863,7 +860,7 @@ export const PROJECTS_2 = ({
       ),
     },
     {
-      title: "My private notes",
+      title: "Mis notas privadas",
       isActive: page === "home" ? false : true,
       render: (
         <div
@@ -882,7 +879,7 @@ export const PROJECTS_2 = ({
     },
 
     {
-      title: "Visualize final design",
+      title: "Visualizar diseño final",
       isActive: type === "inactive" ? true : false,
       render: (
         <div
@@ -901,7 +898,7 @@ export const PROJECTS_2 = ({
     },
 
     {
-      title: "Concluding remarks",
+      title: "Comentarios finales",
       isActive: page !== "home" && type === "inactive" ? true : false,
       render: (
         <div
@@ -920,7 +917,7 @@ export const PROJECTS_2 = ({
     },
 
     {
-      title: "Final designs",
+      title: "Diseños finales",
       isActive: page !== "home" && type === "inactive" ? true : false,
       render: (
         <div
@@ -938,7 +935,7 @@ export const PROJECTS_2 = ({
     },
 
     /*   {
-      title: "Download",
+      title: "Descargar",
       isActive: typeFin === "inactive" ? true : false,
       render: (
         <div className="pointer">
@@ -955,7 +952,7 @@ export const PROJECTS_2 = ({
       ),
     }, */
     {
-      title: "More Information",
+      title: "Más Información",
       isActive: page === "home" && type === "active" ? true : false,
       render: (
         <div
@@ -969,7 +966,7 @@ export const PROJECTS_2 = ({
       ),
     },
     {
-      title: "Display latest version",
+      title: "Visualizar última versión",
       isActive: page !== "home" && type === "active" ? true : false,
       render: getLastVersion && getLastVersion(project) && (
         <div
@@ -987,7 +984,7 @@ export const PROJECTS_2 = ({
       ),
     },
     {
-      title: "Review",
+      title: "Revisión",
       isActive: page !== "home" && type === "active" ? true : false,
       render: (
         <div className="flex review">
@@ -1011,7 +1008,7 @@ export const PROJECTS_2 = ({
     },
 
     {
-      title: "Designer",
+      title: "Diseñador",
       isActive: page !== "home" && type === "active" ? true : false,
       render: (
         <div
@@ -1043,7 +1040,7 @@ export const PROJECTS_2 = ({
                 className="menu-float-item flex"
                 onClick={() => navigate(`/project-detail/${project?.id}`)}
               >
-                <p>More information</p>
+                <p>Más información</p>
                 {Icons("help_circle")}
               </div>
               <div
@@ -1056,7 +1053,7 @@ export const PROJECTS_2 = ({
                   setDataModals(project);
                 }}
               >
-                <p>Share</p>
+                <p>Compartir</p>
                 {Icons("help_circle")}
               </div>
               <div
@@ -1069,7 +1066,7 @@ export const PROJECTS_2 = ({
                   setDataModals(project);
                 }}
               >
-                <p>Invite people</p>
+                <p>Invitar personas</p>
                 {Icons("help_circle")}
               </div>
               <div
@@ -1082,7 +1079,7 @@ export const PROJECTS_2 = ({
                   setDataModals(project);
                 }}
               >
-                <p>Delete</p>
+                <p>Eliminar</p>
                 {Icons("help_circle")}
               </div>
             </div>
@@ -1099,7 +1096,7 @@ export const PROJECTS_2 = ({
           className={"view-more pointer"}
           onClick={() => navigate(`/projects-${type}`)}
         >
-          See more...
+          Ver más...
         </div>
       ),
     },
@@ -1121,103 +1118,103 @@ export const TYPE_PUBLICATION_DATA = {
 export const SERVICES_DATA = [
   {
     status: "active",
-    title: "Social Networks",
-    title_id: "social-networks",
-    description: "Content shared on social networks",
+    title: "Redes sociales",
+    title_id: "redes-sociales",
+    description: "Contenido compartido en las redes sociales",
     base_price: 109,
     price: {
       basic: [
         {
-          name: "Base project cost",
+          name: "Costo base del proyecto",
           price: 109,
         },
         {
-          name: "Delivery time",
+          name: "Tiempo de entrega",
           price: 0,
         },
         {
-          name: "Delivery Format",
+          name: "Formato de entrega",
           price: 0,
         },
         {
-          name: "Modifications",
+          name: "Modificaciones",
           price: 0,
         },
         {
-          name: "Size",
+          name: "Tamaño",
           price: 0,
         },
         {
-          name: "Editable files",
+          name: "Archivos editables",
           price: 0,
         },
       ],
       complete: "$300",
     },
     description_page:
-      "Check the specifications and choose what kind of publication you need.",
+      "Revisa las especificaciones y elige que clase de publicación necesitas",
     specs: [
       {
         id: "1",
-        title: "For which social networks?",
+        title: "¿Para cuales redes sociales?",
         options: [
           "Facebook.",
           "Instagram.",
           "Linkedin.",
-          "More coming soon...",
+          "Próximamente más...",
         ],
       },
       {
         id: "2",
-        title: "What are we going to deliver?",
+        title: "¿Qué te vamos a entregar?",
         options: [
-          "Unique publications created from scratch, in order to have greater visibility and connect with your community generating value.",
+          "Publicaciones únicas creadas desde cero, con el fin de tener mayor visibilidad y que puedas conectar con tu comunidad generando valor",
         ],
       },
       {
         id: "3",
-        title: "What does it include?",
+        title: "¿Qué Incluye?",
         options: [
-          "Post design.",
-          "Photos for free license/commercial use.", "Post image/illustration optimized for networks.",
-          "Image/illustration of the post optimized for networks.",
-          "Layout.",
-          "Typographic design.",
+          "Diseño de post.",
+          "Fotos de libre licencia/uso comercial.",
+          "Imagen/ilustración de la publicación optimizada para redes.",
+          "Diagramación.",
+          "Diseño tipográfico",
         ],
       },
       {
         id: "4",
-        title: "What is NOT included?",
+        title: "¿Qué NO incluye?",
         options: [
-          "Photographs",
-          "Text creation",
-          "Content writing",
-          "Photographic retouching",
-          "Reel and video production",
+          "Fotografias",
+          "Creación de textos",
+          "Redaccióm de contenido",
+          "Retoque fotográfico",
+          "Realización de reels y videos",
         ],
       },
       {
         id: "5",
-        title: "What do you have to deliver to us?",
+        title: "¿Qué nos tienes que entregar?",
         options: [
-          "Text content (if applicable).",
-          "Photos/images (if applicable).",
-          "Styles/examples/references.",
+          "Contenido del texto (si aplica).",
+          "Fotos/imágenes (si aplica).",
+          "Estilos/ejemplos/referencias.",
         ],
       },
 
       {
         id: "6",
         title: "Extras",
-        options: ["If you don't have photos we will put them in at an extra price"],
+        options: ["Si no tienes fotos nosotros las ponemos a un precio extra"],
       },
     ],
     publication_type: {
-      title: "What type of publication do you want?",
-      options: ["Post", "Advertising (Ad)", "Cover", "Story", "Header"],
+      title: "¿Qué tipo de publicación quieres?",
+      options: ["Post", "Publicidad (Ad)", "Cover", "Story", "Header"],
     },
     social_network: {
-      title: "For which social network do you want your design?",
+      title: "¿Para cual red social quieres tu diseño?",
       options: [
         { name: "Facebook", status: "active" },
         { name: "Instagram", status: "active" },
@@ -1227,15 +1224,15 @@ export const SERVICES_DATA = [
         { name: "Pinterest", status: "active" },
         { name: "Twitch", status: "active" },
         { name: "Tumblr", status: "active" },
-        { name: "Other Which one?", status: "active" },
+        { name: "Otra ¿Cuál?", status: "active" },
       ],
     },
   },
   {
     status: "coming-soon",
-    title: "Print",
-    title_id: "print",
-    description: "Content shared on social networks",
+    title: "Impresion",
+    title_id: "impresion",
+    description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
       complete: "$300",
@@ -1243,9 +1240,9 @@ export const SERVICES_DATA = [
   },
   {
     status: "coming-soon",
-    title: "Stationery",
-    title_id: "stationery",
-    description: "Content shared on social networks",
+    title: "Papeleria",
+    title_id: "papeleria",
+    description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
       complete: "$300",
@@ -1253,9 +1250,9 @@ export const SERVICES_DATA = [
   },
   {
     status: "coming-soon",
-    title: "Web design",
-    title_id: "web-design",
-    description: "Content shared on social networks",
+    title: "Diseño web",
+    title_id: "diseño-web",
+    description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
       complete: "$300",
@@ -1263,9 +1260,9 @@ export const SERVICES_DATA = [
   },
   {
     status: "coming-soon",
-    title: "Infographics",
-    title_id: "infographics",
-    description: "Content shared on social networks",
+    title: "Infografias",
+    title_id: "infografias",
+    description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
       complete: "$300",
@@ -1273,9 +1270,9 @@ export const SERVICES_DATA = [
   },
   {
     status: "coming-soon",
-    title: "Presentations",
-    title_id: "presentations",
-    description: "Content shared on social networks",
+    title: "Presentaciones",
+    title_id: "presentaciones",
+    description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
       complete: "$300",
@@ -1284,35 +1281,35 @@ export const SERVICES_DATA = [
 
   {
     status: "coming-soon",
-    title: "Brand Manual",
-    title_id: "brand-manual",
-    description: "Content shared on social networks",
+    title: "Manual de marca",
+    title_id: "manual-de-marca",
+    description: "Contenido compartido en las redes sociales",
     description_page:
       "<p>Un manual de marca (o de identidad) es un documento que recoge los principales elementos gráficos de la marca y explica cómo deben aplicarse visualmente. Tanto online como offline</p><p>Revisa las especificaciones y elige que clase de publicación necesitas</p><p>Los siguientes parámetros aplican para ambos manuales de marca</p> ",
     price: {
       basic: [
         {
-          name: "Base project cost",
+          name: "Costo base del proyecto",
           price: 100,
         },
         {
-          name: "Delivery time",
+          name: "Tiempo de entrega",
           price: 0,
         },
         {
-          name: "Delivery Format",
+          name: "Formato de entrega",
           price: 0,
         },
         {
-          name: "Modifications",
+          name: "Modificaciones",
           price: 0,
         },
         {
-          name: "Size",
+          name: "Tamaño",
           price: 0,
         },
         {
-          name: "Editable files",
+          name: "Archivos editables",
           price: 0,
         },
       ],
@@ -1321,50 +1318,50 @@ export const SERVICES_DATA = [
     specs: [
       {
         id: "1",
-        title: "Which project are you going to use?",
+        title: "¿Cuál proyecto vas a utilizar?",
         options: ["SELECT DE BRAND."],
       },
       {
         id: "2",
-        title: "What does it include?",
+        title: "¿Qué incluye?",
         options: [
-          "Design of the manual according to specifications.",
-          "Pdf in high resolution.",
+          "Diseño del manual según especificaciones.",
+          "Pdf en alta resolución.",
         ],
       },
       {
         id: "3",
-        title: "What do you have to deliver to us?",
+        title: "¿Qué nos tienes que entregar?",
         options: [
-          "Editable logo.",
-          "Existing information about logo applications.",
+          "Logotipo editable.",
+          "Información existente sobre aplicaciones del logotipo.",
         ],
       },
       {
         id: "4",
-        title: "What is the scope/objective?",
+        title: "¿Cuál es el alcance/objetivo?",
         options: [
-          "You are going to have a brand manual that will allow the company to stand out and drive growth.",
+          "Vas a contar con un manual de marca que permitirá a la compañía destacarse e impulsar su crecimiento.",
         ],
       },
       {
         id: "5",
-        title: "What is NOT included?",
+        title: "¿Qué NO incluye?",
         options: [
-          "Text creation.",
-          "Photographs.",
-          "Final arts of applications.",
+          "Creación de textos.",
+          "Fotografías.",
+          "Artes finales de aplicaciones.",
         ],
       },
     ],
     types_manuals: [
       {
-        title: "Basic identity manual",
+        title: "Manual de identidad básico",
         options: [
           "Color CMYK/RGB/Hex",
-          "Horizontal and vertical version of the logo",
-          "Main and secondary color palette",
-          "Typographies",
+          "Version horizontal y vertical del logotipo",
+          "Paleta de color principal y secundaria",
+          "Tipografias",
         ],
         price: 100,
       },
@@ -1372,15 +1369,15 @@ export const SERVICES_DATA = [
         title: "Manual de identidad completo",
         options: [
           "Color CMYK/RGB/Hex",
-          "Horizontal and vertical version of the logo",
-          "Main and secondary color palette",
-          "Typographies",
-          "Planimetry",
-          "Reserve areas and minimum sizes",
-          "Black and white version",
-          "Positive and negative",
-          "Incorrect uses",
-          "Secondary graphics (icons and other elements)",
+          "Version horizontal y vertical del logotipo",
+          "Paleta de color principal y secundaria",
+          "Tipografias",
+          "Planimetria",
+          "Áreas de reserva y tamaños minimos",
+          "Versión blanco y negro",
+          "Positivo y negativo",
+          "Usos incorrectos",
+          "Gráfica secundaria (iconos y otros elementos)",
         ],
         price: 120,
       },
@@ -1388,9 +1385,9 @@ export const SERVICES_DATA = [
   },
   {
     status: "coming-soon",
-    title: "Logotype",
-    title_id: "logotype",
-    description: "Content shared on social networks",
+    title: "Logotipo",
+    title_id: "logotipo",
+    description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
       complete: "$300",
@@ -1398,9 +1395,9 @@ export const SERVICES_DATA = [
   },
   {
     status: "coming-soon",
-    title: "Others",
-    title_id: "others",
-    description: "Content shared on social networks",
+    title: "Otros",
+    title_id: "otros",
+    description: "Contenido compartido en las redes sociales",
     price: {
       basic: "$100",
       complete: "$300",
