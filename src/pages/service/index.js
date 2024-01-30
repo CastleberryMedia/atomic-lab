@@ -207,8 +207,8 @@ function Index() {
         setModalMessageStartStatus(true);
         setModalMessageStartData({
           type: "ok",
-          message: "CONGRATULATIONS!",
-          subMessage: "Your project has been successfully launched!",
+          message: "¡FELICIDADES!",
+          subMessage: "¡Tu proyecto ha sido lanzado con éxito!",
         });
 
         //vaciar tabla indexedDb
@@ -220,7 +220,7 @@ function Index() {
         setModalMessageStartData({
           type: "error",
           message: "¡ERROR!",
-          subMessage: "There was an error :(, try again",
+          subMessage: "Se ha producido un error :(, inténtelo de nuevo",
         });
       });
   };
