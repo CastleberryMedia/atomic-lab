@@ -219,3 +219,296 @@
   }
   
 }
+
+.selection-page {
+  .subtitle {
+    margin-bottom: 20px;
+  }
+  .section-buttons {
+    width: fit-content;
+  }
+  .button-blue {
+    padding: 3px 20px;
+    display: flex;
+    gap: 5px;
+    margin: 5px 0;
+  }
+
+  .column {
+    flex: auto;
+    justify-content: space-between;
+    display: flex;
+    flex-flow: column;
+
+    label {
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  .add {
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  textarea {
+    height: 83px;
+    min-width: 470px;
+  }
+
+  .post-example {
+    div {
+      margin: 0;
+    }
+
+    width: 284px;
+    min-width: 284px;
+
+    background-color: #ffffff;
+    height: 26em;
+    border-radius: 6px;
+    border: 1px solid #70707042;
+
+    .circle {
+      background-color: #9999ff;
+      width: 25px;
+      height: 25px;
+      border-radius: 20px;
+    }
+
+    .post-header {
+      box-sizing: border-box;
+      padding: 20px;
+      justify-content: space-between;
+      .title {
+        gap: 5px;
+      }
+    }
+
+    .post-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(153, 153, 255, 0.3);
+      height: 15em;
+      overflow: hidden;
+
+      .img-user {
+        height: 15em;
+      }
+    }
+
+    .post-footer {
+      padding: 0px 0px 20px 0px;
+      box-sizing: border-box;
+      .footer-top {
+        width: 100%;
+
+        img {
+          width: 100%;
+        }
+      }
+      p {
+        word-wrap: break-word;
+        height: 27px;
+        overflow: hidden;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .footer {
+    .section-buttons {
+      margin-top: 60px;
+      width: 100%;
+    }
+  }
+
+  .required{
+    color: red;
+    font-size: 12px;
+    margin-left: -6px;
+    margin-top: 3px;
+  }
+  
+}
+
+
+.form-page {
+  .subtitle {
+    margin-bottom: 30px;
+  }
+  .content1 {
+    margin-bottom: 50px;
+  }
+
+  .input-txt {
+    flex: 1;
+  }
+
+  .button-blue {
+    gap: 5px;
+    margin: 15px 0;
+  }
+
+  .more {
+    margin-top: 20px;
+    gap: 20px;
+    cursor: pointer;
+  }
+
+  .required {
+    color: red;
+    font-size: 12px;
+  }
+}
+
+.summary-page {
+  .content {
+    .info {
+      margin: 20px 0;
+
+      .title {
+        width: 200px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        img {
+          cursor: pointer;
+        }
+      }
+
+      .row {
+        display: flex;
+        border-bottom: 1px solid #70707042;
+        height: 45px;
+        align-items: center;
+        position: relative;
+      }
+
+      .more {
+        position: absolute;
+        right: 0;
+      }
+      .select {
+        height: 28px;
+        width: 240px;
+        border: 1px solid #70707042;
+        border-radius: 14px;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+    }
+
+    .addtext {
+      gap: 5px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+
+      td {
+        height: 45px;
+        padding: 0 30px;
+      }
+
+      td:first-child {
+        padding-left: 0;
+        width: 1%;
+        white-space: nowrap;
+      }
+      td:last-child {
+        padding-right: 0;
+      }
+      td:nth-child(2) {
+        text-align: center;
+        width: max-content;
+      }
+
+      tr {
+        border-bottom: 1px solid #70707042;
+      }
+
+      tr:last-child {
+        border-bottom: none;
+      }
+      tr:last-child td {
+        padding-top: 10px;
+      }
+
+      .credits {
+        gap: 5px;
+      }
+
+      .price {
+        width: 100%;
+        justify-content: center;
+
+        div:first-child {
+          width: 10%;
+        }
+        div:last-child {
+          width: 30%;
+          justify-content: right;
+        }
+      }
+    }
+
+    .liberty {
+      position: relative;
+      margin: 50px 0;
+      p {
+        gap: 10px;
+      }
+      .vote-main {
+        margin-top: -40px;
+
+        .vote {
+          position: absolute;
+          right: 0;
+          gap: 20px;
+          z-index: 2;
+          .section {
+            .circle {
+              cursor: pointer;
+              width: 23px;
+              height: 23px;
+              border: 1px solid #70707042;
+              border-radius: 13px;
+              margin: auto;
+              background-color: #ffffff;
+            }
+            .circle:hover {
+              border: 1px solid #d6c7ff;
+              background-color: #d6c7ff;
+            }
+            .circle.active {
+              border: 1px solid #6f3bff;
+              background-color: #6f3bff;
+            }
+          }
+        }
+        .line-back {
+          width: 155px;
+          height: 1px;
+          background-color: #70707042;
+          position: absolute;
+          right: 20px;
+          top: 5px;
+          z-index: 1;
+        }
+      }
+    }
+  }
+
+  .footer {
+    margin-top: 50px;
+  }
+}
+
+.required2 {
+  color: red;
+  font-size: 12px;
+}
