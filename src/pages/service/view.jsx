@@ -404,10 +404,10 @@ function View({
             <div className="title">Marca</div>
             <div className="value">{formData.brand_select}</div>
           </div>
-          <div className="row">
+          {/* <div className="row">
             <div className="title">Post</div>
             <div className="value">{formData.type_post}</div>
-          </div>
+          </div> */}
           <div className="row">
             <div className="title">Redes Sociales</div>
             <div className="value">{formData.social_network}</div>
@@ -428,7 +428,7 @@ function View({
           </div> */}
         </div>
 
-        <div className="liberty flex">
+        {/* <div className="liberty flex">
           <p className="flex">
             ¿Qué tanta libertad quieres que tenga el diseñador en tu proyecto
             basado en su experiencia, conocimiento y criterio?
@@ -473,7 +473,7 @@ function View({
             </div>
             <div className="line-back"></div>
           </div>
-        </div>
+        </div> */}
 
         <table>
           <tbody>
@@ -773,6 +773,7 @@ function View({
             Atrás
           </button>
           <button
+            disabled={!formData?.brand_select || !formData?.social_network || !formData?.name_project || !formData?.idea_post}
             className="button"
             onClick={() =>
               getTotalProject() > coins
