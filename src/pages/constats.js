@@ -456,12 +456,12 @@ export const DETAIL_PROJECT_DATA_2 = (
     },
     { id: 5, label: "Tipo de Proyecto", content: projectValues?.project_type },
     { id: 6, label: "Red social", content: projectValues?.social_network },
-    {
-      id: 8,
-      label: "Paleta de colores",
-      content: projectValues?.palete_colors,
-    },
-    { id: 9, label: "Publico objetivo", content: projectValues?.public_goal },
+    // {
+    //   id: 8,
+    //   label: "Paleta de colores",
+    //   content: projectValues?.palete_colors,
+    // },
+    // { id: 9, label: "Publico objetivo", content: projectValues?.public_goal },
     { id: 10, label: "Idea a desarollar", content: projectValues?.idea_post },
     {
       id: 11,
@@ -506,11 +506,11 @@ export const DETAIL_PROJECT_DATA_2 = (
       ),
     },
 
-    {
-      id: 15,
-      label: "Tiempo de entrega",
-      content: DELIVERY_TIME[projectValues?.tiempo_entrega],
-    },
+    // {
+    //   id: 15,
+    //   label: "Tiempo de entrega",
+    //   content: DELIVERY_TIME[projectValues?.tiempo_entrega],
+    // },
     {
       id: 16,
       label: "Archivos editables",
