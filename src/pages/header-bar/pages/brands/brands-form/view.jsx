@@ -93,6 +93,12 @@ function View({
         />
 
         <div className="description">
+          <button className="button" onClick={() => redirectTo("/brands")}>
+            Atrás
+          </button>
+        </div>
+        
+        <div className="description">
           Ingresa los datos de tu compañía y de la marca. Si tienes más marcas
           las puedas agregar en la pantalla anterior.
         </div>
