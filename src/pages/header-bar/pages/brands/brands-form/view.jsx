@@ -3,6 +3,7 @@ import PageTitle from "../../../../page-title";
 import { FORM_INPUTS_BRANDS, FROM_BRAND_TABLES, FORM_INPUTS } from "../../../../constats";
 import "./styles.scss";
 import { Icons } from "../../../../icons";
+import { useNavigate } from "react-router-dom";
 
 function View({
   id,
@@ -20,6 +21,17 @@ function View({
 
   const [isActive, setIsActive] = useState(false);
 
+  const navigate = useNavigate();
+
+  const handleToggle = () => {
+    if(sessionStorage.getItem('terms') == 'true'){
+      sessionStorage.setItem('terms', JSON.stringify(false));
+      navigate(-1);
+    }else{
+      redirectTo("/brands");
+    }
+  };
+  
   let list = FORM_INPUTS_BRANDS.map((input, index) => {
     return (
       <>
@@ -93,7 +105,7 @@ function View({
         />
 
         <div className="description">
-          <button className="button" onClick={() => redirectTo("/brands")}>
+          <button className="button" onClick={() => { handleToggle(); }}>
             Atrás
           </button>
         </div>
